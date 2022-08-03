@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-img src="images/Login_bg.jpg" class="px-6">
+        <v-img :src="$vuetify.breakpoint.mdAndUp ? 'images/Login_bg.jpg' : ''" class="px-6">
             <v-row>
                 <v-col cols="12" md="4">
                     <router-view />

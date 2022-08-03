@@ -7,44 +7,22 @@ import BaseFormComponent from '@/components/vuetify/Form/base-form';
 
 @Component
 export default class ForgotPasswordComponent extends VueWrapper {
-    $refs!: {
-        baseform: BaseFormComponent;
-    };
-    public resetPassword = new ResetPasswordModel();
+    public forgotPasswordData = new ResetPasswordModel();
 
-    // public ResetPassword() {
-    //     new LoaderService().showFullScreenLoader();
-
-    //     new AccountsApi()
-    //         .ResetPassword(this.resetPassword)
-    //         .subscribe(({Data, Status, Message}) => {
-    //             if (Data && Status) {
-    //                 this.CoreSrv.dialog.forgetPassword = false;
-    //                 new AlertService().show('success', `${Message}!` ?? '');
-    //                 this.resetPassword = new ResetPasswordModel();
-    //                 this.emptyForm();
-    //             } else {
-    //                 new AlertService().show('error', Message ?? '');
-    //             }
-    //         })
-    //         .add(() => {
-    //             new LoaderService().hideFullScreenLoader();
-    //         });
-    // }
-
-    get notShowable() {
-        return this.$vuetify.breakpoint.name == 'xs';
-    }
-    public emptyForm() {
-        this.$nextTick(() => {
-            this.$refs.baseform.reset();
-        });
-    }
-
-    public Cancel() {
-        this.CoreSrv.dialog.loginsignupPage = false;
-        // this.emptyForm();
-        // this.login = new LoginModel();
-        // this.loginError = '';
+    public ForgotPassword() {
+        this.LoaderSrv.showFullScreenLoader();
+        new AccountsApi()
+            .forgotPassword(this.forgotPasswordData)
+            .subscribe(
+                res => {
+                    this.AlertSrv.show('success', 'An email has sent to your email address to reset your password.');
+                },
+                err => {
+                    this.AlertSrv.show('error', err.email || 'Something went wrong!');
+                }
+            )
+            .add(() => {
+                this.LoaderSrv.hideFullScreenLoader();
+            });
     }
 }

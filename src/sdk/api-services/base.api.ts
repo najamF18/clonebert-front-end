@@ -100,7 +100,7 @@ export abstract class BaseApi {
     private authorize() {
         const SessionValue = new UserSession().Session;
 
-        return `Bearer ${SessionValue ? SessionValue.JwtToken : ''}`;
+        return `Bearer ${SessionValue ? SessionValue.token : ''}`;
     }
 
     private handleError(error: AxiosError) {

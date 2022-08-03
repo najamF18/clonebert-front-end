@@ -20,12 +20,12 @@ export const AuthenticationRoutes: Array<RouteConfig> = [
             {
                 path: '/sign-up',
                 name: 'Signup',
-                component: SignupComponent,
-                meta: {
-                    title: 'Sign Up for Free Today!',
-                    description:
-                        'Sign up for a free MHParks.com account and begin evolving how you accomplish your goals in the mobile home park industry today!'
-                }
+                component: SignupComponent
+            },
+            {
+                path: '/forgot-password',
+                name: 'Forgot Password',
+                component: ForgotPasswordComponent
             }
         ]
     }

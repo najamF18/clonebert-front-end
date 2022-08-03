@@ -7,9 +7,9 @@ import {BaseApi} from '../base.api';
 
 @ServiceClass()
 export class AccountsApi extends BaseApi {
-    // public Login(loginData: LoginModel) {
-    //     return this.POST_Request<SessionModel>(`${this.ApiUrl}/auth/login`, loginData);
-    // }
+    public login(loginData: LoginModel) {
+        return this.POST_Request<SessionModel>(`${this.ApiUrl}/auth/login/`, loginData);
+    }
 
     // public RemoteLogin() {
     //     return this.GET_Request<string>(`${this.ApiUrl}/Account/RemoteLogin`);
@@ -23,12 +23,15 @@ export class AccountsApi extends BaseApi {
     // }
 
     public signup(signUpData: SignupModel) {
-        return this.POST_Request<{email: any; message: any}>(`${this.ApiUrl}/auth/register`, signUpData);
+        return this.POST_Request<{email: any; message: any}>(`${this.ApiUrl}/auth/register/`, signUpData);
     }
     // public sendLink(email: string) {
     //     return this.POST_Request(`${this.ApiUrl}/Account/SendLink`, {email});
     // }
 
+    public forgotPassword(resetPass: ResetPasswordModel) {
+        return this.POST_Request<{}>(`${this.ApiUrl}/api/password_reset/`, resetPass);
+    }
     // public ResetPassword(resetPass: ResetPasswordModel) {
     //     return this.POST_Request<ResetPasswordModel>(`${this.ApiUrl}/Account/ResetPassword`, resetPass);
     // }

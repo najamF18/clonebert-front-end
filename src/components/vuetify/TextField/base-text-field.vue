@@ -18,11 +18,17 @@
             @blur="onBlur"
             flat
             solo
+            dark
             background-color="lightgrey"
             @keydown="onKeyDown"
         >
             <slot v-for="slot in Object.keys($slots)" :name="slot" :slot="slot" />
         </v-text-field>
+        <template v-if="errors.length">
+            <p class="error--text ma-0">
+                {{ errors[0] }}
+            </p>
+        </template>
     </validation-provider>
 </template>
 

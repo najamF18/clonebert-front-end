@@ -10,6 +10,7 @@
                 </div>
             </v-overlay>
         </v-fade-transition>
+        <footer-component />
     </v-app>
 </template>
 

@@ -8,7 +8,7 @@ import {addDays} from 'date-fns';
 
 @ServiceClass()
 export class UserSession {
-    private prefix: string = '$MhParks$:';
+    private prefix: string = '$Clonebert$:';
     public _session = new BehaviorSubject<SessionModel | null>(null);
 
     private Cookie: Cookies = new CookieBrowser();
@@ -23,54 +23,51 @@ export class UserSession {
 
     constructor() {
         this.fetchCookies();
-        if (this.Session?.JwtToken) {
-            console.log('decoded token: ', parseJwt(this.Session?.JwtToken!));
-        }
     }
 
     public fetchCookies() {
         this._session.next(
             new SessionModel({
-                Email: this.load('Email'),
-                Expiry: this.load('Expiry'),
-                FirstName: this.load('FirstName'),
-                LastName: this.load('LastName'),
-                PhoneNumber: this.load('PhoneNumber'),
-                JwtToken: this.load('JwtToken'),
-                RememberMe: this.load('RememberMe'),
-                Role: this.load('Role'),
-                UserId: this.load('UserId'),
-                UserName: this.load('UserName'),
-                DisclaimerAccepted: this.load('DisclaimerAccepted')
+                // Email: this.load('Email'),
+                // Expiry: this.load('Expiry'),
+                // FirstName: this.load('FirstName'),
+                // LastName: this.load('LastName'),
+                // PhoneNumber: this.load('PhoneNumber'),
+                token: this.load('token')
+                // RememberMe: this.load('RememberMe'),
+                // Role: this.load('Role'),
+                // UserId: this.load('UserId'),
+                // UserName: this.load('UserName'),
+                // DisclaimerAccepted: this.load('DisclaimerAccepted')
             })
         );
     }
 
     public get isUserAuthenticated() {
-        if (!this.Session?.JwtToken || !this.Session.UserId) {
+        if (!this.Session?.token) {
             this.clear();
             return false;
         }
-
-        const jwtData = parseJwt<JwtPayloadModel>(this.Session.JwtToken);
-
-        if (!jwtData.exp) {
-            this.clear();
-            return false;
-        }
-
-        //  - 10 * 60 * 1000
-        if (new Date().valueOf() >= jwtData.exp * 1000) {
-            this.clear();
-            return false;
-        }
-
-        return true;
     }
+    //     const jwtData = parseJwt<JwtPayloadModel>(this.Session.JwtToken);
 
-    public get isTokenExpired() {
-        return !this.isUserAuthenticated;
-    }
+    //     if (!jwtData.exp) {
+    //         this.clear();
+    //         return false;
+    //     }
+
+    //     //  - 10 * 60 * 1000
+    //     if (new Date().valueOf() >= jwtData.exp * 1000) {
+    //         this.clear();
+    //         return false;
+    //     }
+
+    //     return true;
+    // }
+
+    // public get isTokenExpired() {
+    //     return !this.isUserAuthenticated;
+    // }
 
     public save() {
         if (this.Session) {

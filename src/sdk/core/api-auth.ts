@@ -15,7 +15,7 @@ export class ApiAuth {
     }
     set SessionValue(value: SessionModel) {
         this.UserSession.next(value);
-        this.save();
+        // this.save();
     }
 
     constructor() {
@@ -25,24 +25,24 @@ export class ApiAuth {
     public fetchCookies() {
         this.UserSession.next(
             new SessionModel({
-                JwtToken: this.load('Jwt'),
-                UserId: this.load('UserId'),
-                RememberMe: this.load('RememberMe'),
+                token: this.load('token')
+                // UserId: this.load('UserId'),
+                // RememberMe: this.load('RememberMe'),
 
-                Expiry: this.load('Expiry'),
-                SessionLogId: this.load('SessionLogId')
+                // Expiry: this.load('Expiry'),
+                // SessionLogId: this.load('SessionLogId')
             })
         );
     }
-    public save() {
-        if (this.SessionValue) {
-            for (const item of Object.entries(this.SessionValue)) {
-                this.persist(item[0], item[1], new Date(this.SessionValue!.Expiry!));
-            }
-            return true;
-        }
-        return false;
-    }
+    // public save() {
+    //     if (this.SessionValue) {
+    //         for (const item of Object.entries(this.SessionValue)) {
+    //             this.persist(item[0], item[1], new Date(this.SessionValue!.Expiry!));
+    //         }
+    //         return true;
+    //     }
+    //     return false;
+    // }
     private load(Key: string): any {
         if (this.Cookie) {
             return this.Cookie.get(`${this.Prefix}${Key}`);
