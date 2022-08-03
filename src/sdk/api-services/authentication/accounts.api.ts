@@ -1,0 +1,35 @@
+import {ServiceClass} from '@/decorators';
+import {LoginModel, LoginResponseModel, SessionModel, SignupModel} from '@/sdk/models';
+import {ResetPasswordModel} from '@/sdk/models/authentication/reset-password.model';
+import {SdkConfig} from '@/sdk/sdk.config';
+import {map} from 'rxjs/operators';
+import {BaseApi} from '../base.api';
+
+@ServiceClass()
+export class AccountsApi extends BaseApi {
+    public Login(loginData: LoginModel) {
+        return this.POST_Request<SessionModel>(`${this.ApiUrl}/Account/login`, loginData);
+    }
+
+    public RemoteLogin() {
+        return this.GET_Request<string>(`${this.ApiUrl}/Account/RemoteLogin`);
+    }
+    public AcceptDisclaimer() {
+        return this.GET_Request<string>(`${this.ApiUrl}/Account/AcceptDisclaimer`);
+    }
+
+    public Logout() {
+        return this.GET_Request<void>(`${this.ApiUrl}/Account/Logout`);
+    }
+
+    public signup(signUpData: SignupModel) {
+        return this.POST_Request<SessionModel>(`${this.ApiUrl}/Account/Signup`, signUpData);
+    }
+    public sendLink(email: string) {
+        return this.POST_Request(`${this.ApiUrl}/Account/SendLink`, {email});
+    }
+
+    public ResetPassword(resetPass: ResetPasswordModel) {
+        return this.POST_Request<ResetPasswordModel>(`${this.ApiUrl}/Account/ResetPassword`, resetPass);
+    }
+}

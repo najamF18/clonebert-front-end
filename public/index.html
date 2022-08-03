@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover" />
+        <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
+        <title>MHParks.com</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+        <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css" /> -->
+
+        <!-- <script src="/js/feedback.js"></script> -->
+
+        <script>
+            let $zoho = {};
+
+            window.SalesIQChatCode = function() {
+                $zoho = $zoho || {};
+                var script = document.createElement('script');
+
+                script.type = 'text/javascript';
+
+                script.textContent = `
+                $zoho.salesiq = $zoho.salesiq || {
+                    widgetcode: '61f0297526ecdbac1d7595899b82bd898a4f8c6ea312aaaae889236c2eba71fa',
+                    values: {},
+                    ready: function() {}
+                };
+                var d = document;
+                s = d.createElement('script');
+                s.type = 'text/javascript';
+                s.id = 'zsiqscript';
+                s.defer = true;
+                s.src = 'https://salesiq.zoho.com/widget';
+                t = d.getElementsByTagName('script')[0];
+                t.parentNode.insertBefore(s, t);
+                `;
+
+                document.body.append(script);
+            };
+            window.DashboardChatWidget = function() {
+                // $zoho = $zoho || {};
+                var script = document.createElement('script');
+                // script.id = 'zsiqchat';
+                script.type = 'text/javascript';
+                script.src = 'https://desk.zoho.com/portal/api/web/inapp/666945000000371175?orgId=766847578';
+                script.nonce = '{place_your_nonce_value_here}';
+                script.defer = true;
+
+                // script.textContent = `
+                // $zoho.salesiq = $zoho.salesiq || {
+                //     widgetcode: '61f0297526ecdbac1d7595899b82bd898a4f8c6ea312aaaae889236c2eba71fa',
+                //     values: {},
+                //     ready: function() {}
+                // };
+                // var d = document;
+                // s = d.createElement('script');
+                // s.type = 'text/javascript';
+                // s.id = 'zsiqscript';
+                // s.defer = true;
+                // s.src = 'https://salesiq.zoho.com/widget';
+                // t = d.getElementsByTagName('script')[0];
+                // t.parentNode.insertBefore(s, t);
+                // d.write("<div id='zsiqwidget'></div>");
+                // `;
+
+                document.body.append(script);
+            };
+
+            window.EmbedSocialFeedbackButton = function() {
+                (function(d, s, id) {
+                    var js;
+                    if (d.getElementById(id)) {
+                        return;
+                    }
+                    js = d.createElement(s);
+                    js.id = id;
+                    js.src = 'https://embedsocial.com/cdn/ef.js?v=1.1';
+                    d.getElementsByTagName('head')[0].appendChild(js);
+                })(document, 'script', 'EmbedSocialFormsScript');
+            };
+        </script>
+
+        <script>
+            var w = window;
+            var p = w.location.protocol;
+            if (p.indexOf('http') < 0) {
+                p = 'http' + ':';
+            }
+            var d = document;
+            var f = d.getElementsByTagName('script')[0],
+                s = d.createElement('script');
+            s.type = 'text/javascript';
+            s.async = false;
+            if (s.readyState) {
+                s.onreadystatechange = function() {
+                    if (s.readyState == 'loaded' || s.readyState == 'complete') {
+                        s.onreadystatechange = null;
+                        try {
+                            loadwaprops(
+                                '3z5f2160aa41c9811b431852a2e2f61842',
+                                '3ze745ed10759a2ed15a0adf4d0ab46d35',
+                                '3z66ffe9be25bfa511cecb037e8ebe5baa228b322e1190ba368553a95d39d2cad8',
+                                '3zb81aa67613b471c7c983c51b2d9d12e1',
+                                0.0
+                            );
+                        } catch (e) {}
+                    }
+                };
+            } else {
+                s.onload = function() {
+                    try {
+                        loadwaprops(
+                            '3z5f2160aa41c9811b431852a2e2f61842',
+                            '3ze745ed10759a2ed15a0adf4d0ab46d35',
+                            '3z66ffe9be25bfa511cecb037e8ebe5baa228b322e1190ba368553a95d39d2cad8',
+                            '3zb81aa67613b471c7c983c51b2d9d12e1',
+                            0.0
+                        );
+                    } catch (e) {}
+                };
+            }
+            s.src = p + '//ma.zoho.com/hub/js/WebsiteAutomation.js';
+            f.parentNode.insertBefore(s, f);
+        </script>
+
+        <script type="text/javascript">
+            var onloadCallback = function() {};
+        </script>
+
+        <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+        <!-- <script src="https://www.google.com/recaptcha/enterprise.js?render=6LcwDhweAAAAAHYe7RdTSfCkPD0YkQF7MR334_gC"></script> -->
+
+        <style>
+            iframe.embedsocial-forms-embed-iframe,
+            .embedsocial-forms-iframe {
+                height: 0px !important;
+            }
+        </style>
+        <script>
+            function getapi() {}
+        </script>
+    </head>
+
+    <body>
+        <noscript>
+            <strong
+                >We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong
+            >
+        </noscript>
+        <div id="app"></div>
+        <!-- built files will be auto injected -->
+
+        <div class="embedsocial-forms-iframe" data-ref="09bd426bf707a66e8efcce5bba6055e008591252" data-height="auto"></div>
+    </body>
+</html>
