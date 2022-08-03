@@ -12,25 +12,25 @@ export default class ForgotPasswordComponent extends VueWrapper {
     };
     public resetPassword = new ResetPasswordModel();
 
-    public ResetPassword() {
-        new LoaderService().showFullScreenLoader();
+    // public ResetPassword() {
+    //     new LoaderService().showFullScreenLoader();
 
-        new AccountsApi()
-            .ResetPassword(this.resetPassword)
-            .subscribe(({Data, Status, Message}) => {
-                if (Data && Status) {
-                    this.CoreSrv.dialog.forgetPassword = false;
-                    new AlertService().show('success', `${Message}!` ?? '');
-                    this.resetPassword = new ResetPasswordModel();
-                    this.emptyForm();
-                } else {
-                    new AlertService().show('error', Message ?? '');
-                }
-            })
-            .add(() => {
-                new LoaderService().hideFullScreenLoader();
-            });
-    }
+    //     new AccountsApi()
+    //         .ResetPassword(this.resetPassword)
+    //         .subscribe(({Data, Status, Message}) => {
+    //             if (Data && Status) {
+    //                 this.CoreSrv.dialog.forgetPassword = false;
+    //                 new AlertService().show('success', `${Message}!` ?? '');
+    //                 this.resetPassword = new ResetPasswordModel();
+    //                 this.emptyForm();
+    //             } else {
+    //                 new AlertService().show('error', Message ?? '');
+    //             }
+    //         })
+    //         .add(() => {
+    //             new LoaderService().hideFullScreenLoader();
+    //         });
+    // }
 
     get notShowable() {
         return this.$vuetify.breakpoint.name == 'xs';

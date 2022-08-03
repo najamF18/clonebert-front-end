@@ -12,18 +12,18 @@
             </div>
             <br /><br />
             <h3 style="font-size:1.5rem; font-weight:500" class=" white--text text-left mb-3">Sign Up</h3>
-            <base-form>
+            <base-form @submit="signup">
                 <div class="mb-3">
-                    <base-text-field label="Username" hide-details />
+                    <base-text-field label="Username" hide-details :value.sync="signupData.username" />
                 </div>
                 <div class="mb-3">
-                    <base-text-field label="Email" hide-details />
+                    <base-text-field label="Email" hide-details :value.sync="signupData.email" />
                 </div>
                 <div>
-                    <base-text-field label="Password" hide-details />
+                    <base-text-field label="Password" hide-details :value.sync="signupData.password" />
                 </div>
                 <div>
-                    <base-text-field label="Confirm Password" hide-details />
+                    <base-text-field label="Confirm Password" hide-details :value.sync="signupData.confirmPassword" />
                 </div>
                 <div class="d-flex justify-space-between align-center mt-3">
                     <div>
@@ -42,8 +42,8 @@
                     </div>
                 </div>
                 <div class="mt-3">
-                    <base-btn class="white black--text" small block>
-                        {{ 'Sign In'.toUpperCase() }}
+                    <base-btn type="submit" class="white black--text" small block>
+                        SIGN UP
                     </base-btn>
                 </div>
                 <div class="mt-3 text-center">

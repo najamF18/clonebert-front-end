@@ -1,6 +1,6 @@
 import VueWrapper from '@/components/core/Vue/vue.wrapper';
 import {Component} from 'vue-property-decorator';
-import {LoaderService, LoginModel, LoginResponseModel, ResetPasswordModel} from '@/sdk';
+import {LoaderService, LoginModel, ResetPasswordModel} from '@/sdk';
 import {AccountsApi} from '@/sdk/api-services';
 import {ApiAuth, UserSession} from '@/sdk/core';
 import {AlertService} from '@/sdk';
@@ -46,84 +46,84 @@ export default class LoginComponent extends VueWrapper {
         }, 500);
     }
 
-    public Login() {
-        new LoaderService().showFullScreenLoader('Logging in...');
+    // public Login() {
+    //     new LoaderService().showFullScreenLoader('Logging in...');
 
-        new AccountsApi()
-            .Login(this.login)
-            .subscribe(
-                ({Data, Message, Status}) => {
-                    if (Data && Status) {
-                        new UserSession()._session.next(Data);
-                        new UserSession().save();
+    //     new AccountsApi()
+    //         .Login(this.login)
+    //         .subscribe(
+    //             ({Data, Message, Status}) => {
+    //                 if (Data && Status) {
+    //                     new UserSession()._session.next(Data);
+    //                     new UserSession().save();
 
-                        if (this.support_login === 'true') {
-                            this.LoaderSrv.showFullScreenLoader();
+    //                     if (this.support_login === 'true') {
+    //                         this.LoaderSrv.showFullScreenLoader();
 
-                            new AccountsApi()
-                                .RemoteLogin()
-                                .subscribe(
-                                    remoteLoginRes => {
-                                        if (remoteLoginRes.Status && remoteLoginRes.Data) {
-                                            window.location.href = remoteLoginRes.Data;
-                                        } else {
-                                            this.AlertSrv.show('error', 'Unable to remotely login user to support.mhparks.com. Please try agian later.').then(
-                                                () => {
-                                                    this.afterLogin();
-                                                }
-                                            );
-                                        }
-                                    },
-                                    err => {
-                                        this.AlertSrv.show('error', 'Unable to remotely login user to support.mhparks.com. Please try agian later.').then(
-                                            () => {
-                                                this.afterLogin();
-                                            }
-                                        );
-                                    }
-                                )
-                                .add(() => {
-                                    this.LoaderSrv.hideFullScreenLoader();
-                                });
-                        } else {
-                            // this.$router.push('/user/dashboard');
-                            window.location.href = '/user/dashboard';
-                        }
-                    } else {
-                        this.loginError = Message!;
-                    }
-                },
-                error => {
-                    this.loginError = error.Message;
-                    if (error.StatusCode === 400) {
-                        this.$router.push({name: 'Cancelled Membership', query: {email: this.login.Email}});
-                    }
-                }
-            )
-            .add(() => {
-                new LoaderService().hideFullScreenLoader();
-            });
-    }
+    //                         new AccountsApi()
+    //                             .RemoteLogin()
+    //                             .subscribe(
+    //                                 remoteLoginRes => {
+    //                                     if (remoteLoginRes.Status && remoteLoginRes.Data) {
+    //                                         window.location.href = remoteLoginRes.Data;
+    //                                     } else {
+    //                                         this.AlertSrv.show('error', 'Unable to remotely login user to support.mhparks.com. Please try agian later.').then(
+    //                                             () => {
+    //                                                 this.afterLogin();
+    //                                             }
+    //                                         );
+    //                                     }
+    //                                 },
+    //                                 err => {
+    //                                     this.AlertSrv.show('error', 'Unable to remotely login user to support.mhparks.com. Please try agian later.').then(
+    //                                         () => {
+    //                                             this.afterLogin();
+    //                                         }
+    //                                     );
+    //                                 }
+    //                             )
+    //                             .add(() => {
+    //                                 this.LoaderSrv.hideFullScreenLoader();
+    //                             });
+    //                     } else {
+    //                         // this.$router.push('/user/dashboard');
+    //                         window.location.href = '/user/dashboard';
+    //                     }
+    //                 } else {
+    //                     this.loginError = Message!;
+    //                 }
+    //             },
+    //             error => {
+    //                 this.loginError = error.Message;
+    //                 if (error.StatusCode === 400) {
+    //                     this.$router.push({name: 'Cancelled Membership', query: {email: this.login.Email}});
+    //                 }
+    //             }
+    //         )
+    //         .add(() => {
+    //             new LoaderService().hideFullScreenLoader();
+    //         });
+    // }
 
-    public ResetPassword() {
-        new LoaderService().showFullScreenLoader();
+    // public ResetPassword() {
+    //     new LoaderService().showFullScreenLoader();
 
-        new AccountsApi()
-            .ResetPassword(this.resetPassword)
-            .subscribe(({Data, Status, Message}) => {
-                if (Data && Status) {
-                    this.CoreSrv.dialog.loginsignupPage = false;
-                    new AlertService().show('success', `${Message}!` ?? '');
-                    this.resetPassword = new ResetPasswordModel();
-                    this.emptyForm();
-                } else {
-                    new AlertService().show('error', Message ?? '');
-                }
-            })
-            .add(() => {
-                new LoaderService().hideFullScreenLoader();
-            });
-    }
+    //     new AccountsApi()
+    //         .ResetPassword(this.resetPassword)
+    //         .subscribe(({Data, Status, Message}) => {
+    //             if (Data && Status) {
+    //                 this.CoreSrv.dialog.loginsignupPage = false;
+    //                 new AlertService().show('success', `${Message}!` ?? '');
+    //                 this.resetPassword = new ResetPasswordModel();
+    //                 this.emptyForm();
+    //             } else {
+    //                 new AlertService().show('error', Message ?? '');
+    //             }
+    //         })
+    //         .add(() => {
+    //             new LoaderService().hideFullScreenLoader();
+    //         });
+    // }
 
     get notShowable() {
         return this.$vuetify.breakpoint.name == 'xs';

@@ -9,6 +9,7 @@ export const AuthenticationRoutes: Array<RouteConfig> = [
     {
         path: '/',
         name: 'LoginSignupLayout',
+        redirect: '/login',
         component: LoginSignupLayoutComponent,
         children: [
             {

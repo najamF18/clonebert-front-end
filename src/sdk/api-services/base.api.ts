@@ -3,7 +3,7 @@ import {Observable, throwError, Subscriber, from} from 'rxjs';
 import {catchError, map, delay} from 'rxjs/operators';
 import {SdkConfig} from '../sdk.config';
 import {AnyObject} from '@/globals';
-import {LoginResponseModel} from '../models';
+// import {LoginResponseModel} from '../models';
 import {ApiAuth, UserSession} from '../core';
 import {AlertService} from '..';
 import router from '@/router';
@@ -127,12 +127,12 @@ export abstract class BaseApi {
     protected GET_Request<T>(url: string): Observable<ApiResponseModel<T>> {
         return this.request('GET', url).pipe(map(res => res.data));
     }
-    protected POST_Request<T>(url: string, postBody: AnyObject): Observable<ApiResponseModel<T>> {
-        return this.request('POST', url, postBody).pipe(map(res => new ApiResponseModel<T>(res.data)));
+    protected POST_Request<T>(url: string, postBody: AnyObject): Observable<any> {
+        return this.request('POST', url, postBody);
     }
-    protected Login_POST_Request<T>(url: string, postBody: AnyObject): Observable<LoginResponseModel<T>> {
-        return this.request('POST', url, postBody).pipe(map(res => new LoginResponseModel<T>(res.data)));
-    }
+    // protected Login_POST_Request<T>(url: string, postBody: AnyObject): Observable<LoginResponseModel<T>> {
+    //     return this.request('POST', url, postBody).pipe(map(res => new LoginResponseModel<T>(res.data)));
+    // }
     protected PATCH_Request<T>(url: string, postBody: AnyObject): Observable<ApiResponseModel<T>> {
         return this.request('PATCH', url, postBody).pipe(map(res => res.data));
     }

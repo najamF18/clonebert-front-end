@@ -1,7 +1,7 @@
-import { LoginResponseModel, SessionModel } from '../models';
-import { CookieBrowser, Cookies } from './cookie-browser';
-import { ServiceClass } from '@/decorators';
-import { BehaviorSubject } from 'rxjs';
+import {SessionModel} from '../models';
+import {CookieBrowser, Cookies} from './cookie-browser';
+import {ServiceClass} from '@/decorators';
+import {BehaviorSubject} from 'rxjs';
 
 @ServiceClass()
 export class ApiAuth {
@@ -37,11 +37,7 @@ export class ApiAuth {
     public save() {
         if (this.SessionValue) {
             for (const item of Object.entries(this.SessionValue)) {
-                this.persist(
-                    item[0],
-                    item[1],
-                    new Date(this.SessionValue!.Expiry!)
-                );
+                this.persist(item[0], item[1], new Date(this.SessionValue!.Expiry!));
             }
             return true;
         }
@@ -54,17 +50,11 @@ export class ApiAuth {
     }
     public clear(): void {
         if (this.UserSession.value) {
-            Object.keys(this.UserSession.value).forEach((key: string) =>
-                this.Cookie.remove(`${this.Prefix}${key}`)
-            );
+            Object.keys(this.UserSession.value).forEach((key: string) => this.Cookie.remove(`${this.Prefix}${key}`));
         }
         this.UserSession.next(null);
     }
     private persist(key: string, value: any, expires: Date) {
-        this.Cookie.set(
-            `${this.Prefix}${key}`,
-            typeof value === 'object' ? JSON.stringify(value) : value,
-            { expires }
-        );
+        this.Cookie.set(`${this.Prefix}${key}`, typeof value === 'object' ? JSON.stringify(value) : value, {expires});
     }
 }
