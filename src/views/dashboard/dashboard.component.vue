@@ -1,5 +1,5 @@
 <template>
-    <div>dsfsf</div>
+    <div>hello</div>
 </template>
 
 <script lang="ts" src="./dashboard.component.ts" />
