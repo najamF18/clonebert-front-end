@@ -48,6 +48,8 @@ export class UserSession {
             this.clear();
             return false;
         }
+
+        return true;
     }
     //     const jwtData = parseJwt<JwtPayloadModel>(this.Session.JwtToken);
 

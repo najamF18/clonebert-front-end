@@ -10,6 +10,9 @@ export class AccountsApi extends BaseApi {
     public login(loginData: LoginModel) {
         return this.POST_Request<SessionModel>(`${this.ApiUrl}/auth/login/`, loginData);
     }
+    public logout() {
+        return this.GET_Request<{}>(`${this.ApiUrl}/auth/logout/`);
+    }
 
     // public RemoteLogin() {
     //     return this.GET_Request<string>(`${this.ApiUrl}/Account/RemoteLogin`);
@@ -25,6 +28,7 @@ export class AccountsApi extends BaseApi {
     public signup(signUpData: SignupModel) {
         return this.POST_Request<{email: any; message: any}>(`${this.ApiUrl}/auth/register/`, signUpData);
     }
+
     // public sendLink(email: string) {
     //     return this.POST_Request(`${this.ApiUrl}/Account/SendLink`, {email});
     // }
