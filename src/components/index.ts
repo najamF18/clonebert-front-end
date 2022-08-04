@@ -33,6 +33,7 @@ import WysiwygEditorComponent from './shared/wysiwyg-editor/wysiwyg-editor.compo
 import BaseChartComponent from './shared/charts/pie-chart/base-chart.component';
 import BaseCurrencyField from './vuetify/CurrencyField/base-currency-field';
 import BaseApacheChartComponent from './shared/base-chart/base-apache-chart.component';
+import BaseIconComponent from './shared/base-icon/base-icon.component';
 
 // Vuetify Components
 Vue.component('base-text-field', BaseTextField);
@@ -71,3 +72,4 @@ Vue.component('signup-component', SignupComponent);
 Vue.component('wysiwyg-editor-component', WysiwygEditorComponent);
 Vue.component('base-chart-component', BaseChartComponent);
 Vue.component('base-apache-chart-component', BaseApacheChartComponent);
+Vue.component('base-icon', BaseIconComponent);

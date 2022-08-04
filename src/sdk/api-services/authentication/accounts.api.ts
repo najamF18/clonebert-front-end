@@ -1,5 +1,7 @@
 import {ServiceClass} from '@/decorators';
 import {LoginModel, SessionModel, SignupModel} from '@/sdk/models';
+import {ChangeEmailModel} from '@/sdk/models/authentication/change-email.model';
+import {ChangePasswordModel} from '@/sdk/models/authentication/change-password.model';
 import {ResetPasswordModel} from '@/sdk/models/authentication/reset-password.model';
 import {SdkConfig} from '@/sdk/sdk.config';
 import {map} from 'rxjs/operators';
@@ -12,6 +14,18 @@ export class AccountsApi extends BaseApi {
     }
     public logout() {
         return this.GET_Request<{}>(`${this.ApiUrl}/auth/logout/`);
+    }
+
+    public changePassword(data: ChangePasswordModel) {
+        return this.POST_Request<{}>(`${this.ApiUrl}/auth/change-password/`, data);
+    }
+
+    public changeEmail(data: ChangeEmailModel) {
+        return this.POST_Request<{}>(`${this.ApiUrl}/auth/change-email/`, data);
+    }
+
+    public disableAccount() {
+        return this.GET_Request<{}>(`${this.ApiUrl}/auth/disable-account/`);
     }
 
     // public RemoteLogin() {

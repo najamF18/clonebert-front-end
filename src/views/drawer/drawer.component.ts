@@ -15,6 +15,26 @@ export default class DrawerComponent extends VueWrapper {
         // console.log(this.MainLinks);
     }
 
+    public items = [
+        {
+            title: 'Profile',
+            icon: 'mdi-account',
+            // name: 'Profile',
+            link: '/user/profile',
+            availableTo: 'Everyone',
+            method: () => {}
+        },
+
+        {
+            title: 'Logout',
+            icon: 'mdi-logout',
+
+            link: '',
+            availableTo: 'Everyone',
+            method: this.logout
+        }
+    ];
+
     public logout() {
         this.LoaderSrv.showFullScreenLoader();
         new UserSession().clear();

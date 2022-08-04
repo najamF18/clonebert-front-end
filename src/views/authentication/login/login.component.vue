@@ -17,7 +17,7 @@
                     <base-text-field label="Username" hide-details :value.sync="loginData.username" />
                 </div>
                 <div>
-                    <base-text-field label="Password" hide-details :value.sync="loginData.password" />
+                    <base-text-field type="password" label="Password" hide-details :value.sync="loginData.password" />
                 </div>
                 <div class="d-flex justify-space-between align-center mt-3">
                     <div>
