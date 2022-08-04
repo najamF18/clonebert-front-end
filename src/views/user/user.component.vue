@@ -1,6 +1,7 @@
 <template>
     <v-app class="height-100x">
         <v-container fluid class="py-0 px-0 height-100x" style="position: relative;">
+            <drawer-component />
             <v-main class="height-100x overflow-auto">
                 <div class="black white--text lighten-5 height-100x">
                     <router-view :key="$route.fullPath" />

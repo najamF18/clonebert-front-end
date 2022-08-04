@@ -1,9 +1,9 @@
 <template>
-    <div>
-        <base-card class="pa-1 mb-3 " tile v-for="(link, index) in navigationLinks" :key="index">
-            <v-navigation-drawer class="pa-0" floating stateless :value="true" width="auto">
+    <div class="mx-2">
+        <base-card class="pa-1 pb-4 px-2  mb-3 darkgrey" tile v-for="(link, index) in navigationLinks" :key="index">
+            <v-navigation-drawer class="pa-0 darkgrey" floating stateless :value="true" width="auto">
                 <div class="pb-2" v-if="link[index].Position == (1 || 2) || link[index].Position == 2">
-                    <v-card-title class="d-flex justify-center primary--text py-2">{{
+                    <v-card-title class="d-flex justify-center white--text py-2">{{
                         link[index].Position == 1 ? titleOne : link[index].Position == 2 ? titleTwo : ''
                     }}</v-card-title>
                     <v-divider />
@@ -19,14 +19,14 @@
                         :to="{name: subLink.Name}"
                     >
                         <v-list-item-icon class="mr-3">
-                            <v-icon color="primary">{{ subLink.Icon }}</v-icon>
+                            <v-icon color="white">{{ subLink.Icon }}</v-icon>
                         </v-list-item-icon>
 
                         <v-list-item-content>
                             <div class="d-flex justify-space-between">
-                                <v-list-item-title class="primary--text">{{ subLink.Name }}</v-list-item-title>
+                                <v-list-item-title class="white--text">{{ subLink.Name }}</v-list-item-title>
                                 <div class="right">
-                                    <v-icon color="primary height-0 width-0">
+                                    <v-icon color="white height-0 width-0">
                                         mdi-chevron-right
                                     </v-icon>
                                 </div>

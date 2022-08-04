@@ -16,6 +16,8 @@ export default new Vuetify({
                 accent: '#ffab00',
                 error: '#fc424a',
                 warning: '#ffc107',
+                secondarygrey: '#2a2d3a',
+                primarypurple: '#8f5fe8',
                 muted: '#6c7293',
                 btnprimary: '#0090e7',
                 info: '#00bcd4',
