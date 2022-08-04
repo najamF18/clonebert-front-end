@@ -5,11 +5,12 @@ import {ApiAuth, UserSession} from '@/sdk';
 
 import goTo from 'vuetify/lib/services/goto';
 import VueMeta from 'vue-meta';
+import {UserRoutes} from '@/views/user/routes/user.routes';
 
 Vue.use(VueRouter);
 Vue.use(VueMeta);
 
-export const routes: Array<RouteConfig> = [...AuthenticationRoutes];
+export const routes: Array<RouteConfig> = [...AuthenticationRoutes, ...UserRoutes];
 
 const UserSessionSrv = new UserSession();
 
@@ -35,7 +36,7 @@ router.beforeEach((to, from, next) => {
     const isUserLoggedIn = UserSessionSrv.isUserAuthenticated;
     // new ApiAuth().SessionValue && !!new ApiAuth().SessionValue!.UserId;
 
-    const isNonAuthRoute = ['Login', 'Signup', 'Forgot Password', 'Resend Email', 'Cancelled Membership'].includes(to.name!);
+    const isNonAuthRoute = ['Login', 'Signup', 'Forgot Password'].includes(to.name!);
     const parentRouteNames = routes.map(route => {
         return route.name;
     });
@@ -52,9 +53,6 @@ router.beforeEach((to, from, next) => {
     }
     findingRouteNames(routes);
 
-    const allRouteNames = [...parentRouteNames, ...childRoutes];
-    const isRouteExist = allRouteNames.includes(to.name);
-
     // if (!isRouteExist) {
     //     console.log(allRouteNames);
 
@@ -69,9 +67,9 @@ router.beforeEach((to, from, next) => {
     if (!isUserLoggedIn && isNonAuthRoute) {
         next();
     } else if (isUserLoggedIn && isNonAuthRoute) {
-        next({name: 'Home', query: {...to.query, redirect_reason: 'UNAUTHORIZIED'}});
+        next({name: 'Login', query: {...to.query, redirect_reason: 'UNAUTHORIZIED'}});
     } else if (!isUserLoggedIn && !isNonAuthRoute) {
-        next({name: 'Home', query: {redirect_reason: 'UNAUTHORIZIED'}});
+        next({name: 'Login', query: {redirect_reason: 'UNAUTHORIZIED'}});
     } else {
         next();
     }

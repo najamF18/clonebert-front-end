@@ -19,6 +19,7 @@ export default class LoginComponent extends VueWrapper {
                 res => {
                     new UserSession()._session.next(res.data);
                     new UserSession().save();
+                    this.$router.push({name: 'User'});
                 },
                 err => {
                     this.AlertSrv.show('error', 'Something went wrong!');

@@ -7,6 +7,7 @@
                 </v-col>
             </v-row>
         </v-img>
+        <footer-component />
     </div>
 </template>
 
