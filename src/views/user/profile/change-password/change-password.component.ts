@@ -13,11 +13,13 @@ export default class ChangePasswordComponent extends VueWrapper {
             .changePassword(this.changePasswordData)
             .subscribe(
                 res => {
-                    this.AlertSrv.show('success', 'Password changed successfully!');
-                    this.changePasswordData = new ChangePasswordModel();
+                    if (res.status) {
+                        this.AlertSrv.show('success', 'Password changed successfully!');
+                        this.changePasswordData = new ChangePasswordModel();
+                    }
                 },
                 err => {
-                    this.AlertSrv.show('error', 'Something went wrong!');
+                    this.AlertSrv.show('error', err.message);
                 }
             )
             .add(() => {

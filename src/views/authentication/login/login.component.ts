@@ -17,7 +17,7 @@ export default class LoginComponent extends VueWrapper {
             .login(this.loginData)
             .subscribe(
                 res => {
-                    new UserSession()._session.next(res.data);
+                    new UserSession()._session.next(res.data.data.data);
                     new UserSession().save();
                     this.$router.push({name: 'User'});
                 },
