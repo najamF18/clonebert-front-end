@@ -12,12 +12,19 @@ export default class SignupComponent extends VueWrapper {
         new AccountsApi()
             .signup(this.signupData)
             .subscribe(
-                res => {
-                    this.AlertSrv.show('success', 'Sign up Successful');
-                    this.signupData = new SignupModel();
+                ({status, data, message}) => {
+                    if (status) {
+                        this.AlertSrv.show('success', 'Sign up Successful');
+                        this.signupData = new SignupModel();
+                    }
                 },
                 err => {
-                    this.AlertSrv.show('error', 'Something went wrong!');
+                    if (err.email) {
+                        this.AlertSrv.show('error', err.email);
+                    }
+                    if (err.username) {
+                        this.AlertSrv.show('error', err.username);
+                    }
                 }
             )
             .add(() => {

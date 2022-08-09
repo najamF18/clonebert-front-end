@@ -20,7 +20,7 @@ export default class ChangeEmailComponent extends VueWrapper {
                     this.$router.push({name: 'Login'});
                 },
                 err => {
-                    this.AlertSrv.show('error', 'Something went wrong!');
+                    this.AlertSrv.show('error', err.message);
                 }
             )
             .add(() => {

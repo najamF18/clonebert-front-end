@@ -60,7 +60,6 @@
                 </div>
             </base-form>
         </base-card>
-        <forgot-password-component />
     </div>
 </template>
 

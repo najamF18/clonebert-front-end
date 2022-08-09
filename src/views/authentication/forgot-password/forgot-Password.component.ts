@@ -1,9 +1,6 @@
 import VueWrapper from '@/components/core/Vue/vue.wrapper';
-import {AccountsApi, LoginModel, ResetPasswordModel} from '@/sdk';
-import {LoaderService} from '@/sdk/services';
+import {AccountsApi, ResetPasswordModel} from '@/sdk';
 import {Component} from 'vue-property-decorator';
-import {AlertService} from '@/sdk';
-import BaseFormComponent from '@/components/vuetify/Form/base-form';
 
 @Component
 export default class ForgotPasswordComponent extends VueWrapper {

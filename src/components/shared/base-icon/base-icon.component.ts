@@ -14,10 +14,4 @@ export default class BaseIconComponent extends VueWrapper {
         type: String
     })
     private readonly color!: string;
-
-    @Prop({
-        required: true,
-        type: String
-    })
-    private readonly text!: string;
 }
