@@ -13,11 +13,11 @@ export default class SignupComponent extends VueWrapper {
             .signup(this.signupData)
             .subscribe(
                 res => {
-                    this.AlertSrv.show('success', 'Signed up succssfully!');
+                    this.AlertSrv.show('success', 'Sign up Successful');
                     this.signupData = new SignupModel();
                 },
                 err => {
-                    this.AlertSrv.show('error', err.message);
+                    this.AlertSrv.show('error', 'Something went wrong!');
                 }
             )
             .add(() => {

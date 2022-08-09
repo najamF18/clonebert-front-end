@@ -36,7 +36,7 @@ router.beforeEach((to, from, next) => {
     const isUserLoggedIn = UserSessionSrv.isUserAuthenticated;
     // new ApiAuth().SessionValue && !!new ApiAuth().SessionValue!.UserId;
 
-    const isNonAuthRoute = ['Login', 'Signup', 'Forgot Password'].includes(to.name!);
+    const isNonAuthRoute = ['Login', 'Signup', 'Forgot Password', 'About', 'Privacy', 'Terms and Conditions'].includes(to.name!);
     const parentRouteNames = routes.map(route => {
         return route.name;
     });
