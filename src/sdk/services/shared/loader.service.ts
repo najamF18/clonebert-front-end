@@ -37,7 +37,7 @@ export class LoaderService {
     }
 
     // Show loader
-    public showFullScreenLoader(msg = 'Loading...', state = true): void {
+    public showFullScreenLoader(msg = 'Launching...', state = true): void {
         if (state) {
             document.body.focus();
             this._FullScreenLoader = true;

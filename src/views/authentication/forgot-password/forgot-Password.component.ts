@@ -1,10 +1,10 @@
 import VueWrapper from '@/components/core/Vue/vue.wrapper';
-import {AccountsApi, ResetPasswordModel} from '@/sdk';
+import {AccountsApi, ForgotPasswordPasswordModel} from '@/sdk';
 import {Component} from 'vue-property-decorator';
 
 @Component
 export default class ForgotPasswordComponent extends VueWrapper {
-    public forgotPasswordData = new ResetPasswordModel();
+    public forgotPasswordData = new ForgotPasswordPasswordModel();
 
     public ForgotPassword() {
         this.LoaderSrv.showFullScreenLoader();
@@ -15,7 +15,7 @@ export default class ForgotPasswordComponent extends VueWrapper {
             })
             .add(() => {
                 this.LoaderSrv.hideFullScreenLoader();
-                this.forgotPasswordData = new ResetPasswordModel();
+                this.forgotPasswordData = new ForgotPasswordPasswordModel();
             });
     }
 }

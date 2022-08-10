@@ -11,14 +11,24 @@
                 </v-col>
             </v-row>
             <br /><br />
-            <h4 style="font-size:1.5rem; font-weight:500" class=" white--text text-left mb-3">Forgot Password</h4>
-            <base-form #default="{invalid}" @submit="ForgotPassword">
+            <h4 style="font-size:1.5rem; font-weight:500" class=" white--text text-left mb-3">Reset Password</h4>
+            <base-form #default="{invalid}" @submit="resetPassword">
                 <div class="mb-3">
-                    <base-text-field label="Email" hide-details :value.sync="forgotPasswordData.email" />
+                    <base-text-field
+                        rules="required|min:8"
+                        type="password"
+                        label="Password"
+                        vid="Password"
+                        hide-details
+                        :value.sync="changePassword.password"
+                    />
+                </div>
+                <div class="mb-3">
+                    <base-text-field rules="required|confirmed:Password" type="password" label="Confirm Password" hide-details :value.sync="confrimPassword" />
                 </div>
 
                 <div class="mt-3">
-                    <base-btn dark :disabled="invalid" type="submit" class="white black--text" block>
+                    <base-btn type="submit" dark :disabled="invalid" class="white black--text" block>
                         RESET
                     </base-btn>
                 </div>
@@ -29,5 +39,4 @@
         </base-card>
     </div>
 </template>
-
-<script lang="ts" src="./forgot-Password.component.ts" />
+<script lang="ts" src="./reset-password.component.ts" />

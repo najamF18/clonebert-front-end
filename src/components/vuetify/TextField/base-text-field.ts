@@ -59,7 +59,7 @@ export default class BaseTextField extends BaseInput {
     }
 
     getErrorMessage(error: string) {
-        const msg = this.$attrs['error-message'];
+        const msg = this.$attrs['errorMessage'];
 
         if (msg?.length) {
             return msg;

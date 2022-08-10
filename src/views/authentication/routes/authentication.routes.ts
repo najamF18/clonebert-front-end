@@ -5,6 +5,7 @@ import LoginComponent from '../login/login.component';
 import LoginSignupLayoutComponent from '../loginsignup/login-signup-layout.component';
 import LogoutComponent from '../logout/logout.component';
 import PrivacyComponent from '../privacy/privacy.component';
+import ResetPasswordComponent from '../reset-password/reset-password.component';
 import SignupComponent from '../signup/signup.component';
 import TermsAndConditionsComponent from '../terms-and-conditions/terms-and-conditions.component';
 
@@ -29,6 +30,11 @@ export const AuthenticationRoutes: Array<RouteConfig> = [
                 path: '/forgot-password',
                 name: 'Forgot Password',
                 component: ForgotPasswordComponent
+            },
+            {
+                path: '/reset-password',
+                name: 'Reset Password',
+                component: ResetPasswordComponent
             },
             {
                 path: '/about',
