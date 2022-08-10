@@ -24,7 +24,7 @@
                     />
                 </div>
                 <div class="mb-3">
-                    <base-text-field rules="required|confirmed:Password" type="password" label="Confirm Password" hide-details :value.sync="confrimPassword" />
+                    <base-text-field rules="required|confirmed:Password" type="password" label="Confirm Password" hide-details :value.sync="confirmPassword" />
                 </div>
 
                 <div class="mt-3">

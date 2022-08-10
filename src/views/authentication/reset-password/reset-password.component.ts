@@ -7,7 +7,7 @@ import Component from 'vue-class-component';
 @Component
 export default class ResetPasswordComponent extends VueWrapper {
     public changePassword = new ChangePasswordModel();
-    public confrimPassword: string = '';
+    public confirmPassword: string = '';
     public options: AxiosRequestConfig = {
         method: 'POST',
         url: 'https://clonebert.herokuapp.com/auth/change-password',
