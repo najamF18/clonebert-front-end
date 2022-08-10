@@ -1,8 +1,8 @@
 import {ServiceClass} from '@/decorators';
-import {LoginModel, SessionModel, SignupModel} from '@/sdk/models';
+import {AnyObject} from '@/globals';
+import {ForgotPasswordPasswordModel, LoginModel, SessionModel, SignupModel} from '@/sdk/models';
 import {ChangeEmailModel} from '@/sdk/models/authentication/change-email.model';
 import {ChangePasswordModel} from '@/sdk/models/authentication/change-password.model';
-import {ResetPasswordModel} from '@/sdk/models/authentication/reset-password.model';
 import {SdkConfig} from '@/sdk/sdk.config';
 import {map} from 'rxjs/operators';
 import {BaseApi} from '../base.api';
@@ -22,6 +22,9 @@ export class AccountsApi extends BaseApi {
 
     public changeEmail(data: ChangeEmailModel) {
         return this.POST_Request<{}>(`${this.ApiUrl}/auth/change-email/`, data);
+    }
+    public validateUserName(username: AnyObject) {
+        return this.POST_Request<{}>(`${this.ApiUrl}/auth/validate-username/`, username);
     }
 
     public disableAccount() {
@@ -47,8 +50,11 @@ export class AccountsApi extends BaseApi {
     //     return this.POST_Request(`${this.ApiUrl}/Account/SendLink`, {email});
     // }
 
-    public forgotPassword(resetPass: ResetPasswordModel) {
-        return this.POST_Request<{}>(`${this.ApiUrl}/api/password_reset/`, resetPass);
+    public forgotPassword(forgotPassword: ForgotPasswordPasswordModel) {
+        return this.POST_Request<{}>(`${this.ApiUrl}/api/password_reset/`, forgotPassword);
+    }
+    public resetPassword(resetPassword: ChangePasswordModel) {
+        return this.POST_Request<{}>(`${this.ApiUrl}/api/password_reset/confirm/`, resetPassword);
     }
     // public ResetPassword(resetPass: ResetPasswordModel) {
     //     return this.POST_Request<ResetPasswordModel>(`${this.ApiUrl}/Account/ResetPassword`, resetPass);

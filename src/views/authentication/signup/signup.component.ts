@@ -6,10 +6,14 @@ import {AccountsApi, SignupModel} from '@/sdk';
 export default class SignupComponent extends VueWrapper {
     // Properties
     public signupData = new SignupModel();
+    public error: boolean = false;
+    public errorMessage: string = '';
+
+    public accountAPi = new AccountsApi();
 
     public signup() {
         this.LoaderSrv.showFullScreenLoader();
-        new AccountsApi()
+        this.accountAPi
             .signup(this.signupData)
             .subscribe(
                 ({status, data, message}) => {
@@ -30,5 +34,23 @@ export default class SignupComponent extends VueWrapper {
             .add(() => {
                 this.LoaderSrv.hideFullScreenLoader();
             });
+    }
+
+    public SearchInput(username: string) {
+        const name = {username};
+        this.signupData.username = username;
+        this.accountAPi.validateUserName(name).subscribe(
+            res => {
+                this.error = false;
+            },
+            err => {
+                this.error = true;
+                this.errorMessage = err.message;
+            }
+        );
+        // if (!this.UsersSrv.Filter.Query || this.UsersSrv.Filter.Query?.length >= 3) {
+        //     this.UsersSrv.Filter.PageNo = 1;
+        //     this.UsersSrv.getAll();
+        // }
     }
 }

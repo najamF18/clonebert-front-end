@@ -13,6 +13,7 @@
             label=""
             v-mask="mask"
             v-on="$listeners"
+            :error="$attrs.error"
             :value="value"
             @input="$emit('update:value', $event ? $event : null)"
             @blur="onBlur"
@@ -24,9 +25,9 @@
         >
             <slot v-for="slot in Object.keys($slots)" :name="slot" :slot="slot" />
         </v-text-field>
-        <template v-if="errors.length">
+        <template v-if="errors.length || $attrs.error">
             <p class="error--text ma-0">
-                {{ errors[0] }}
+                {{ errors[0] || $attrs.errorMessage }}
             </p>
         </template>
     </validation-provider>

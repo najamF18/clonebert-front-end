@@ -1,8 +1,8 @@
 <template>
     <base-text-field
-        label="Search"
+        :label="$attrs.label"
+        v-bind="$attrs"
         ref="search"
-        append-icon="mdi-magnify"
         :value="Search$.value"
         clearable
         @click:clear="Search$.next(null)"

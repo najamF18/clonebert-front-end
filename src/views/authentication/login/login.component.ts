@@ -1,6 +1,6 @@
 import VueWrapper from '@/components/core/Vue/vue.wrapper';
 import {Component} from 'vue-property-decorator';
-import {LoaderService, LoginModel, ResetPasswordModel} from '@/sdk';
+import {LoaderService, LoginModel} from '@/sdk';
 import {AccountsApi} from '@/sdk/api-services';
 import {ApiAuth, UserSession} from '@/sdk/core';
 import {AlertService} from '@/sdk';
@@ -10,6 +10,11 @@ import ForgotPasswordComponent from '../forgot-password/forgot-Password.componen
 @Component
 export default class LoginComponent extends VueWrapper {
     public loginData = new LoginModel();
+    public mounted() {
+        if (this.$route.query.verified === 'true') {
+            this.AlertSrv.show('success', 'Email verified succesfully!');
+        }
+    }
 
     public login() {
         this.LoaderSrv.showFullScreenLoader();
@@ -22,7 +27,7 @@ export default class LoginComponent extends VueWrapper {
                     this.$router.push({name: 'User'});
                 },
                 err => {
-                    this.AlertSrv.show('error', 'Something went wrong!');
+                    this.AlertSrv.show('error', err.message);
                 }
             )
             .add(() => {
