@@ -7,6 +7,7 @@ import Component from 'vue-class-component';
 @Component
 export default class ChangeEmailComponent extends VueWrapper {
     changeEmailData = new ChangeEmailModel();
+    changeEmailConfirm: string = '';
 
     public changeEmail() {
         this.LoaderSrv.showFullScreenLoader();
