@@ -10,9 +10,14 @@ export default class ForgotPasswordComponent extends VueWrapper {
         this.LoaderSrv.showFullScreenLoader();
         new AccountsApi()
             .forgotPassword(this.forgotPasswordData)
-            .subscribe(res => {
-                this.AlertSrv.show('success', 'An email has sent to your email address to reset your password.');
-            })
+            .subscribe(
+                res => {
+                    this.AlertSrv.show('success', 'An email has sent to your email address to reset your password.');
+                },
+                err => {
+                    this.AlertSrv.show('error', err.email[0]);
+                }
+            )
             .add(() => {
                 this.LoaderSrv.hideFullScreenLoader();
                 this.forgotPasswordData = new ForgotPasswordPasswordModel();
