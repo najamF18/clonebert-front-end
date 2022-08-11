@@ -15,8 +15,8 @@ extend('email', {
 });
 
 extend('password', {
-    validate: (value: string) => new RegExp(/^.*(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%&!-_]).*$/).test(value),
-    message: `Password should contain at least one digit, one lower case, one upper case and one character
+    validate: (value: string) => new RegExp(/^.*(?=.*[A-Z]).*$/).test(value),
+    message: `Password should contain one upper case letter
   `
 });
 extend('address', {

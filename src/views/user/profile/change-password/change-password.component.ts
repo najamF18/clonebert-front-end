@@ -1,11 +1,13 @@
 import VueWrapper from '@/components/core/Vue/vue.wrapper';
 import {AccountsApi} from '@/sdk';
 import {ChangePasswordModel} from '@/sdk/models/authentication/change-password.model';
+import {SettingsChangePasswordModel} from '@/sdk/models/authentication/settings-change-password.model';
 import Component from 'vue-class-component';
 
 @Component
 export default class ChangePasswordComponent extends VueWrapper {
-    changePasswordData = new ChangePasswordModel();
+    changePasswordData = new SettingsChangePasswordModel();
+    confirmPassword: string = '';
 
     public changePassword() {
         this.LoaderSrv.showFullScreenLoader();
@@ -15,7 +17,7 @@ export default class ChangePasswordComponent extends VueWrapper {
                 res => {
                     if (res.status) {
                         this.AlertSrv.show('success', 'Password changed successfully!');
-                        this.changePasswordData = new ChangePasswordModel();
+                        this.changePasswordData = new SettingsChangePasswordModel();
                     }
                 },
                 err => {
