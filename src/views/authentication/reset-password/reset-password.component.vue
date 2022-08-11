@@ -14,14 +14,7 @@
             <h4 style="font-size:1.5rem; font-weight:500" class=" white--text text-left mb-3">Reset Password</h4>
             <base-form #default="{invalid}" @submit="resetPassword">
                 <div class="mb-3">
-                    <base-text-field
-                        rules="required|min:8"
-                        type="password"
-                        label="Password"
-                        vid="Password"
-                        hide-details
-                        :value.sync="changePassword.password"
-                    />
+                    <base-text-field rules="required" type="password" label="Password" vid="Password" hide-details :value.sync="changePassword.password" />
                 </div>
                 <div class="mb-3">
                     <base-text-field rules="required|confirmed:Password" type="password" label="Confirm Password" hide-details :value.sync="confirmPassword" />
