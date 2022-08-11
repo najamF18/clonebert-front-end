@@ -26,7 +26,7 @@ export default class ResetPasswordComponent extends VueWrapper {
                         this.AlertSrv.show('success', 'Password changed successfully!');
                     },
                     err => {
-                        this.AlertSrv.show('error', err.message);
+                        this.AlertSrv.show('error', err.password[0]);
                     }
                 )
                 .add(() => {

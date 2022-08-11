@@ -22,9 +22,13 @@ export default class LoginComponent extends VueWrapper {
             .login(this.loginData)
             .subscribe(
                 res => {
-                    new UserSession()._session.next(res.data.data.data);
-                    new UserSession().save();
-                    this.$router.push({name: 'User'});
+                    if (res.data.data.data.token) {
+                        new UserSession()._session.next(res.data.data.data);
+                        new UserSession().save();
+                        this.$router.push({name: 'User'});
+                    } else if (res.data.message) {
+                        this.AlertSrv.show('success', res.data.message);
+                    }
                 },
                 err => {
                     this.AlertSrv.show('error', err.message);
