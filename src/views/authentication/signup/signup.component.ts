@@ -29,6 +29,9 @@ export default class SignupComponent extends VueWrapper {
                     if (err.username) {
                         this.AlertSrv.show('error', err.username);
                     }
+                    if (err.message) {
+                        this.AlertSrv.show('error', err.message);
+                    }
                 }
             )
             .add(() => {

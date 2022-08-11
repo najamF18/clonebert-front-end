@@ -3,6 +3,7 @@ import {AnyObject} from '@/globals';
 import {ForgotPasswordPasswordModel, LoginModel, SessionModel, SignupModel} from '@/sdk/models';
 import {ChangeEmailModel} from '@/sdk/models/authentication/change-email.model';
 import {ChangePasswordModel} from '@/sdk/models/authentication/change-password.model';
+import {SettingsChangePasswordModel} from '@/sdk/models/authentication/settings-change-password.model';
 import {SdkConfig} from '@/sdk/sdk.config';
 import {map} from 'rxjs/operators';
 import {BaseApi} from '../base.api';
@@ -16,7 +17,7 @@ export class AccountsApi extends BaseApi {
         return this.GET_Request<{}>(`${this.ApiUrl}/auth/logout/`);
     }
 
-    public changePassword(data: ChangePasswordModel) {
+    public changePassword(data: SettingsChangePasswordModel) {
         return this.POST_Request<{}>(`${this.ApiUrl}/auth/change-password/`, data);
     }
 

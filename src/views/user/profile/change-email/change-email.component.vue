@@ -1,15 +1,18 @@
 <template>
     <div>
         <base-card class="pa-10 mt-3 px-15 rounded darkgrey">
-            <base-form @submit="changeEmail">
+            <base-form @submit="changeEmail" #default="{invalid}">
                 <v-row align-content="center">
                     <v-col cols="12" offset-md="3" md="6">
                         <div class="mb-3">
-                            <base-text-field label="Email" hide-details :value.sync="changeEmailData.new_email" />
+                            <base-text-field label="Email" hide-details vid="Email" :value.sync="changeEmailData.new_email" />
+                        </div>
+                        <div class="mb-3">
+                            <base-text-field label="Confirm Email" rules="confirmed:Email" hide-details :value.sync="changeEmailConfirm" />
                         </div>
 
                         <div class="mt-5">
-                            <base-btn class="white black--text" block type="submit">
+                            <base-btn :disabled="invalid" dark class="white black--text" block type="submit">
                                 Change Email
                             </base-btn>
                         </div>
