@@ -29,10 +29,9 @@ export class UserSession {
         this._session.next(
             new SessionModel({
                 // Email: this.load('Email'),
-                // Expiry: this.load('Expiry'),
-                // FirstName: this.load('FirstName'),
-                // LastName: this.load('LastName'),
-                // PhoneNumber: this.load('PhoneNumber'),
+                username: this.load('username'),
+                uid: this.load('uid'),
+                email: this.load('email'),
                 token: this.load('token')
                 // RememberMe: this.load('RememberMe'),
                 // Role: this.load('Role'),
