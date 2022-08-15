@@ -15,7 +15,7 @@ export default class ForgotPasswordComponent extends VueWrapper {
                     this.AlertSrv.show('success', 'An email has sent to your email address to reset your password.');
                 },
                 err => {
-                    this.AlertSrv.show('error', err.email[0]);
+                    this.AlertSrv.show('success', 'An email has sent to your email address to reset your password.');
                 }
             )
             .add(() => {
