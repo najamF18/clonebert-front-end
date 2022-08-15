@@ -8,7 +8,7 @@
                     </h3>
 
                     <div class="mt-5">
-                        <base-btn @click="disableAccount" class="error black--text" block>
+                        <base-btn dark @click="disableAccount" class="error " block>
                             Disable Account
                         </base-btn>
                     </div>
