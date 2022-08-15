@@ -8,6 +8,12 @@ import Component from 'vue-class-component';
 export default class ChangeEmailComponent extends VueWrapper {
     changeEmailData = new ChangeEmailModel();
     changeEmailConfirm: string = '';
+    currentEmail: string = this.UserSession.Session?.email!;
+
+    // public mounted() {
+    //     this.currentEmail = this.UserSession.Session?.email!;
+    //     console.log(this.UserSession.Session?.email);
+    // }
 
     public changeEmail() {
         this.LoaderSrv.showFullScreenLoader();
