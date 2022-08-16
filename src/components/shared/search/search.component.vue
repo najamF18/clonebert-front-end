@@ -4,7 +4,7 @@
         v-bind="$attrs"
         ref="search"
         :value="Search$.value"
-        clearable
+        :clearable="$attrs.error"
         @click:clear="Search$.next(null)"
         hide-details
         @input="Search$.next($event)"
