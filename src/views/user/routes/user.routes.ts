@@ -1,4 +1,5 @@
 import {RouteConfig} from 'vue-router';
+import TransactionComponent from '../transaction/transaction.component';
 import DashboardComponent from '../dashbaord/dashboard.component';
 import ChangeEmailComponent from '../profile/change-email/change-email.component';
 import ChangePasswordComponent from '../profile/change-password/change-password.component';
@@ -23,6 +24,18 @@ export const UserRoutes: Array<RouteConfig> = [
                     color: 'primarypurple',
                     sequence: 1,
                     title: 'Dashboard'
+                }
+            },
+            {
+                path: 'transaction',
+                name: 'Transaction',
+                component: TransactionComponent,
+                meta: {
+                    showable: true,
+                    icon: 'speedometer',
+                    color: 'primarypurple',
+                    sequence: 1,
+                    title: 'Transactionss'
                 }
             },
             {

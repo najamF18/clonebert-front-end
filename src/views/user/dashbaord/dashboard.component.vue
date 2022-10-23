@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="black white--text lighten-5 height-100vh">
         <v-row class="pa-5">
             <v-col cols="12" md="3" v-for="card in 4" :key="card">
                 <base-card class="pa-10 mt-3 px-15 rounded darkgrey">

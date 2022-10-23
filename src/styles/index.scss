@@ -232,7 +232,36 @@ td {
 .v-text-field--solo:focus-within{
     border: #00ac4a 0.2px solid;
 }
+.v-data-table tbody tr:nth-of-type(odd) {
+    background-color: #252935;
+}
 
+.v-data-table tbody tr:nth-of-type(even) {
+    background-color: #191C24;
+}
+
+.v-data-table thead th:nth-of-type(n) {
+    background-color: #8f5fe8!important;
+    color: white !important;
+    font-weight: lighter;
+    min-width: 160px;
+}
+
+.v-data-footer {
+    color: #8f5fe8 !important;
+    background-color: #191C24;
+}
+.v-select__selection {
+    color: #8f5fe8 !important;
+}
+
+.v-select__selection--comma {
+    color: #8f5fe8 !important;
+}
+.v-application .primary--text {
+    color: #8f5fe8 !important;
+    caret-color: #8f5fe8 !important;
+}
 
 
 // .theme--light.v-list-item_icon:not(.v-list-item_icon--active):not(.v-list-item_icon--disabled) {

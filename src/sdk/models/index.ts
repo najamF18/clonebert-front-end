@@ -5,5 +5,6 @@ export * from './authentication/session.model';
 export * from './authentication/claims.model';
 export * from './authentication/forgot-password.model';
 export * from './authentication/jwt-payload.model';
+export * from './user/holdings.model';
 
 // password models
