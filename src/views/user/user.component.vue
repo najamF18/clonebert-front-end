@@ -4,7 +4,7 @@
             <drawer-component />
             <app-bar-component />
             <v-main class="height-100vh overflow-auto">
-                <div class="black white--text lighten-5">
+                <div class="black white--text lighten-5" style="minHeight:100vh">
                     <router-view :key="$route.fullPath" />
                 </div>
             </v-main>

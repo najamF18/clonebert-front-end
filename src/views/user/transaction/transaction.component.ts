@@ -13,8 +13,8 @@ import { HoldingModel } from './../../../sdk/models/user/holdings.model';
 })
 export default class TransactionComponent extends VueWrapper {
     public TransactionApi = new TransactionsApi();
-    public HoldingsData =new BehaviorSubject<Array<HoldingModel>>([]);;
-    public TransactionsData =new BehaviorSubject<Array<TransactionModel>>([]);;
+    public HoldingsData =new BehaviorSubject<any>([]);;
+    public TransactionsData =new BehaviorSubject<any>([]);;
     public HoldingsHeaders = [
           {
             text: 'Name',

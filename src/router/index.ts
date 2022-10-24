@@ -66,7 +66,7 @@ router.beforeEach((to, from, next) => {
     // } else
     if (!isUserLoggedIn && isNonAuthRoute) {
         next();
-    } else if (isUserLoggedIn && isNonAuthRoute) {
+    } else if (!isUserLoggedIn && isNonAuthRoute) {
         next({name: 'Login', query: {...to.query, redirect_reason: 'UNAUTHORIZIED'}});
     } else if (!isUserLoggedIn && !isNonAuthRoute) {
         next({name: 'Login', query: {redirect_reason: 'UNAUTHORIZIED'}});
