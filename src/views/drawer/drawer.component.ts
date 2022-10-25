@@ -4,10 +4,12 @@ import {LoaderService, LoginModel} from '@/sdk';
 import {AccountsApi} from '@/sdk/api-services';
 import {ApiAuth, UserSession} from '@/sdk/core';
 import {ShowableRoute} from '@/globals';
+import { CoreService } from '@/services/core.service';
 
 @Component
 export default class DrawerComponent extends VueWrapper {
     public MainLinks: Array<ShowableRoute> = [];
+    public CoreSrv = new CoreService();
 
     public created() {
         this.MainLinks = this.$helpers.getShowableRoutes('User') ?? [];
@@ -18,7 +20,7 @@ export default class DrawerComponent extends VueWrapper {
     public items = [
         {
             title: 'Profile',
-            icon: 'mdi-account',
+            icon: 'contacts',
             // name: 'Profile',
             link: '/user/profile',
             availableTo: 'Everyone',
@@ -27,13 +29,15 @@ export default class DrawerComponent extends VueWrapper {
 
         {
             title: 'Logout',
-            icon: 'mdi-logout',
+            icon: 'logout',
 
             link: '',
             availableTo: 'Everyone',
             method: this.logout
         }
     ];
+
+
 
     public logout() {
         this.LoaderSrv.showFullScreenLoader();

@@ -1,19 +1,21 @@
 <template>
     <div>
         <v-app-bar color="darkgrey" app clipped dark>
-            <v-app-bar-nav-icon color="muted"></v-app-bar-nav-icon>
-            <v-text-field class="white--text" placeholder="Search" outlined dense hide-details />
+            <v-app-bar-nav-icon @click="CoreSrv.Drawer.Mini = !CoreSrv.Drawer.Mini" color="muted"></v-app-bar-nav-icon>
+            <v-text-field class="white--text ml-2" placeholder="Search" outlined dense hide-details />
             <v-spacer></v-spacer>
 
+            <v-btn color="warning" elevation="2" small>
+                <v-icon left> mdi-plus </v-icon>
+                Import Portfolio
+            </v-btn>
+                <v-divider inset class="ml-2" vertical></v-divider>
+            
             <v-btn icon>
-                <v-icon>mdi-heart</v-icon>
+                <v-icon>mdi-bell</v-icon>
             </v-btn>
 
-            <v-btn icon>
-                <v-icon>mdi-magnify</v-icon>
-            </v-btn>
-
-            <v-menu left bottom>
+            <!-- <v-menu left bottom>
                 <template v-slot:activator="{on, attrs}">
                     <v-btn icon v-bind="attrs" v-on="on">
                         <v-icon>mdi-dots-vertical</v-icon>
@@ -25,7 +27,7 @@
                         <v-list-item-title>Option {{ n }}</v-list-item-title>
                     </v-list-item>
                 </v-list>
-            </v-menu>
+            </v-menu> -->
         </v-app-bar>
     </div>
 </template>

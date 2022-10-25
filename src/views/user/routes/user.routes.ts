@@ -27,15 +27,40 @@ export const UserRoutes: Array<RouteConfig> = [
                 }
             },
             {
+                path: 'feeds',
+                name: 'Feeds',
+                component: TransactionComponent,
+                meta: {
+                    showable: true,
+                    icon: 'playlist-play',
+                    color: 'orange',
+                    sequence: 1,
+                    title: 'Activity Feed'
+                }
+            },
+
+            {
                 path: 'transaction',
                 name: 'Transaction',
                 component: TransactionComponent,
                 meta: {
                     showable: true,
-                    icon: 'speedometer',
-                    color: 'primarypurple',
+                    icon: 'table-large',
+                    color: 'red',
                     sequence: 1,
-                    title: 'Transactionss'
+                    title: 'Transactions'
+                }
+            },
+            {
+                path: 'analytics',
+                name: 'Analytics',
+                component: TransactionComponent,
+                meta: {
+                    showable: true,
+                    icon: 'chart-bar',
+                    color: 'blue',
+                    sequence: 1,
+                    title: 'Analytics'
                 }
             },
             {
