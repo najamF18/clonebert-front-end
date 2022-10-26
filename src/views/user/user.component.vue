@@ -3,7 +3,7 @@
         <v-container fluid class="py-0 px-0 height-100vh" style="position: relative;">
             <drawer-component />
             <app-bar-component />
-            <v-main class="height-100vh overflow-auto">
+            <v-main class="height-100x overflow-auto">
                 <div class="black white--text lighten-5" style="minHeight:100vh">
                     <router-view :key="$route.fullPath" />
                 </div>

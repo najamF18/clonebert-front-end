@@ -37,7 +37,7 @@
         </div>
 
         <div :class="{'pb-16': num}">
-            <v-list nav class="pa-0 pr-7 mt-5 rounded-0" :class="[{'pb-16': num}]">
+            <v-list shaped nav class="pa-0 pr-7 mt-5 rounded-0" :class="[{'pb-16': num}]">
                 <v-list-item
                     v-for="(link, i) in MainLinks"
                     :key="i"

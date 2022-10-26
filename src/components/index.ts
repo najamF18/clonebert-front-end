@@ -30,10 +30,11 @@ import BaseTitleTextComponent from './shared/base-title-text/base-title-text.com
 import LoginComponent from '@/views/authentication/login/login.component';
 import SignupComponent from '@/views/authentication/signup/signup.component';
 import WysiwygEditorComponent from './shared/wysiwyg-editor/wysiwyg-editor.component';
-import BaseChartComponent from './shared/charts/pie-chart/base-chart.component';
 import BaseCurrencyField from './vuetify/CurrencyField/base-currency-field';
-import BaseApacheChartComponent from './shared/base-chart/base-apache-chart.component';
 import BaseIconComponent from './shared/base-icon/base-icon.component';
+import BaseChart from './shared/base-chart/base-chart.component';
+import TransactionHistoryComponent from './widgets/Transaction-Widgets/transaction-history-widget.component';
+import vuetify from '@/plugins/vuetify';
 
 // Vuetify Components
 Vue.component('base-text-field', BaseTextField);
@@ -70,6 +71,6 @@ Vue.component('privacy-policy', PrivacyPolicyComponent);
 Vue.component('login-component', LoginComponent);
 Vue.component('signup-component', SignupComponent);
 Vue.component('wysiwyg-editor-component', WysiwygEditorComponent);
-Vue.component('base-chart-component', BaseChartComponent);
-Vue.component('base-apache-chart-component', BaseApacheChartComponent);
+Vue.component('base-chart', BaseChart);
 Vue.component('base-icon', BaseIconComponent);
+Vue.component('transaction-chart',TransactionHistoryComponent);

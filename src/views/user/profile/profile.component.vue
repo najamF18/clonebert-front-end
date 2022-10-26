@@ -1,5 +1,5 @@
 <template>
-    <v-row>
+    <v-row class=" ma-0">
         <v-col cols="12" md="3">
             <div class="pt-3">
                 <navigation-card-component class="white" titleOne="Profile Setting" :navigation-links="NavigationLinks" />

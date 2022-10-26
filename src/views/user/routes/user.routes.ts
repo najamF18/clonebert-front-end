@@ -6,6 +6,11 @@ import ChangePasswordComponent from '../profile/change-password/change-password.
 import DisableAccountComponent from '../profile/disable-account/disable-account.component';
 import ProfileComponent from '../profile/profile.component';
 import UserComponent from '../user.component';
+import FeedComponent from '../feeds/feeds.component';
+import AnalyticsComponent from '../analytics/analytics.component';
+import ChangePrivacyComponent from './../profile/privacy/privacy.component';
+import ManagePortfolioComponent from '../profile/manage-portfolio/manage-portfolio.component';
+import BlockedUsersComponent from '../profile/blocked-users/blocked-users.component';
 
 export const UserRoutes: Array<RouteConfig> = [
     {
@@ -29,7 +34,7 @@ export const UserRoutes: Array<RouteConfig> = [
             {
                 path: 'feeds',
                 name: 'Feeds',
-                component: TransactionComponent,
+                component: FeedComponent,
                 meta: {
                     showable: true,
                     icon: 'playlist-play',
@@ -54,7 +59,7 @@ export const UserRoutes: Array<RouteConfig> = [
             {
                 path: 'analytics',
                 name: 'Analytics',
-                component: TransactionComponent,
+                component: AnalyticsComponent,
                 meta: {
                     showable: true,
                     icon: 'chart-bar',
@@ -66,7 +71,7 @@ export const UserRoutes: Array<RouteConfig> = [
             {
                 path: 'profile',
                 name: 'Profile',
-                redirect: 'profile/change-password',
+                redirect: 'profile/manage-portfolio',
                 component: ProfileComponent,
                 children: [
                     // {
@@ -81,13 +86,41 @@ export const UserRoutes: Array<RouteConfig> = [
                     //     },
                     //     component: UserPersonalInfoComponent
                     // },
+
+
+                    {
+                        path: 'manage-portfolio',
+                        name: 'Manage Portfolio',
+                        meta: {
+                            showable: true,
+                            icon: 'mdi-book-cog-outline',
+                            sequence: 1,
+                            position: 1,
+                            metaTitle: 'Portfolio'
+                        },
+                        component: ManagePortfolioComponent
+                    },
+
+                    {
+                        path: 'change-privacy',
+                        name: 'Change Privacy',
+                        meta: {
+                            showable: true,
+                            icon: 'mdi-eye-off-outline',
+                            sequence: 2,
+                            position: 1,
+                            metaTitle: 'Privacy'
+                        },
+                        component: ChangePrivacyComponent
+                    },
+
                     {
                         path: 'change-password',
                         name: 'Change Password',
                         meta: {
                             showable: true,
                             icon: 'mdi-lock-outline',
-                            sequence: 1,
+                            sequence: 3,
                             position: 1,
                             metaTitle: 'Change Password'
                         },
@@ -99,11 +132,23 @@ export const UserRoutes: Array<RouteConfig> = [
                         meta: {
                             showable: true,
                             icon: 'mdi-email-outline',
-                            sequence: 2,
+                            sequence: 4,
                             position: 1,
                             metaTitle: 'Change Email'
                         },
                         component: ChangeEmailComponent
+                    },
+                    {
+                        path: 'blocked-users',
+                        name: 'Blocked Users',
+                        meta: {
+                            showable: true,
+                            icon: 'mdi-account-lock-outline',
+                            sequence: 5,
+                            position: 1,
+                            metaTitle: 'Blocked Users'
+                        },
+                        component: BlockedUsersComponent
                     },
                     {
                         path: 'disable-account',
@@ -111,7 +156,7 @@ export const UserRoutes: Array<RouteConfig> = [
                         meta: {
                             showable: true,
                             icon: 'mdi-account-cancel-outline',
-                            sequence: 3,
+                            sequence: 6,
                             position: 1,
                             metaTitle: 'Disable Account'
                         },

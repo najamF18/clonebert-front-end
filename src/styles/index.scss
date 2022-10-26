@@ -233,34 +233,38 @@ td {
     border: #00ac4a 0.2px solid;
 }
 .v-data-table tbody tr:nth-of-type(odd) {
-    background-color: #252935;
+    background-color: #191c24;
+    color: #6c7293 !important;
+    font-weight: bold;
 }
 
 .v-data-table tbody tr:nth-of-type(even) {
     background-color: #191C24;
+    color: #6c7293 !important;
+    font-weight: bold;
 }
 
 .v-data-table thead th:nth-of-type(n) {
-    background-color: #8f5fe8!important;
-    color: white !important;
-    font-weight: lighter;
+    background-color: #191c24!important;
+    color: #6c7293 !important;
+    font-weight: bold;
     min-width: 160px;
 }
 
 .v-data-footer {
-    color: #8f5fe8 !important;
+    color: #6c7293 !important;
     background-color: #191C24;
 }
 .v-select__selection {
-    color: #8f5fe8 !important;
+    color: #6c7293 !important;
 }
 
 .v-select__selection--comma {
-    color: #8f5fe8 !important;
+    color: #6c7293!important;
 }
 .v-application .primary--text {
-    color: #8f5fe8 !important;
-    caret-color: #8f5fe8 !important;
+    color: #6c7293 !important;
+    caret-color: #6c7293 !important;
 }
 
 

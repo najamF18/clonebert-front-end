@@ -21,16 +21,16 @@ export default class TransactionComponent extends VueWrapper {
             align: 'start',
             sortable: false,
             value: 'name',
-            width:'3em'
+            width:'110'
           },
-          { text: 'Book Price', value: 'book_price' },
-          { text: 'Book Value', value: 'book_value' },
-          { text: 'Market Price', value: 'market_price' },
-          { text: 'Market Value', value: 'market_value' },
-          { text: 'Gains', value: 'gains' },
+          { text: 'Book Price', value: 'book_price',width:'110' },
+          { text: 'Book Value', value: 'book_value',width:'110' },
+          { text: 'Market Price', value: 'market_price',width:'120'},
+          { text: 'Market Value', value: 'market_value',width:'130' },
+          { text: 'Gains/Loss', value: 'gains',width:'110' },
           { text: 'Shares', value: 'num_shares' },
-          { text: 'Currency', value: 'currency' },
-          { text: 'Position', value: 'position' },
+          { text: 'Currency', value: 'currency',width:'110' },
+          { text: 'Position', value: 'position',width:'110' },
         ];
 
           public TransactionsHeaders = [
@@ -39,14 +39,14 @@ export default class TransactionComponent extends VueWrapper {
             align: 'start',
             sortable: false,
             value: 'amount.currency',
-            width:'3em'
+           width:'110'
           },
-          { text: 'Price', value: 'native_amount.amount' },
-          { text: 'Market Price', value: 'market_price' },
-          { text: 'Book Price', value: 'book_price' },
-          { text: 'Transaction Date', value: 'created_at' },
-          { text: 'Position', value: 'position' },
-          { text: 'Gains/Losses', value: 'gains' },
+          { text: 'Price', value: 'native_amount.amount',width:'110' },
+          { text: 'Market Price', value: 'market_price',width:'110' },
+          { text: 'Book Price', value: 'book_price',width:'110' },
+          { text: 'Transaction Date', value: 'created_at',width:'130' },
+          { text: 'Position', value: 'position',width:'110' },
+          { text: 'Gains/Losses', value: 'gains',width:'110' },
         ];
 
     mounted(){
@@ -88,6 +88,14 @@ export default class TransactionComponent extends VueWrapper {
                     this.AlertSrv.show('error', err.message);
                 }
             );
+    }
+
+    getColor(val:any){
+        if(val > 0) {
+            return 'rgba(0, 210, 91, 0.3)'
+        }else{
+            return 'rgba(252, 66, 74, 0.3)'
+        }  
     }
 
     
