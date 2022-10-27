@@ -11,5 +11,8 @@ export class TransactionsApi extends BaseApi {
     public TransactionsList() {
         return this.GET_Request<Array<any>>(`${this.ApiUrl}/coinbase/list-transactions/`);
     }
+    public FetchTransaction() {
+        return this.GET_Request<string>(`${this.ApiUrl}/coinbase/fetch-transactions/`);
+    }
    
 }

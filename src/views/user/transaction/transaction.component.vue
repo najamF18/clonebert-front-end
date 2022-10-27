@@ -8,6 +8,30 @@
     >
       Please verify through <strong>CoinBase</strong>  to use this service  
     </v-alert>
+    <v-row >
+        <v-col cols="auto" class="ml-auto my-2" >
+            <div class="text-center">
+            <v-btn
+            small
+            :loading="FetchTransaction.loading"
+      color="muted"
+      class="ma-2 white--text"
+      @click="LoadTransactions()"
+    >
+    <v-icon
+        right
+        dark
+        class="mr-2"
+      >
+        mdi-cached
+      </v-icon>
+      Load Transactions
+      
+      </v-btn>
+      <h6 v-if="FetchTransaction.status" class="font-weight-light ">Transactions Loaded</h6>
+            </div>
+        </v-col>
+    </v-row>
         <base-card class="rounded darkgrey"
             ><h3 class="pa-3 white--text">Holdings List</h3>
             <v-row>
@@ -26,7 +50,7 @@
                             {{ item.market_price.toFixed(2) }}
                         </template>
                         <template v-slot:[`item.gains`]="{item}">
-                            <v-chip :color="getColor(item.gains)" dark label>
+                            <v-chip  :color="getColor(item.gains)" dark label>
                                 {{ item.gains.toFixed(2) }}
                             </v-chip>
                         </template>
@@ -57,9 +81,10 @@
                         
                         <template v-slot:[`item.gains`]="{item}">
                             
-                            <v-chip :color="getColor(item.gains)" dark label>
+                            <v-chip v-if="!!item.gains" :color="getColor(item.gains)" dark label>
                            {{ item.gains ? item.gains.toFixed(2) : item.gains }}
                            </v-chip>
+                           <div v-else> N/A</div>
                         </template>
 
                         <template v-slot:[`item.native_amount.amount`]="{item}">

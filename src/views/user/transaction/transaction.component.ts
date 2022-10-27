@@ -15,7 +15,11 @@ export default class TransactionComponent extends VueWrapper {
     public TransactionApi = new TransactionsApi();
     public HoldingsData =new BehaviorSubject<any>([]);;
     public TransactionsData =new BehaviorSubject<any>([]);;
-    public IsLoginCoinBase = false;
+    public IsLoginCoinBase = true;
+    public FetchTransaction = {
+        status: false,
+        loading: false,
+    }
     public HoldingsHeaders = [
           {
             text: 'Name',
@@ -59,7 +63,6 @@ export default class TransactionComponent extends VueWrapper {
         
     }
 
-
     getTransactions(){
         this.TransactionApi.TransactionsList()
             .subscribe(
@@ -75,6 +78,7 @@ export default class TransactionComponent extends VueWrapper {
             )
             .add(() => {
                 this.LoaderSrv.hideFullScreenLoader();
+                
             });
     }
 
@@ -104,6 +108,23 @@ export default class TransactionComponent extends VueWrapper {
     isNumber(val:any){
         if(isNaN(val)) return false;
         return true;
+    }
+
+    LoadTransactions(){
+        this.FetchTransaction.loading = true;
+        this.TransactionApi.FetchTransaction()
+        .subscribe(
+            res => {
+                this.FetchTransaction.status = true;
+                this.FetchTransaction.loading = false;
+                console.log(res);
+                },
+                err => {
+                   console.log(err);
+                   this.FetchTransaction.status = true;
+                   this.FetchTransaction.loading = false;
+                }
+            );
     }
 
     
