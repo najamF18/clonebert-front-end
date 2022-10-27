@@ -112,13 +112,13 @@ export abstract class BaseApi {
                 }
             });
         }
-        if (error.response?.status == 401) {
-            this.cancelToken?.cancel();
-            // new AlertService().show('info', 'You session is expired. Please login again to continue.').then(() => {});
-            if (router.currentRoute.name !== 'Home') {
-                router.push({name: 'Home', query: {redirect_reason: 'UNAUTHORIZIED'}});
-            }
-        }
+        // if (error.response?.status == 401) {
+        //     this.cancelToken?.cancel();
+        //     // new AlertService().show('info', 'You session is expired. Please login again to continue.').then(() => {});
+        //     if (router.currentRoute.name !== 'Home') {
+        //         router.push({name: 'Home', query: {redirect_reason: 'UNAUTHORIZIED'}});
+        //     }
+        // }
 
         return throwError(error.response!.data || 'Internal Server Error');
     }

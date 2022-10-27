@@ -15,6 +15,7 @@ export default class TransactionComponent extends VueWrapper {
     public TransactionApi = new TransactionsApi();
     public HoldingsData =new BehaviorSubject<any>([]);;
     public TransactionsData =new BehaviorSubject<any>([]);;
+    public IsLoginCoinBase = false;
     public HoldingsHeaders = [
           {
             text: 'Name',
@@ -50,9 +51,10 @@ export default class TransactionComponent extends VueWrapper {
         ];
 
     mounted(){
-        this.LoaderSrv.showFullScreenLoader("Loading...");
+            this.LoaderSrv.showFullScreenLoader("Loading...");
         this.getTransactions();
         this.getHoldings();
+        
         
         
     }
@@ -64,10 +66,11 @@ export default class TransactionComponent extends VueWrapper {
                 res => {
                     console.log("transactions List",res);
                     this.TransactionsData.next(res);
+                    this.IsLoginCoinBase=true;
                     
                 },
                 err => {
-                    this.AlertSrv.show('error', err.message);
+                    this.IsLoginCoinBase=false;
                 }
             )
             .add(() => {
@@ -82,10 +85,10 @@ export default class TransactionComponent extends VueWrapper {
                     console.log("Holding List",res);
                     this.HoldingsData.next(res);
 
-                    console.log("holding",this.HoldingsData.value);
+                     this.IsLoginCoinBase=true;
                 },
                 err => {
-                    this.AlertSrv.show('error', err.message);
+                    this.IsLoginCoinBase=false;
                 }
             );
     }

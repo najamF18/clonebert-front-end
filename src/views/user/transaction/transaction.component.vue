@@ -1,5 +1,13 @@
 <template>
     <div class="pa-5">
+      <v-alert
+      dense
+      v-if="!IsLoginCoinBase"
+      type="error"
+      class="white--text"
+    >
+      Please verify through <strong>CoinBase</strong>  to use this service  
+    </v-alert>
         <base-card class="rounded darkgrey"
             ><h3 class="pa-3 white--text">Holdings List</h3>
             <v-row>
