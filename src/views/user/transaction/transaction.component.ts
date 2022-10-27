@@ -98,6 +98,11 @@ export default class TransactionComponent extends VueWrapper {
         }  
     }
 
+    isNumber(val:any){
+        if(isNaN(val)) return false;
+        return true;
+    }
+
     
       }
 

@@ -33,7 +33,7 @@
         <v-row class="px-5 mt-0">
             <v-col cols="12" md="4">
                   <base-card class=" rounded darkgrey">
-                    <transaction-chart  :container-style="{height: '300px',marginTop:'-15%',marginBottom:'-15%'}"/>
+                    <transaction-chart  :container-style="{height: '200px'}"/>
                 <base-card class=" mx-5 rounded darkblue">
                     <v-row class="pa-4 align-center">
                         <v-col cols="8" >

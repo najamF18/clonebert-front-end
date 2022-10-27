@@ -262,6 +262,13 @@ td {
 .v-select__selection--comma {
     color: #6c7293!important;
 }
+.v-application--is-ltr .v-data-footer__icons-before .v-btn:last-child {
+    color: white !important;
+}
+
+.v-application--is-ltr .v-data-footer__icons-after .v-btn:first-child{
+    color: white !important;
+}
 .v-application .primary--text {
     color: #6c7293 !important;
     caret-color: #6c7293 !important;

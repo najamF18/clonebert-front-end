@@ -5,7 +5,7 @@
             <v-text-field class="white--text ml-2" placeholder="Search" outlined dense hide-details />
             <v-spacer></v-spacer>
 
-            <v-btn color="warning" elevation="2" small>
+            <v-btn to="/user/profile/manage-portfolio" color="warning" elevation="2" small>
                 <v-icon left> mdi-plus </v-icon>
                 Import Portfolio
             </v-btn>
