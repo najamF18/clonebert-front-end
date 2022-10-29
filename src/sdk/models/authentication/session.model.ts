@@ -4,7 +4,8 @@ export class SessionModel {
     public uid: number | null = null;
     public username: string | null = null;
     public token: string | null = null;
-    // public RememberMe = false;
+    public api_key: string|null = null;
+    public api_secret: string|null = null;
     // public Role: string | null = null;
     // public DisclaimerAccepted: boolean | string | null = null;
     // public UserId: string | null = null;

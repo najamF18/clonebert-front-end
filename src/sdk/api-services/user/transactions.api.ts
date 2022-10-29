@@ -1,4 +1,5 @@
 import {ServiceClass} from '@/decorators';
+import { UserSession } from '@/sdk/core';
 import {BaseApi} from '../base.api';
 import { HoldingModel } from './../../models/user/holdings.model';
 
@@ -6,10 +7,12 @@ import { HoldingModel } from './../../models/user/holdings.model';
 export class TransactionsApi extends BaseApi {
  
     public HoldingsList() {
-        return this.GET_Request<any>(`${this.ApiUrl}/coinbase/list-holdings/`);
+        const c  = new UserSession()._session.value;
+        return this.GET_Request<any>(`${this.ApiUrl}/coinbase/list-holdings?api_key=${c?.api_key}&api_secret=${c?.api_secret}`);
     }
     public TransactionsList() {
-        return this.GET_Request<Array<any>>(`${this.ApiUrl}/coinbase/list-transactions/`);
+        const c  = new UserSession()._session.value;
+        return this.GET_Request<Array<any>>(`${this.ApiUrl}/coinbase/list-transactions?api_key=${c?.api_key}&api_secret=${c?.api_secret}`);
     }
     public FetchTransaction() {
         return this.GET_Request<string>(`${this.ApiUrl}/coinbase/fetch-transactions/`);

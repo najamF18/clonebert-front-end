@@ -21,7 +21,7 @@
                         <v-icon size="20" color="accent"> mdi-dots-vertical </v-icon>
                     </div>
                 </template>
-                <v-list dense nav>
+                <v-list color="darkgrey" dense dark nav>
                     <v-list-item v-for="(item, i) in items" :key="i" link @click="item.method()" :to="item.link">
                         <v-list-item-icon class="mr-2">
                             <base-icon color="grey" :icon-name="item.icon" />

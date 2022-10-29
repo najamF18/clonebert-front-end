@@ -22,7 +22,7 @@ export abstract class BaseApi {
         const headers: AxiosRequestConfig['headers'] = {
             Accept: 'application/json',
             'Content-Type': 'application/json;charset=UTF-8',
-            Authorization: this.authorize()
+            Authorization: this.authorize(),
         };
         const options: AxiosRequestConfig = {
             method,
@@ -54,7 +54,9 @@ export abstract class BaseApi {
         // Headers to be sent
         const headers: AxiosRequestConfig['headers'] = {
             'Content-Type': 'multipart/form-data',
-            Authorization: this.authorize()
+            Authorization: this.authorize(),
+            
+            
         };
         const options: AxiosRequestConfig = {
             method,

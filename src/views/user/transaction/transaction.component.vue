@@ -6,7 +6,7 @@
       type="error"
       class="white--text"
     >
-      Please verify through <strong>CoinBase</strong>  to use this service  
+      Your Api Keys are not <strong>Set</strong> or <strong>Invalid </strong>. 
     </v-alert>
     <v-row >
         <v-col cols="auto" class="ml-auto my-2" >

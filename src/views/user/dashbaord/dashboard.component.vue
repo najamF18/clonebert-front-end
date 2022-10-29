@@ -46,7 +46,7 @@
                     </v-row>
                 </base-card>
                  <base-card class="mx-5 my-3 rounded darkblue">
-                    <v-row class="pa-4 align-center">
+                    <v-row class="pa-4 align-center mx-0">
                         <v-col cols="8" >
                                 <span class="white--text ma-auto pa-0  font-weight-bold ">Transfer to Paypal</span>
                             <h4 class="muted--text font-weight-light ">Potential Growth</h4>

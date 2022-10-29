@@ -32,7 +32,9 @@ export class UserSession {
                 username: this.load('username'),
                 uid: this.load('uid'),
                 email: this.load('email'),
-                token: this.load('token')
+                token: this.load('token'),
+                api_key: this.load('api_key'),
+                api_secret: this.load('api_secret')
                 // RememberMe: this.load('RememberMe'),
                 // Role: this.load('Role'),
                 // UserId: this.load('UserId'),
