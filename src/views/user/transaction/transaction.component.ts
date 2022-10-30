@@ -117,11 +117,13 @@ export default class TransactionComponent extends VueWrapper {
             res => {
                 this.FetchTransaction.status = true;
                 this.FetchTransaction.loading = false;
+                this.LoaderSrv.showFullScreenLoader("Loading...");
+                this.getTransactions();
+                this.getHoldings();
                 console.log(res);
                 },
                 err => {
                    console.log(err);
-                   this.FetchTransaction.status = true;
                    this.FetchTransaction.loading = false;
                 }
             );

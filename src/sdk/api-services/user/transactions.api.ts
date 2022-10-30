@@ -15,7 +15,8 @@ export class TransactionsApi extends BaseApi {
         return this.GET_Request<Array<any>>(`${this.ApiUrl}/coinbase/list-transactions?api_key=${c?.api_key}&api_secret=${c?.api_secret}`);
     }
     public FetchTransaction() {
-        return this.GET_Request<string>(`${this.ApiUrl}/coinbase/fetch-transactions/`);
+        const c  = new UserSession()._session.value;
+        return this.GET_Request<string>(`${this.ApiUrl}/coinbase/fetch-transactions?api_key=${c?.api_key}&api_secret=${c?.api_secret}`);
     }
    
 }
