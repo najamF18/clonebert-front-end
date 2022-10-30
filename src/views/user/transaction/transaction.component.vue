@@ -8,13 +8,13 @@
     >
       Your Api Keys are not <strong>Set</strong> or <strong>Invalid </strong>. 
     </v-alert>
-    <v-row >
+    <v-row :class="{'d-none':!IsLoginCoinBase}">
         <v-col cols="auto" class="ml-auto my-2" >
             <div class="text-center">
             <v-btn
             small
             :loading="FetchTransaction.loading"
-      color="muted"
+      color="darkgrey"
       class="ma-2 white--text"
       @click="LoadTransactions()"
     >
