@@ -5,9 +5,13 @@
             <v-text-field class="white--text ml-2" placeholder="Search" outlined dense hide-details />
             <v-spacer></v-spacer>
 
-            <v-btn to="/user/profile/manage-portfolio" color="warning" elevation="2" small>
+            <v-btn v-if="!IsLinked" to="/user/profile/manage-portfolio" color="warning" elevation="2" small>
                 <v-icon left> mdi-plus </v-icon>
                 Import Portfolio
+            </v-btn>
+            <v-btn v-else to="/user/profile/manage-portfolio" color="primarypurple" elevation="2" small>
+                <v-icon left> mdi-plus </v-icon>
+                Update Portfolio
             </v-btn>
                 <v-divider inset class="ml-2" vertical></v-divider>
             

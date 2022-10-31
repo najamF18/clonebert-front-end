@@ -30,7 +30,7 @@
             </v-col>
         </v-row>
 
-        <v-row class="px-5 mt-0">
+        <v-row class="px-5 mt-2">
             <v-col cols="12" md="4">
                   <base-card class=" rounded darkgrey">
                     <transaction-chart  :container-style="{height: '200px'}"/>

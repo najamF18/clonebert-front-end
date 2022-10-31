@@ -4,66 +4,61 @@ import { TransactionModel } from '@/sdk/models/user/transaction.model';
 import DrawerComponent from '@/views/drawer/drawer.component';
 import { BehaviorSubject } from 'rxjs';
 import {Component} from 'vue-property-decorator';
-import { HoldingModel } from './../../../sdk/models/user/holdings.model';
 
 @Component({
     components: {
         DrawerComponent
     }
 })
-export default class TransactionComponent extends VueWrapper {
+export default class HoldingComponent extends VueWrapper {
     public TransactionApi = new TransactionsApi();
-    public TransactionsData =new BehaviorSubject<any>([]);
+    public HoldingsData =new BehaviorSubject<any>([]);;
     public IsLoginCoinBase = true;
-    public defaultsSort = true;
     public FetchTransaction = {
         status: false,
         loading: false,
     }
-
-          public TransactionsHeaders = [
+    public HoldingsHeaders = [
           {
             text: 'Symbol',
             align: 'start',
-            value: 'amount.currency',
-           width:'110'
+            value: 'name',
+            width:'110'
           },
-          { text: 'Book Value', value: 'native_amount.amount',width:'120' },
           { text: 'Book Price', value: 'book_price',width:'120' },
+          { text: 'Book Value', value: 'book_value',width:'120' },
+          { text: 'Market Price', value: 'market_price',width:'130'},
           { text: 'Market Value', value: 'market_value',width:'130' },
-          { text: 'Market Price', value: 'market_price',width:'130' },
-          { text: '# of Shares', value: 'amount.amount',width:'120' },
-          { text: 'Currency', value: 'native_amount.currency',width:'110' },
-          { text: 'Transaction Date', value: 'created_at',width:'180' },
-        //   { text: 'Position', value: 'position',width:'110' },
-          { text: 'Gains/Losses', value: 'gains',width:'110' },
+          { text: 'Gains/Loss', value: 'gains',width:'120' },
+          { text: '# Of Shares', value: 'num_shares',width:'130' },
+          { text: 'Currency', value: 'currency',width:'110' },
+          { text: 'Position', value: 'position',width:'110' },
         ];
 
+          
+
     mounted(){
-        this.getTransactions();
+        this.getHoldings();
+        
         
     }
 
-    getTransactions(){
+    getHoldings(){
         this.LoaderSrv.showFullScreenLoader("Loading...");
-        this.TransactionApi.TransactionsList()
+        this.TransactionApi.HoldingsList()
             .subscribe(
-                res => {
-                    console.log("transactions List",res);
-                    this.TransactionsData.next(res);
-                    this.IsLoginCoinBase=true;
-                    
+            res => {
+                    console.log("Holding List",res);
+                    this.HoldingsData.next(res);
+                     this.IsLoginCoinBase=true;
+                     this.LoaderSrv.hideFullScreenLoader();
                 },
                 err => {
                     this.IsLoginCoinBase=false;
+                    this.LoaderSrv.hideFullScreenLoader();
                 }
-            )
-            .add(() => {
-                this.LoaderSrv.hideFullScreenLoader();
-                
-            });
+            );
     }
-
 
     getColor(val:any){
         if(val > 0) {
@@ -85,7 +80,7 @@ export default class TransactionComponent extends VueWrapper {
             res => {
                 this.FetchTransaction.status = true;
                 this.FetchTransaction.loading = false;
-                this.getTransactions();
+                this.getHoldings();
                 console.log(res);
                 },
                 err => {
@@ -93,12 +88,6 @@ export default class TransactionComponent extends VueWrapper {
                    this.FetchTransaction.loading = false;
                 }
             );
-    }
-
-    getDateTime(val:any){
-        const date = new Date(val);
-
-        return date.toLocaleDateString() +' '+ date.toLocaleTimeString(navigator.language, {hour: '2-digit',minute:'2-digit'});
     }
 
     

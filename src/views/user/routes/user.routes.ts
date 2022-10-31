@@ -11,6 +11,7 @@ import AnalyticsComponent from '../analytics/analytics.component';
 import ChangePrivacyComponent from './../profile/privacy/privacy.component';
 import ManagePortfolioComponent from '../profile/manage-portfolio/manage-portfolio.component';
 import BlockedUsersComponent from '../profile/blocked-users/blocked-users.component';
+import HoldingComponent from './../profile/holdings/holdings.component';
 
 export const UserRoutes: Array<RouteConfig> = [
     {
@@ -54,6 +55,18 @@ export const UserRoutes: Array<RouteConfig> = [
                     color: 'red',
                     sequence: 1,
                     title: 'Transactions'
+                }
+            },
+             {
+                path: 'holdings',
+                name: 'Holdings',
+                component: HoldingComponent,
+                meta: {
+                    showable: true,
+                    icon: 'table-large',
+                    color: 'green',
+                    sequence: 1,
+                    title: 'Holdings'
                 }
             },
             {

@@ -8,6 +8,16 @@ export default class ManagePortfolioComponent extends VueWrapper {
     public ApiKey:string| null = null;
     public ApiSecret:string| null = null;
     public sessionModel:SessionModel = new SessionModel();
+    public IsApiAdded = false;
+
+    mounted(){
+        if(new UserSession()._session.value?.api_key && new UserSession()._session.value?.api_secret){
+            this.IsApiAdded = true;
+        }
+        else{
+            this.IsApiAdded = false;
+        }
+    }
     
     SubmitKeys(){
         Object.assign(this.sessionModel,new UserSession()._session.value);
@@ -16,8 +26,20 @@ export default class ManagePortfolioComponent extends VueWrapper {
         new UserSession()._session.next(this.sessionModel); 
         new UserSession().save();
         console.log(new UserSession()._session.value);
+        this.IsApiAdded = true;
         this.AlertSrv.show('success',"Api Keys added successfully");
+        
 
+    }
+    RemoveKeys(){
+          Object.assign(this.sessionModel,new UserSession()._session.value);
+        this.sessionModel.api_key = null;
+        this.sessionModel.api_secret = null;
+        new UserSession()._session.next(this.sessionModel); 
+        new UserSession().save();
+        console.log(new UserSession()._session.value);
+        this.IsApiAdded = false;
+        this.AlertSrv.show('success',"Api Keys Removed successfully");
     }
 
     // public changeEmail() {
