@@ -1,4 +1,5 @@
 import {ServiceClass} from '@/decorators';
+import { UserSession } from '@/sdk';
 import {BehaviorSubject} from 'rxjs';
 
 @ServiceClass()
@@ -167,6 +168,13 @@ export class CoreService {
         SortDesc: null,
         Status: 'TRUE'
     };
+
+    get IsApiLinked(){
+        if(new UserSession()._session.value?.api_key && new UserSession()._session.value?.api_secret){
+            return true;
+        }
+        return false;
+    }
 
     public confirmCompWidth = 400;
 }

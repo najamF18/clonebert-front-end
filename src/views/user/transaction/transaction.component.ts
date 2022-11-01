@@ -35,8 +35,8 @@ export default class TransactionComponent extends VueWrapper {
           { text: '# of Shares', value: 'amount.amount',width:'120' },
           { text: 'Currency', value: 'native_amount.currency',width:'110' },
           { text: 'Transaction Date', value: 'created_at',width:'180' },
-        //   { text: 'Position', value: 'position',width:'110' },
-          { text: 'Gains/Losses', value: 'gains',width:'110' },
+          { text: 'Gains/Losses', value: 'gains',width:'130' },
+          { text: 'Action', value: 'action',width:'110' },
         ];
 
     mounted(){

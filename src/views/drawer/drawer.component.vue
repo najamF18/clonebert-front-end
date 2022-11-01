@@ -7,12 +7,19 @@
             <v-avatar v-else tile min-width="55" width="200" height="70">
                 <v-img height="40" contain class="transparent cursor-pointer" width="50" src="/images/logo-mini.svg" />
             </v-avatar>
+            
         </div>
         <div :class="[{' ml-3': !CoreSrv.Drawer.Mini}, {'ml-1': CoreSrv.Drawer.Mini}]">
             <v-avatar :size="CoreSrv.Drawer.Mini ? 49 : 100">
                 <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
             </v-avatar>
         </div>
+        <div v-if="!CoreSrv.Drawer.Mini && CoreSrv.IsApiLinked" class="ml-3 ">
+            <v-avatar  tile min-width="20" width="30" height="30">
+                <v-img height="40" contain class="transparent cursor-pointer" width="50" src="/images/badge.svg" />
+            </v-avatar>
+        </div>
+        
         <div v-if="!CoreSrv.Drawer.Mini" class="d-flex justify-space-between pa-3">
             <div class="flex my-1 ml-3 row">
                 <v-icon small color="secondary "> mdi-at </v-icon>

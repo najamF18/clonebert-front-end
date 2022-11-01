@@ -8,12 +8,5 @@ export default class AppBarComponent extends VueWrapper {
 
     public CoreSrv = new CoreService();
     
-
-    get IsLinked(){
-        if(new UserSession()._session.value?.api_key && new UserSession()._session.value?.api_secret){
-            return true;
-        }
-        return false;
-    }
     
 }
