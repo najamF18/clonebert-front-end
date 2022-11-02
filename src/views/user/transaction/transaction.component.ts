@@ -22,21 +22,17 @@ export default class TransactionComponent extends VueWrapper {
     }
 
           public TransactionsHeaders = [
-          {
-            text: 'Symbol',
-            align: 'start',
-            value: 'amount.currency',
-           width:'110'
-          },
+              { text: 'Transaction Date', value: 'created_at',width:'180' },
+              { text: 'Action', value: 'action',width:'110' },
+              {text: 'Symbol', align: 'start',value: 'amount.currency',width:'110'},
+              { text: 'Currency', value: 'native_amount.currency',width:'110' },
+              { text: '# of Shares', value: 'amount.amount',width:'120' },
+              { text: 'Book Price', value: 'book_price',width:'120' },
           { text: 'Book Value', value: 'native_amount.amount',width:'120' },
-          { text: 'Book Price', value: 'book_price',width:'120' },
-          { text: 'Market Value', value: 'market_value',width:'130' },
           { text: 'Market Price', value: 'market_price',width:'130' },
-          { text: '# of Shares', value: 'amount.amount',width:'120' },
-          { text: 'Currency', value: 'native_amount.currency',width:'110' },
-          { text: 'Transaction Date', value: 'created_at',width:'180' },
+          { text: 'Market Value', value: 'market_value',width:'130' },
+          { text: 'Position', value: 'position',width:'110' },
           { text: 'Gains/Losses', value: 'gains',width:'130' },
-          { text: 'Action', value: 'action',width:'110' },
         ];
 
     mounted(){

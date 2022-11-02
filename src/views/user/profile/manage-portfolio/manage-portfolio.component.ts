@@ -1,5 +1,5 @@
 import VueWrapper from '@/components/core/Vue/vue.wrapper';
-import { LoaderService, SessionModel, UserSession } from '@/sdk';
+import { LoaderService, SessionModel, TransactionsApi, UserSession } from '@/sdk';
 import Component from 'vue-class-component';
 
 @Component
@@ -9,6 +9,7 @@ export default class ManagePortfolioComponent extends VueWrapper {
     public ApiSecret:string| null = null;
     public sessionModel:SessionModel = new SessionModel();
     public IsApiAdded = false;
+    public showForm = false;
 
     mounted(){
         if(new UserSession()._session.value?.api_key && new UserSession()._session.value?.api_secret){
@@ -20,7 +21,11 @@ export default class ManagePortfolioComponent extends VueWrapper {
     }
     
     SubmitKeys(){
-        Object.assign(this.sessionModel,new UserSession()._session.value);
+        this.LoaderSrv.showFullScreenLoader("Loading...");
+        new TransactionsApi().VerifyApi(this.ApiKey,this.ApiSecret)
+        .subscribe(
+            res => {
+                Object.assign(this.sessionModel,new UserSession()._session.value);
         this.sessionModel.api_key = this.ApiKey;
         this.sessionModel.api_secret = this.ApiSecret;
         new UserSession()._session.next(this.sessionModel); 
@@ -28,6 +33,17 @@ export default class ManagePortfolioComponent extends VueWrapper {
         console.log(new UserSession()._session.value);
         this.IsApiAdded = true;
         this.AlertSrv.show('success',"Api Keys added successfully");
+                },
+                err => {
+                   console.log(err);
+                   this.AlertSrv.show('error',"Invalid API Key ");
+                   this.RemoveKeys();
+                }
+            ).add(() => {
+                this.LoaderSrv.hideFullScreenLoader();
+                
+            });
+       
         
 
     }

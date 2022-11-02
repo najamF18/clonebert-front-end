@@ -1,5 +1,5 @@
 <template>
-    <v-navigation-drawer :width="250" mobile-breakpoint="991" app color="darkgrey" mini-variant-width="60" :mini-variant.sync="CoreSrv.Drawer.Mini">
+    <v-navigation-drawer :width="250" mobile-breakpoint="991" app color="darkgrey" mini-variant-width="60" :mini-variant="CoreSrv.Drawer.Mini ? true : false">
         <div class="d-flex white darkgrey" :class="[{' pt-1': !CoreSrv.Drawer.Mini}, {'px-1': CoreSrv.Drawer.Mini}]">
             <v-avatar v-if="!CoreSrv.Drawer.Mini" tile min-width="55" width="200" height="70">
                 <v-img height="40" contain class="transparent cursor-pointer" width="50" src="/images/logo.svg" />

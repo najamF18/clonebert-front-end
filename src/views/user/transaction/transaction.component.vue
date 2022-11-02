@@ -33,7 +33,7 @@
         </v-col>
     </v-row>
         <base-card class="my-1 rounded darkgrey">
-            <h3 class="pa-3 white--text">Transactions List</h3>
+            <h3 class="pa-3 white--text">Past Transactions </h3>
             <v-row>
                 <v-col cols="12">
                     <v-data-table sort-by="created_at" :sort-desc="defaultsSort"  :headers="TransactionsHeaders" :items="TransactionsData.value" :items-per-page="5" class="elevation-1 theme--dark">

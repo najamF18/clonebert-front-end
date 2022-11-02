@@ -25,14 +25,14 @@ export default class HoldingComponent extends VueWrapper {
             value: 'name',
             width:'110'
           },
+          { text: 'Currency', value: 'currency',width:'110' },
+          { text: '# Of Shares', value: 'num_shares',width:'130' },
           { text: 'Book Price', value: 'book_price',width:'120' },
           { text: 'Book Value', value: 'book_value',width:'120' },
           { text: 'Market Price', value: 'market_price',width:'130'},
           { text: 'Market Value', value: 'market_value',width:'130' },
-          { text: 'Gains/Loss', value: 'gains',width:'120' },
-          { text: '# Of Shares', value: 'num_shares',width:'130' },
-          { text: 'Currency', value: 'currency',width:'110' },
           { text: 'Position', value: 'position',width:'110' },
+          { text: 'Gains/Loss', value: 'gains',width:'120' },
         ];
 
           
