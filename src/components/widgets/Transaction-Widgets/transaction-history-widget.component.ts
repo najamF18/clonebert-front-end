@@ -1,4 +1,5 @@
 
+import { TransactionService } from '@/sdk';
 import Vue from 'vue';
 import Component from 'vue-class-component';
 
@@ -9,62 +10,58 @@ interface GraphDataType {
 
 @Component
 export default class TransactionHistoryWidget extends Vue {
-    // public benchmarkingSrv = new BenchmarkingService();
-    // public sendBenchmarkingData = new SendBenchmarkingModel({Type: 'gender'});
+    public TransactionSrv = new TransactionService();
     public graphData: Array<GraphDataType> = [];
     public countData: Array<any> = [];
+    public PieChartData = [];
 
     public mounted() {
         this.getGraphData();
     }
 
     public getGraphData() {
-        // this.benchmarkingSrv.getBenchmarkingDataByGender(this.sendBenchmarkingData);
-
-        // this.benchmarkingSrv.BenchmarkingDataByGender.subscribe(res => {
-        //     this.graphData = this.$helpers.setGraphData(res);
-        //     this.options.dataset['source'] = this.graphData as any;
-        //     this.countData[0] = this.$helpers.getCount(res);
-        // });
+        this.TransactionSrv.getPieChartData();
+        this.TransactionSrv.PieCharrData.subscribe(res => {
+            this.PieChartData = res;
+            console.log(this.PieChartData); 
+           this.option.series[0].data = this.PieChartData.map(({name, num_shares}) => ({name: name, value: num_shares})) as any;
+        });
     }
 
     public option = {
-  tooltip: {
-    trigger: 'item'
-  },
-  legend: {
-    show:false
-  },
-  series: [
-    {
-      name: 'Access From',
-      type: 'pie',
-      radius: ['40%', '50%'],
-      avoidLabelOverlap: false,
-      label: {
-        show: false,
-        position: 'center'
-      },
-      emphasis: {
-        label: {
-          show: false,
-          fontSize: '40',
-          fontWeight: 'bold'
-        }
-      },
-      labelLine: {
-        show: false
-      },
-      data: [
-        { value: 1048, name: 'Search Engine' },
-        { value: 735, name: 'Direct' },
-        { value: 580, name: 'Email' },
-        { value: 484, name: 'Union Ads' },
-        { value: 300, name: 'Video Ads' }
-      ]
-    }
-  ]
-};
+        tooltip: {
+            trigger: 'item',
+            backgroundColor: '#2a2d3a'
+        },
+        legend: {
+            show: false,
+        },
+        
+        series: [
+            {
+                name: 'Holdings',
+                type: 'pie',
+                radius: ['40%', '70%'],
+                avoidLabelOverlap: false,
+                label: {
+                    show: false,
+                    position: 'center'
+                },
+                emphasis: {
+                    label: {
+                        show: false,
+                        fontSize: '40',
+                        fontWeight: 'bold'
+                    }
+                },
+               
+                labelLine: {
+                    show: false
+                },
+                data: this.PieChartData.map( ({name, num_shares}) => ({name :name, value:num_shares}) )
+            }
+        ]
+    };
 
     get series() {
         if (this.graphData.length) {

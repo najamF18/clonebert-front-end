@@ -32,6 +32,7 @@ export default class ManagePortfolioComponent extends VueWrapper {
         new UserSession().save();
         console.log(new UserSession()._session.value);
         this.IsApiAdded = true;
+        this.showForm = false;
         this.AlertSrv.show('success',"Api Keys added successfully");
                 },
                 err => {
@@ -55,7 +56,11 @@ export default class ManagePortfolioComponent extends VueWrapper {
         new UserSession().save();
         console.log(new UserSession()._session.value);
         this.IsApiAdded = false;
-        this.AlertSrv.show('success',"Api Keys Removed successfully");
+    }
+
+    Unlink(){
+        this.RemoveKeys();
+        this.AlertSrv.show('success', 'Unlinked successfully');
     }
 
     // public changeEmail() {

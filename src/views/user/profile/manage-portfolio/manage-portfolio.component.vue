@@ -34,10 +34,13 @@
                 <v-col cols="12">
                     <v-sheet outlined elevation="5" class="pa-2  my-2 white--text flex row justify-space-between  darkgrey">
                         <p class="align-self-center mr-3 font-weight-regular">CoinBase</p>
-                        <v-btn @click="RemoveKeys()" class="ma-2" outlined color="blue"><v-icon small class="mr-1">mdi-weather-sunny</v-icon> Unlink Coinbase </v-btn>
+                        <v-btn @click="Unlink()" class="ma-2" outlined color="blue"><v-icon small class="mr-1">mdi-weather-sunny</v-icon> Unlink Coinbase </v-btn>
                     </v-sheet>
                 </v-col>
             </v-row>
+            <!-- <div>
+                ravduogu7BkK8RwM <br> TkwSTSs3STdf8OQl5I7yNFTeJgkFzWTz
+            </div> -->
         </base-card>
     </div>
      <!-- <v-sheet outlined elevation="5" class="pa-2  my-2 white--text flex row justify-space-between  darkgrey">

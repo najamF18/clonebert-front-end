@@ -68,6 +68,6 @@ export default class BaseChartComponent extends VueWrapper {
     public resize() {
         setTimeout(() => {
             this.forceResize();
-        }, 200);
+        }, 100);
     }
 }

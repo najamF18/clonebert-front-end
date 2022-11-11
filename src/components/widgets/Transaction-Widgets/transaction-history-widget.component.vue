@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="px-6 mt-3">
-            <h3 class="white--text">Transaction History</h3>
+            <h3 class="white--text">Current Holdings</h3>
         </div>
         <base-chart v-bind="$attrs" :options="option" />
         <slot />

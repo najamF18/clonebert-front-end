@@ -10,7 +10,7 @@
                 Import Portfolio
             </v-btn>
             <v-btn v-else to="/user/profile/manage-portfolio" color="primarypurple" elevation="2" small>
-                <v-icon left> mdi-plus </v-icon>
+               
                 Update Portfolio
             </v-btn>
                 <v-divider inset class="ml-2" vertical></v-divider>
