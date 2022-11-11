@@ -70,12 +70,12 @@
                 <base-card class=" rounded darkgrey">
         <line-widget :container-style="{height: '400px'}" ></line-widget>
         </base-card>
-
+<!-- 
         <v-col cols="12" md="12">
                 <base-card class=" rounded darkgrey">
-       <!-- <trading-view-widget></trading-view-widget> -->
+       <trading-view-widget></trading-view-widget>
         </base-card>
-        </v-col>
+        </v-col> -->
         </v-col>
         </v-row>
         

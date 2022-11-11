@@ -38,8 +38,8 @@ import vuetify from '@/plugins/vuetify';
 import CandleChartWidget from './widgets/Candle-Chart-Widgets/candle-chart-widgets.component';
 import LineWidget from './widgets/Line-Widgets/line-widget.component';
 import AreaWidget from './widgets/Area-Widget/area-widget.component';
-import VueTradingView from 'vue-trading-view';
-import TradingViewWidget from './widgets/trading-view-widget/trading-view-widget.component';
+// import VueTradingView from 'vue-trading-view';
+// import TradingViewWidget from './widgets/trading-view-widget/trading-view-widget.component';
 
 // Vuetify Components
 Vue.component('base-text-field', BaseTextField);
@@ -82,5 +82,5 @@ Vue.component('transaction-chart',TransactionHistoryComponent);
 Vue.component('candle-chart',CandleChartWidget);
 Vue.component('line-widget',LineWidget);
 Vue.component('area-widget',AreaWidget);
-Vue.component('trading-view',VueTradingView);
-Vue.component('trading-view-widget', TradingViewWidget);
+// Vue.component('trading-view',VueTradingView);
+// Vue.component('trading-view-widget', TradingViewWidget);
