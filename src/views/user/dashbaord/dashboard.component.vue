@@ -34,7 +34,7 @@
         <v-row class="px-5 mt-2">
             <v-col cols="12" md="4">
                   <base-card class=" rounded darkgrey">
-                    <transaction-chart  :container-style="{height: '200px'}"/>
+                    <transaction-chart  :container-style="{height: '400px'}"/>
                 <!-- <base-card class=" mx-5 rounded darkblue">
                     <v-row class="pa-4 align-center">
                         <v-col cols="8" >
@@ -61,7 +61,7 @@
             </v-col>
              <v-col cols="12" md="8">
                 <base-card class=" rounded darkgrey">
-        <area-widget :container-style="{height: '382px'}" ></area-widget>
+        <area-widget :container-style="{height: '400px'}" ></area-widget>
         </base-card>
     
          
