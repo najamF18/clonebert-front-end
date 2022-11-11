@@ -35,7 +35,7 @@
             <v-col cols="12" md="4">
                   <base-card class=" rounded darkgrey">
                     <transaction-chart  :container-style="{height: '200px'}"/>
-                <base-card class=" mx-5 rounded darkblue">
+                <!-- <base-card class=" mx-5 rounded darkblue">
                     <v-row class="pa-4 align-center">
                         <v-col cols="8" >
                                 <span class="white--text ma-auto pa-0  font-weight-bold ">Transfer to Paypal</span>
@@ -45,8 +45,8 @@
                             <span class="white--text ma-auto pa-0  font-weight-bold ">$12.34</span>
                         </v-col>
                     </v-row>
-                </base-card>
-                 <base-card class="mx-5 my-3 rounded darkblue">
+                </base-card> -->
+                 <!-- <base-card class="mx-5 my-3 rounded darkblue">
                     <v-row class="pa-4 align-center mx-0">
                         <v-col cols="8" >
                                 <span class="white--text ma-auto pa-0  font-weight-bold ">Transfer to Paypal</span>
@@ -56,7 +56,7 @@
                             <span class="white--text ma-auto pa-0  font-weight-bold ">$12.34</span>
                         </v-col>
                     </v-row>
-                </base-card>
+                </base-card> -->
         </base-card>
             </v-col>
              <v-col cols="12" md="8">
