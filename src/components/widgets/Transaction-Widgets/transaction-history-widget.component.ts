@@ -23,8 +23,8 @@ export default class TransactionHistoryWidget extends Vue {
         this.TransactionSrv.getPieChartData();
         this.TransactionSrv.PieCharrData.subscribe(res => {
             this.PieChartData = res;
-            console.log(this.PieChartData); 
-           this.option.series[0].data = this.PieChartData.map(({name, num_shares}) => ({name: name, value: num_shares})) as any;
+            console.log("PieChart Data",this.PieChartData); 
+           this.option.series[0].data = this.PieChartData.map(({name, position}) => ({name: name, value: position})) as any;
         });
     }
 
@@ -49,14 +49,14 @@ export default class TransactionHistoryWidget extends Vue {
                 },
                 emphasis: {
                     label: {
-                        show: false,
-                        fontSize: '40',
+                        show: true,
+                        fontSize: '20',
                         fontWeight: 'bold'
                     }
                 },
                
                 labelLine: {
-                    show: false
+                    show: true
                 },
                 data: this.PieChartData.map( ({name, num_shares}) => ({name :name, value:num_shares}) )
             }
