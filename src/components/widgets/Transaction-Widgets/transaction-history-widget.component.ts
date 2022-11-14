@@ -24,7 +24,7 @@ export default class TransactionHistoryWidget extends Vue {
         this.TransactionSrv.PieCharrData.subscribe(res => {
             this.PieChartData = res;
             console.log("PieChart Data",this.PieChartData); 
-           this.option.series[0].data = this.PieChartData.map(({name, position}) => ({name: name, value: position})) as any;
+           this.option.series[0].data = this.PieChartData.map((data:any) => ({name: data['name'], value: data['position'].toFixed(2)})) as any;
         });
     }
 

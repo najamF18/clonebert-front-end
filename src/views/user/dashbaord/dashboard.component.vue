@@ -18,20 +18,20 @@
                         <v-col cols="8">
                              <h4 class="muted--text font-weight-light ">Holdings</h4>
                             <span class="white--text ma-auto pa-0 font-weight-bold">{{ data.name }}</span>
-                            <span class="align-self-center ml-1 font-weight-bold" :class="data.position > 0 ? 'success--text' : 'error--text'"
-                                >{{ data.position.toFixed(2) }}%</span
+                            <span class="align-self-center ml-1 font-weight-bold" :class="data.gains > 0 ? 'success--text' : 'error--text'"
+                                >{{ data.gains.toFixed(2) }}%</span
                             >
                             <h4 class="muted--text font-weight-light ">Date: {{new Date().toLocaleDateString()}}</h4>
                         </v-col>
                         <v-col cols="3">
                             <v-sheet
                                 :max-width="256"
-                                :color="data.position > 0 ? 'rgba(0, 210, 91, 0.11)' : 'rgba(252, 66, 74, 0.3)'"
+                                :color="data.gains > 0 ? 'rgba(0, 210, 91, 0.11)' : 'rgba(252, 66, 74, 0.3)'"
                                 class="d-flex justify-center rounded"
                                 height="40"
                                 width="40"
                             >
-                                <v-icon v-if="data.position > 0" class="d-flex align-center" small color="green"> mdi-arrow-top-right </v-icon>
+                                <v-icon v-if="data.gains > 0" class="d-flex align-center" small color="green"> mdi-arrow-top-right </v-icon>
                                 <v-icon v-else class="d-flex align-center" small color="red"> mdi-arrow-bottom-left </v-icon>
                             </v-sheet>
                         </v-col>
