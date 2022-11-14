@@ -12,8 +12,10 @@ export default class DashboardComponent extends VueWrapper {
     public TransactionSrv = new TransactionService();
     public holdings = [];
     mounted(){
+        this.TransactionSrv.getHoldingsData();
         this.TransactionSrv.Holdings.subscribe((res) =>{
             this.holdings = res;
+            console.log("Holdings",this.holdings);
         })
             
         }
