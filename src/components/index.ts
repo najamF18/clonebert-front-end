@@ -39,6 +39,7 @@ import CandleChartWidget from './widgets/Candle-Chart-Widgets/candle-chart-widge
 import LineWidget from './widgets/Line-Widgets/line-widget.component';
 import AreaWidget from './widgets/Area-Widget/area-widget.component';
 import TradingView from './widgets/trading-view/trading-view.component';
+import BaseIncreaseDecreaseComponent from './shared/base-increase-decrese/base-increase-decrease.component';
 
 // Vuetify Components
 Vue.component('base-text-field', BaseTextField);
@@ -59,6 +60,7 @@ Vue.component('base-card', BaseCard);
 Vue.component('base-dialog', BaseDialog);
 Vue.component('base-title-text', BaseTitleTextComponent);
 Vue.component('base-currency-field', BaseCurrencyField);
+Vue.component('base-increase-decrease-component', BaseIncreaseDecreaseComponent);
 
 // Custom Components
 Vue.component('search-component', SearchComponent);
@@ -77,8 +79,8 @@ Vue.component('signup-component', SignupComponent);
 Vue.component('wysiwyg-editor-component', WysiwygEditorComponent);
 Vue.component('base-chart', BaseChart);
 Vue.component('base-icon', BaseIconComponent);
-Vue.component('transaction-chart',TransactionHistoryComponent);
-Vue.component('candle-chart',CandleChartWidget);
-Vue.component('line-widget',LineWidget);
-Vue.component('area-widget',AreaWidget);
-Vue.component('trading-view',TradingView);
+Vue.component('transaction-chart', TransactionHistoryComponent);
+Vue.component('candle-chart', CandleChartWidget);
+Vue.component('line-widget', LineWidget);
+Vue.component('area-widget', AreaWidget);
+Vue.component('trading-view', TradingView);

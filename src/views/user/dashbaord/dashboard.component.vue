@@ -12,16 +12,24 @@
             </v-col>
         </v-row>
         <v-row class="px-5 mt-0">
+            <v-col cols="12" md="3">
+                <base-increase-decrease-component title="Gains Holdings" :gains="gainsHoldings" />
+            </v-col>
+            <v-col cols="12" md="3">
+                <base-increase-decrease-component title="Gains Transactions" :gains="gainsTransactions" />
+            </v-col>
+        </v-row>
+        <v-row class="px-5 mt-0">
             <v-col cols="12" md="3" v-for="(data, id) in holdings" :key="id">
                 <base-card class="rounded darkgrey">
                     <v-row class="pa-6 align-center">
                         <v-col cols="8">
-                             <h4 class="muted--text font-weight-light ">Holdings</h4>
+                            <h4 class="muted--text font-weight-light ">Holdings</h4>
                             <span class="white--text ma-auto pa-0 font-weight-bold">{{ data.name }}</span>
                             <span class="align-self-center ml-1 font-weight-bold" :class="data.gains > 0 ? 'success--text' : 'error--text'"
                                 >{{ data.gains.toFixed(2) }}%</span
                             >
-                            <h4 class="muted--text font-weight-light ">Date: {{new Date().toLocaleDateString()}}</h4>
+                            <h4 class="muted--text font-weight-light ">Date: {{ new Date().toLocaleDateString() }}</h4>
                         </v-col>
                         <v-col cols="3">
                             <v-sheet
@@ -81,10 +89,10 @@
                 
             </v-col> -->
             <v-col cols="12" md="8">
-                    <base-card  class="rounded darkgrey">
-                        <trading-view></trading-view>
-                    </base-card>
-                </v-col>
+                <base-card class="rounded darkgrey">
+                    <trading-view></trading-view>
+                </base-card>
+            </v-col>
         </v-row>
     </div>
 </template>
