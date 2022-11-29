@@ -34,9 +34,7 @@ export default class DashboardComponent extends VueWrapper {
                     const response = res as any;
                     this.gainsHoldings = response.gains;
                 },
-                err => {
-                    this.AlertSrv.show('error', err);
-                }
+                err => {}
             )
             .add(() => {
                 this.LoaderSrv.hideFullScreenLoader();
@@ -51,9 +49,7 @@ export default class DashboardComponent extends VueWrapper {
                     const response = res as any;
                     this.gainsTransactions = response.gains;
                 },
-                err => {
-                    this.AlertSrv.show('error', err);
-                }
+                err => {}
             )
             .add(() => {
                 this.LoaderSrv.hideFullScreenLoader();

@@ -13,10 +13,10 @@
         </v-row>
         <v-row class="px-5 mt-0">
             <v-col cols="12" md="3">
-                <base-increase-decrease-component title="Gains Holdings" :gains="gainsHoldings" />
+                <base-increase-decrease-component title="Current holdings" :showButton="true" :gains="gainsHoldings" />
             </v-col>
             <v-col cols="12" md="3">
-                <base-increase-decrease-component title="Gains Transactions" :gains="gainsTransactions" />
+                <base-increase-decrease-component title="Past Holdings" :gains="gainsTransactions" />
             </v-col>
         </v-row>
         <v-row class="px-5 mt-0">
@@ -24,12 +24,12 @@
                 <base-card class="rounded darkgrey">
                     <v-row class="pa-6 align-center">
                         <v-col cols="8">
-                            <h4 class="muted--text font-weight-light ">Holdings</h4>
+                            <!-- <h4 class="muted--text font-weight-light ">Holdings</h4> -->
                             <span class="white--text ma-auto pa-0 font-weight-bold">{{ data.name }}</span>
                             <span class="align-self-center ml-1 font-weight-bold" :class="data.gains > 0 ? 'success--text' : 'error--text'"
                                 >{{ data.gains.toFixed(2) }}%</span
                             >
-                            <h4 class="muted--text font-weight-light ">Date: {{ new Date().toLocaleDateString() }}</h4>
+                            <!-- <h4 class="muted--text font-weight-light ">Date: {{ new Date().toLocaleDateString() }}</h4> -->
                         </v-col>
                         <v-col cols="3">
                             <v-sheet
@@ -42,6 +42,19 @@
                                 <v-icon v-if="data.gains > 0" class="d-flex align-center" small color="green"> mdi-arrow-top-right </v-icon>
                                 <v-icon v-else class="d-flex align-center" small color="red"> mdi-arrow-bottom-left </v-icon>
                             </v-sheet>
+                        </v-col>
+                        <v-col cols="12">
+                            <div>
+                                <base-btn small tile class="left-top-rounded left-bottom-rounded white black--text ">
+                                    1D
+                                </base-btn>
+                                <base-btn small tile class="black--text white mx-2">
+                                    1Y
+                                </base-btn>
+                                <base-btn small tile class="right-top-rounded right-bottom-rounded black--text white">
+                                    Max
+                                </base-btn>
+                            </div>
                         </v-col>
                     </v-row>
                 </base-card>
@@ -98,3 +111,17 @@
 </template>
 
 <script lang="ts" src="./dashboard.component.ts" />
+<style lang="scss" scoped>
+.left-top-rounded {
+    border-start-start-radius: 20px;
+}
+.left-bottom-rounded {
+    border-end-start-radius: 20px;
+}
+.right-top-rounded {
+    border-start-end-radius: 20px;
+}
+.right-bottom-rounded {
+    border-end-end-radius: 20px;
+}
+</style>
