@@ -1,5 +1,4 @@
-
-import { TransactionService } from '@/sdk';
+import {TransactionService} from '@/sdk';
 import Vue from 'vue';
 import Component from 'vue-class-component';
 
@@ -23,8 +22,8 @@ export default class TransactionHistoryWidget extends Vue {
         this.TransactionSrv.getPieChartData();
         this.TransactionSrv.PieCharrData.subscribe(res => {
             this.PieChartData = res;
-            console.log("PieChart Data",this.PieChartData); 
-           this.option.series[0].data = this.PieChartData.map((data:any) => ({name: data['name'], value: data['position'].toFixed(2)})) as any;
+            console.log('PieChart Data', this.PieChartData);
+            this.option.series[0].data = this.PieChartData.map((data: any) => ({name: data['name'], value: data['position'].toFixed(2)})) as any;
         });
     }
 
@@ -34,9 +33,13 @@ export default class TransactionHistoryWidget extends Vue {
             backgroundColor: '#2a2d3a'
         },
         legend: {
-            show: false,
+            top: '5%',
+            left: 'center',
+            textStyle: {
+                color: 'white'
+            }
         },
-        
+
         series: [
             {
                 name: 'Holdings',
@@ -54,11 +57,11 @@ export default class TransactionHistoryWidget extends Vue {
                         fontWeight: 'bold'
                     }
                 },
-               
+
                 labelLine: {
                     show: true
                 },
-                data: this.PieChartData.map( ({name, num_shares}) => ({name :name, value:num_shares}) )
+                data: this.PieChartData.map(({name, num_shares}) => ({name: name, value: num_shares}))
             }
         ]
     };

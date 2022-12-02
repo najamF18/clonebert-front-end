@@ -1,5 +1,5 @@
 <template>
-    <base-card class="rounded darkgrey">
+    <base-card class="rounded darkgrey height-100x">
         <v-row class="pa-6 align-center">
             <v-col cols="8">
                 <h4 class="muted--text font-weight-light white--text">{{ title }}</h4>
