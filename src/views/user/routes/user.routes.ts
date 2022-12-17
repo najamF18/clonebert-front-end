@@ -12,6 +12,7 @@ import ChangePrivacyComponent from './../profile/privacy/privacy.component';
 import ManagePortfolioComponent from '../profile/manage-portfolio/manage-portfolio.component';
 import BlockedUsersComponent from '../profile/blocked-users/blocked-users.component';
 import HoldingComponent from './../profile/holdings/holdings.component';
+import BasicInfoComponent from '../profile/basic-info/basic-info.component';
 
 export const UserRoutes: Array<RouteConfig> = [
     {
@@ -87,18 +88,18 @@ export const UserRoutes: Array<RouteConfig> = [
                 redirect: 'profile/manage-portfolio',
                 component: ProfileComponent,
                 children: [
-                    // {
-                    //     path: 'my-profile',
-                    //     name: 'My Profile',
-                    //     meta: {
-                    //         showable: true,
-                    //         icon: 'mdi-account-outline',
-                    //         sequence: 1,
-                    //         position: 1,
-                    //         metaTitle: 'My Profile'
-                    //     },
-                    //     component: UserPersonalInfoComponent
-                    // },
+                    {
+                        path: 'my-profile',
+                        name: 'My Profile',
+                        meta: {
+                            showable: true,
+                            icon: 'mdi-account-outline',
+                            sequence: 1,
+                            position: 1,
+                            metaTitle: 'My Profile'
+                        },
+                        component: BasicInfoComponent
+                    },
 
 
                     {

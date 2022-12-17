@@ -40,6 +40,7 @@ import LineWidget from './widgets/Line-Widgets/line-widget.component';
 import AreaWidget from './widgets/Area-Widget/area-widget.component';
 import TradingView from './widgets/trading-view/trading-view.component';
 import BaseIncreaseDecreaseComponent from './shared/base-increase-decrese/base-increase-decrease.component';
+import NotificationComponent from './core/notification-component/notification.component';
 
 // Vuetify Components
 Vue.component('base-text-field', BaseTextField);
@@ -84,3 +85,4 @@ Vue.component('candle-chart', CandleChartWidget);
 Vue.component('line-widget', LineWidget);
 Vue.component('area-widget', AreaWidget);
 Vue.component('trading-view', TradingView);
+Vue.component('notification-component', NotificationComponent);

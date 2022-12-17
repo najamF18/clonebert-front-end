@@ -18,6 +18,9 @@
             <v-btn icon>
                 <v-icon>mdi-bell</v-icon>
             </v-btn>
+            <notification-component></notification-component>
+
+            
 
             <!-- <v-menu left bottom>
                 <template v-slot:activator="{on, attrs}">

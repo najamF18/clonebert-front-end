@@ -6,7 +6,7 @@
         "start": "npm run serve",
         "ali": "vue-cli-service serve --https true --mode ali",
         "alilocal": "vue-cli-service serve --https true --mode ali-local",
-        "serve": "vue-cli-service serve --https true --mode local",
+        "serve": "vue-cli-service serve --https false --mode local",
         "build": "vue-cli-service build --mode development",
         "prod": "vue-cli-service build --mode production",
         "lint": "vue-cli-service lint"

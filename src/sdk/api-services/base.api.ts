@@ -126,7 +126,7 @@ export abstract class BaseApi {
     }
 
     // Requests
-    protected GET_Request<T>(url: string): Observable<ApiResponseModel<T>> {
+    protected GET_Request<T>(url: string): Observable<T> {
         return this.request('GET', url).pipe(map(res => res.data));
     }
     protected POST_Request<T>(url: string, postBody: AnyObject): Observable<any> {
