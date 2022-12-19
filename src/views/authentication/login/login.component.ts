@@ -6,6 +6,7 @@ import {ApiAuth, UserSession} from '@/sdk/core';
 import {AlertService} from '@/sdk';
 import BaseFormComponent from '@/components/vuetify/Form/base-form';
 import ForgotPasswordComponent from '../forgot-password/forgot-Password.component';
+import { SocialMediaApi } from './../../../sdk/api-services/social-media/social-media.api';
 
 @Component
 export default class LoginComponent extends VueWrapper {
@@ -16,6 +17,8 @@ export default class LoginComponent extends VueWrapper {
         }
     }
 
+    
+
     public login() {
         this.LoaderSrv.showFullScreenLoader();
         new AccountsApi()
@@ -25,6 +28,7 @@ export default class LoginComponent extends VueWrapper {
                     if (res.data.data.data.token) {
                         new UserSession()._session.next(res.data.data.data);
                         new UserSession().save();
+                        
                         this.$router.push({name: 'User'});
                     } else if (res.data.message) {
                         this.AlertSrv.show('success', res.data.message);

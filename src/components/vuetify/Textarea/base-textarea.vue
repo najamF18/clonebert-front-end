@@ -1,10 +1,19 @@
 <template>
     <validation-provider :rules="rules" v-slot="{ errors }">
+        <template v-if="!!$attrs.title">
+            <div class="white--text mb-2">
+                <span class="error--text" v-if="rules.includes('required')">*</span>
+                {{ $attrs.title }}
+            </div>
+        </template>
         <v-textarea
             :error-messages="errors"
             v-bind="$attrs"
             v-on="$listeners"
             :value="value"
+            label=""
+            background-color="lightgrey"
+            flat
             @input="$emit('update:value', $event)"
             @blur="
                 $emit(
@@ -16,6 +25,8 @@
             "
             :outlined="outlined"
             dense
+            solo
+            dark
             rows="3"
             class="height-100x"
         >

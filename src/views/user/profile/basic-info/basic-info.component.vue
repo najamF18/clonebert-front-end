@@ -4,13 +4,25 @@
             <base-form >
                 <v-row align-content="center" >
                     <v-col cols="12" offset-md="3" md="6" align-self="center">
-                        <div class="mb-3 mx-auto">
-                            <v-avatar width="150" height="150" class="ma-auto">
-                                <img :src="userProfile.profile_pic" alt="John" />
+                         <div class="d-flex justify-center align-end height-200">
+                        <v-hover v-slot="{hover}">
+                            <v-avatar class="cursor-pointer" size="150">
+                                <img :src="image" />
+                                <v-fade-transition>
+                                    <v-overlay v-if="hover" absolute color="secondary">
+                                        <v-icon size="40" color="white" @click="$refs.file.click()"> mdi-camera-plus </v-icon>
+                                        <input class="d-none" type="file" ref="file" @change="uploadImage($event)" accept="image/*" />
+                                    </v-overlay>
+                                </v-fade-transition>
                             </v-avatar>
-                        </div>
+                        </v-hover>
+                    </div>
                         <div class="mb-3">
-                            <base-text-field label="UserName" hide-details disable="true" :value.sync="userProfile.user"/>
+                            <base-text-field label="UserName" hide-details :disabled="true" :value.sync="userProfile.user.username"/>
+                        </div>
+
+                        <div class="mb-3">
+                            <base-text-field label="Email" hide-details :disabled="true" :value.sync="userProfile.user.email"/>
                         </div>
 
                         <div class="mb-3">
@@ -18,7 +30,7 @@
                         </div>
 
                         <div class="mt-5">
-                            <base-btn dark class="white black--text" block type="submit"> Update Profile </base-btn>
+                            <base-btn dark class="white black--text" block @click="UpdateProfile()"> Update Profile </base-btn>
                         </div>
                     </v-col>
                 </v-row>

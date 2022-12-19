@@ -13,9 +13,23 @@ import UploadProfilePictureComponent from './../../../../components/shared/uploa
 export default class BasicInfoComponent extends VueWrapper {
     public socialMediaSrv = new SocialMediaService();
     public userProfile = new UserProfileModel();
+    public image = '';
+    public isProfileChanged=false;
 
     mounted() {
         this.getUserProfile();
+    }
+    public uploadImage(event: any) {
+        const input = event.target;
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = e => {
+                this.image = (e.target as any).result;
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+        this.userProfile.profile_pic = input.files[0];
+        this.isProfileChanged = true;
     }
     getUserProfile() {
         new LoaderService().showFullScreenLoader('Loading...');
@@ -24,8 +38,9 @@ export default class BasicInfoComponent extends VueWrapper {
             .subscribe(
                 res => {
                     console.log(res);
-                    this.userProfile=res[0];
+                    this.userProfile = res[0];
                     console.log(this.userProfile);
+                    this.image = this.userProfile.profile_pic!;
                 },
                 err => {
                     console.log(err);
@@ -36,23 +51,27 @@ export default class BasicInfoComponent extends VueWrapper {
             });
     }
 
-    // public changeEmail() {
-    //     this.LoaderSrv.showFullScreenLoader();
-    //     new AccountsApi()
-    //         .changeEmail(this.changeEmailData)
-    //         .subscribe(
-    //             res => {
-    //                 this.AlertSrv.show('success', 'Email changed successfully!');
-    //                 this.changeEmailData = new ChangeEmailModel();
-    //                 this.UserSession.clear();
-    //                 this.$router.push({name: 'Login'});
-    //             },
-    //             err => {
-    //                 this.AlertSrv.show('error', err.message);
-    //             }
-    //         )
-    //         .add(() => {
-    //             this.LoaderSrv.hideFullScreenLoader();
-    //         });
-    // }
+    public UpdateProfile() {
+        this.LoaderSrv.showFullScreenLoader();
+        const fd = new FormData();
+        if(this.isProfileChanged){
+             fd.append('profile_pic', this.userProfile.profile_pic!);
+        }
+       
+        fd.append('location',this.userProfile.location!);
+        new SocialMediaApi().UpdateProfile(this.userProfile?.id!,fd)
+            .subscribe(
+                res => {
+                    this.AlertSrv.show('success', 'Profile updated successfully!');
+                    this.getUserProfile();
+                    console.log(res);
+                },
+                err => {
+                    this.AlertSrv.show('error', err.message);
+                }
+            )
+            .add(() => {
+                this.LoaderSrv.hideFullScreenLoader();
+            });
+    }
 }

@@ -34,7 +34,9 @@ export class UserSession {
                 email: this.load('email'),
                 token: this.load('token'),
                 api_key: this.load('api_key'),
-                api_secret: this.load('api_secret')
+                api_secret: this.load('api_secret'),
+                profile_pic: this.load('profile_pic'),
+                location: this.load('location')
                 // RememberMe: this.load('RememberMe'),
                 // Role: this.load('Role'),
                 // UserId: this.load('UserId'),

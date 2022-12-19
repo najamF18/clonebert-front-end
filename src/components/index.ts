@@ -40,7 +40,7 @@ import LineWidget from './widgets/Line-Widgets/line-widget.component';
 import AreaWidget from './widgets/Area-Widget/area-widget.component';
 import TradingView from './widgets/trading-view/trading-view.component';
 import BaseIncreaseDecreaseComponent from './shared/base-increase-decrese/base-increase-decrease.component';
-import NotificationComponent from './core/notification-component/notification.component';
+import PostCardComponent from './core/PostCard/post-card.component';
 
 // Vuetify Components
 Vue.component('base-text-field', BaseTextField);
@@ -70,6 +70,7 @@ Vue.component('user-listing-wrapper-component', UserListingWrapperComponent);
 Vue.component('save-wrapper-component', SaveWrapperComponent);
 Vue.component('pagination-component', PaginationComponent);
 Vue.component('base-breadcrumbs', BaseBreadcrumbsComponent);
+Vue.component('post-card',PostCardComponent);
 Vue.component('full-page-dialog', FullPageDialogComponent);
 Vue.component('base-title-box', BaseTitleBoxComponent);
 Vue.component('drag-drop-upload-component', DragDropUploadComponent);
@@ -85,4 +86,3 @@ Vue.component('candle-chart', CandleChartWidget);
 Vue.component('line-widget', LineWidget);
 Vue.component('area-widget', AreaWidget);
 Vue.component('trading-view', TradingView);
-Vue.component('notification-component', NotificationComponent);

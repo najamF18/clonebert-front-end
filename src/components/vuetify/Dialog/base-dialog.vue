@@ -1,6 +1,6 @@
 <template>
-    <v-dialog v-model="Show" ref="baseDialogRef" v-bind="$attrs" @keydown.esc="CoreSrv.CloseModal(name)">
-        <base-card class="px-3 py-0 dialog-card">
+    <v-dialog v-model="Show" ref="baseDialogRef"  v-bind="$attrs" @keydown.esc="CoreSrv.CloseModal(name)">
+        <base-card class="px-0 py-0 dialog-card darkgrey">
             <v-card-title class="d-flex justify-space-between pt-6 pb-2 " v-if="$slots.header">
                 <div>
                     <span class="text-h5 font-weight-bold primary--text">

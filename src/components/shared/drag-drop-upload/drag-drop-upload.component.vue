@@ -1,15 +1,21 @@
 <template>
     <validation-provider :rules="rules" v-slot="{errors, validate}">
-        <div class="pa-1 height-100x p-relative d-flex flex-column">
+        <div class=" height-100x p-relative d-flex flex-column">
+            <template v-if="!!$attrs.label">
+            <div class="white--text mb-2">
+                <span class="error--text" v-if="rules.includes('required')">*</span>
+                {{ $attrs.label }}
+            </div>
+        </template>
             <div class="disabled-layer" v-if="$attrs.disabled"></div>
-            <div class="dropzone-container round-5 height-100x" style="border-style: dashed;" :style="`border-color: ${errors.length ? 'red' : PrimaryColor}`">
-                <div class="dropzone-overlay height-100x">
+            <div class="dropzone-container round-5 height-100x cursor-pointer" style="border-style: dashed;" :style="`border-color: ${errors.length ? 'red' : PrimaryColor}`">
+                <div class="dropzone-overlay height-100x ">
                     <vue-dropzone
                         ref="dragDropUploadRef"
                         id="dropzone"
                         :options="dropzoneOptions"
                         :duplicateCheck="true"
-                        class="height-100x dropzone-one-line"
+                        class="height-100x dropzone-one-line darkgrey"
                         :use-custom-slot="true"
                         @vdropzone-file-added="
                             addFile($event);

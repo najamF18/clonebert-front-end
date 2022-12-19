@@ -11,7 +11,7 @@
         </div>
         <div :class="[{' ml-3': !CoreSrv.Drawer.Mini}, {'ml-1': CoreSrv.Drawer.Mini}]">
             <v-avatar :size="CoreSrv.Drawer.Mini ? 49 : 100">
-                <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
+                <img :src="userProfile.profile_pic?userProfile.profile_pic:'https://cdn.vuetifyjs.com/images/john.jpg'" alt="John" />
             </v-avatar>
         </div>
         <div v-if="!CoreSrv.Drawer.Mini && CoreSrv.IsApiLinked" class="ml-3 ">
@@ -23,7 +23,7 @@
         <div v-if="!CoreSrv.Drawer.Mini" class="d-flex justify-space-between pa-3">
             <div class="flex my-1 ml-3 row">
                 <v-icon small color="secondary "> mdi-at </v-icon>
-                <h5 class="white--text ml-1 mt-1">Name</h5>
+                <h5 class="white--text ml-1 mt-1">{{ userProfile.user.username }}</h5>
             </div>
             <v-menu dark min-width="180" bottom offset-y transition="slide-y-reverse-transition">
                 <template #activator="{on, attrs}">
@@ -45,7 +45,7 @@
         <div v-if="!CoreSrv.Drawer.Mini">
             <div class="flex my-2 ml-3 row">
                 <v-icon small color="secondary "> mdi-map-marker-radius </v-icon>
-                <h6 class="muted--text ml-1 mt-1 font-italic caption">Moonbound</h6>
+                <h6 class="muted--text ml-1 mt-1 font-italic caption">{{ userProfile.location }}</h6>
             </div>
             <div class="flex my-2 ml-3 row">
                 <v-icon small color="secondary "> mdi-calendar </v-icon>

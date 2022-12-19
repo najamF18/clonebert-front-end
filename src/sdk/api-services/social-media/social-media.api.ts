@@ -19,11 +19,8 @@ export class SocialMediaApi extends BaseApi {
         return this.GET_Request<Array<UserProfileModel>>(`${this.ApiUrl}/social-media/user-profile-view/`);
     }
 
-    public UpdateProfile(userId: string) {
-        const data = {
-            profile_pic: '',
-            location: ''
-        };
+    public UpdateProfile(userId: string,data:FormData) {
+        
         return this.PUT_Request<any>(`${this.ApiUrl}/social-media/user-profile-update-view/${userId}/`, data);
     }
     public getFeed() {
@@ -42,7 +39,7 @@ export class SocialMediaApi extends BaseApi {
         return this.GET_Request<any>(`${this.ApiUrl}/social-media/like-post-view/${postId}/`);
     }
 
-    public getNotificationsList(postId: string) {
+    public getNotificationsList() {
         return this.GET_Request<any>(`${this.ApiUrl}/social-media/notification-list-view/`);
     }
 
@@ -61,12 +58,8 @@ export class SocialMediaApi extends BaseApi {
         return this.GET_Request<any>(`${this.ApiUrl}/social-media/post-view/`);
     }
 
-    public CreatePost() {
-        const data = {
-            media_file: 'string',
-            title: 'string',
-            description: 'string'
-        };
+    public CreatePost(data:FormData) {
+        
         return this.POST_Request<any>(`${this.ApiUrl}/social-media/post-view/`, data);
     }
 

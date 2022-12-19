@@ -15,10 +15,8 @@
             </v-btn>
                 <v-divider inset class="ml-2" vertical></v-divider>
             
-            <v-btn icon>
-                <v-icon>mdi-bell</v-icon>
-            </v-btn>
-            <notification-component></notification-component>
+            
+            <NotificationBox></NotificationBox>
 
             
 
