@@ -55,7 +55,7 @@
                 <v-icon small color="secondary "> mdi-run </v-icon>
                 <h6 class="muted--text ml-1 mt-1 mr-2 font-italic caption">Following: <a href="#">0</a></h6>
                 <v-icon small color="secondary "> mdi-run </v-icon>
-                <h6 class="muted--text ml-1 mt-1 font-italic caption">Follower: <a href="#">0</a></h6>
+                <h6 class="muted--text ml-1 mt-1 font-italic caption">Follower: <a href="#">{{ socialMediaSrv.myFollowers.value.followed_by.length?socialMediaSrv.myFollowers.value.followed_by.length:'0' }}</a></h6>
             </div>
             <div class="flex my-2 ml-3 row">
                 <v-icon small color="secondary "> mdi-face-agent </v-icon>

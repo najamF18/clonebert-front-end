@@ -13,6 +13,8 @@ import ManagePortfolioComponent from '../profile/manage-portfolio/manage-portfol
 import BlockedUsersComponent from '../profile/blocked-users/blocked-users.component';
 import HoldingComponent from './../profile/holdings/holdings.component';
 import BasicInfoComponent from '../profile/basic-info/basic-info.component';
+import PostsComponent from './../feeds/posts/posts.component';
+import TimelineComponent from '../feeds/timeline/timeline.component';
 
 export const UserRoutes: Array<RouteConfig> = [
            {
@@ -37,13 +39,26 @@ export const UserRoutes: Array<RouteConfig> = [
                        path: 'feeds',
                        name: 'Feeds',
                        component: FeedComponent,
+                       redirect:'feeds/posts',
                        meta: {
                            showable: true,
                            icon: 'playlist-play',
                            color: 'orange',
                            sequence: 1,
                            title: 'Activity Feed'
-                       }
+                       },
+                       children: [
+                           {
+                               path: 'posts',
+                               name: 'Posts',
+                               component: PostsComponent
+                           },
+                           {
+                               path: 'timeline',
+                               name: 'Timeline',
+                               component: TimelineComponent
+                           }
+                       ]
                    },
 
                    {

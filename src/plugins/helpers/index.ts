@@ -28,6 +28,9 @@ declare module 'vue/types/vue' {
             strTrueFalse(value: string | null): boolean;
             numberWithCommas(x: number): string;
             toTitleCase(phrase: string): string;
+            isImageUrl(url: string): boolean;
+            isVideoUrl(url: string): boolean;
+            getTimeAgo(date: string|null): string;
         };
     }
 }

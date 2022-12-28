@@ -1,6 +1,6 @@
 import VueWrapper from '@/components/core/Vue/vue.wrapper';
 import {Component} from 'vue-property-decorator';
-import {LoaderService, LoginModel, UserProfileModel} from '@/sdk';
+import {LoaderService, LoginModel, SocialMediaService, UserProfileModel} from '@/sdk';
 import {AccountsApi} from '@/sdk/api-services';
 import {ApiAuth, UserSession} from '@/sdk/core';
 import {ShowableRoute} from '@/globals';
@@ -12,6 +12,7 @@ export default class DrawerComponent extends VueWrapper {
     public MainLinks: Array<ShowableRoute> = [];
     public CoreSrv = new CoreService();
     public userProfile = new UserProfileModel();
+    public socialMediaSrv= new SocialMediaService();
 
     public created() {
         this.MainLinks = this.$helpers.getShowableRoutes('User') ?? [];

@@ -2,9 +2,15 @@ import VueWrapper from '@/components/core/Vue/vue.wrapper';
 import DrawerComponent from '@/views/drawer/drawer.component';
 import {Component} from 'vue-property-decorator';
 import { SocialMediaApi } from '@/sdk/api-services/social-media/social-media.api';
+import FollowersComponent from './followers/followers.component';
+import { SocialMediaService } from '@/sdk';
 
 
-@Component
+@Component({
+    components:{
+        FollowersComponent
+    }
+})
 export default class FeedComponent extends VueWrapper {
     public model = 'post-model';
    public newPost = {
@@ -12,6 +18,13 @@ export default class FeedComponent extends VueWrapper {
         title: '',
         description: ''
     };
+
+   
+
+    public links= [
+          { title: 'Posts', icon: 'mdi-view-dashboard',link:'Posts' },
+          { title: 'Timeline', icon: 'mdi-forum',link:'Timeline' },
+        ];
 
     CreatePost() {
         this.LoaderSrv.showFullScreenLoader('Creating Post');
@@ -25,6 +38,8 @@ export default class FeedComponent extends VueWrapper {
             .subscribe(
                 res => {
                     this.AlertSrv.show('success', 'post created successfully');
+                    new SocialMediaService().getPosts();
+                    // new SocialMediaService().getNotifications();
                 },
                 err => {
                     this.AlertSrv.show('error', err);
@@ -33,5 +48,10 @@ export default class FeedComponent extends VueWrapper {
             .add(() => {
                 this.LoaderSrv.hideFullScreenLoader();
             });
+    }
+
+    ChangeRoute(name:string){
+        this.$router.push({name:name});
+        
     }
 }
