@@ -21,7 +21,8 @@
         </div>
         
         <div v-if="!CoreSrv.Drawer.Mini" class="d-flex justify-space-between pa-3">
-            <div class="flex my-1 ml-3 row">
+
+            <div v-if="!!userProfile.user.username" class="flex my-1 ml-3 row">
                 <v-icon small color="secondary "> mdi-at </v-icon>
                 <h5 class="white--text ml-1 mt-1">{{ userProfile.user.username }}</h5>
             </div>
@@ -55,7 +56,7 @@
                 <v-icon small color="secondary "> mdi-run </v-icon>
                 <h6 class="muted--text ml-1 mt-1 mr-2 font-italic caption">Following: <a href="#">0</a></h6>
                 <v-icon small color="secondary "> mdi-run </v-icon>
-                <h6 class="muted--text ml-1 mt-1 font-italic caption">Follower: <a href="#">{{ socialMediaSrv.myFollowers.value.followed_by.length?socialMediaSrv.myFollowers.value.followed_by.length:'0' }}</a></h6>
+                <h6 class="muted--text ml-1 mt-1 font-italic caption">Follower: <a v-if="socialMediaSrv.myFollowers.value.followed_by" href="#">{{ socialMediaSrv.myFollowers.value.followed_by.length }}</a> <a v-else href="#">0</a></h6>
             </div>
             <div class="flex my-2 ml-3 row">
                 <v-icon small color="secondary "> mdi-face-agent </v-icon>

@@ -1,5 +1,5 @@
 <template>
-    <v-card color="darkgrey" rounded="lg" elevation="20" class="ma-auto" width="500">
+    <v-card color="darkgrey" rounded="lg" elevation="20" class="ma-auto" width="600">
         <v-divider></v-divider>
         
         <v-list color="darkgrey" class="px-2" :rounded=true>
@@ -33,10 +33,8 @@
             <span class="description text-start">{{ $attrs.item.description }}</span>
         </v-row>
 
-        <v-avatar v-if="$helpers.isImageUrl($attrs.item.media_file)" size="500" rounded="xl">
+        <v-avatar v-if="$helpers.isImageUrl($attrs.item.media_file)" size="100%" class="text-center py-2" tile>
             <img
-                class="pa-5"
-                style="border-radius: 30px"
                 :src="$attrs.item.media_file ? $attrs.item.media_file : 'https://cdn.vuetifyjs.com/images/john.jpg'"
                 alt="John"
             />

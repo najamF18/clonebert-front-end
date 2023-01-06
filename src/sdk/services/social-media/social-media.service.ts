@@ -13,6 +13,8 @@ export class SocialMediaService {
     public myFollowers = new BehaviorSubject(new FollowerModel);
     public notifications = new BehaviorSubject(Array<NotificationModel>());
     public totalNotification = new BehaviorSubject(0);
+    public sharedPosts=new Array<PostModel>();
+    public createdPosts=new Array<PostModel>();
 
     getPosts() {
         this.LoadingSrv.showFullScreenLoader('Loading...');
@@ -57,5 +59,18 @@ export class SocialMediaService {
                 console.log(err);
             }
         );
+    }
+
+    getTimelinePosts(){
+        this.LoadingSrv.showFullScreenLoader("Loading...");
+        new SocialMediaApi().getTimeline().subscribe(
+            res =>{
+                console.log(res);
+                this.createdPosts=res.posts_created;
+                this.sharedPosts=res.posts_shared;
+            }
+        ).add(()=>{
+            this.LoadingSrv.hideFullScreenLoader();
+        })
     }
 }

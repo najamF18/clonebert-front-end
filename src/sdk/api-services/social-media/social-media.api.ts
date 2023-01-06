@@ -12,11 +12,11 @@ export class SocialMediaApi extends BaseApi {
     public getAllUsers() {
         return this.GET_Request<any>(`${this.ApiUrl}/social-media/all-users-view/`);
     }
-    public addComment(postId: string,content:string) {
+    public addComment(postId: string, content: string) {
         const data = {
-            content:content
-        }
-        return this.POST_Request<any>(`${this.ApiUrl}/social-media/comment-post-view/${postId}/`,data);
+            content: content
+        };
+        return this.POST_Request<any>(`${this.ApiUrl}/social-media/comment-post-view/${postId}/`, data);
     }
 
     public getProfile() {
@@ -81,5 +81,9 @@ export class SocialMediaApi extends BaseApi {
 
     public getCommentsById(postId: string) {
         return this.GET_Request<any>(`${this.ApiUrl}/social-media/comment-by-post/${postId}/`);
+    }
+
+    public getTimeline() {
+        return this.GET_Request<any>(`${this.ApiUrl}/social-media/timeline-view/`);
     }
 }

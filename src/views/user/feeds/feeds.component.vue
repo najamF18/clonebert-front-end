@@ -1,7 +1,7 @@
 <template>
     <v-row class="pa-5">
         <v-col cols="8" class="text-end">
-            <v-card elevation="20" class="pa-5 ma-auto" width="60%" color="darkgrey" rounded="lg">
+            <v-card elevation="20" class="pa-5 ma-auto" width="80%" color="darkgrey" rounded="lg">
                 <v-row>
                     <v-col v-for="(item,idx) in links" :key="idx" @click="ChangeRoute(item.link)" cols="6" class="pa-3 ma-auto cursor-pointer " :class="
                             !!$route.matched.find(x => x.name === item.link)? 'border': 'simple'
@@ -16,9 +16,9 @@
                     </v-col>
                 </v-row>
             </v-card>
-            <div class="ma-auto py-2" style="width:60%">
+            <v-card class="ma-auto py-2" color="black" style="width:80%">
                 <v-btn color="muted" @click="CoreSrv.OpenModal(model)"> Create Post </v-btn>
-            </div>
+            </v-card>
             
 <router-view :key="$route.fullPath" />
            
