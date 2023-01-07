@@ -39,7 +39,7 @@ export default class FeedComponent extends VueWrapper {
                 res => {
                     this.AlertSrv.show('success', 'post created successfully');
                     new SocialMediaService().getPosts();
-                    // new SocialMediaService().getNotifications();
+                    this.CoreSrv.CloseModal(this.model);
                 },
                 err => {
                     this.AlertSrv.show('error', err);

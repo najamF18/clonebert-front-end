@@ -170,7 +170,7 @@ export class CoreService {
     };
 
     get IsApiLinked(){
-        if(new UserSession()._session.value?.api_key && new UserSession()._session.value?.api_secret){
+        if (!new UserSession()._session.value!.api_key == null && !new UserSession()._session.value!.api_secret == null) {
             return true;
         }
         return false;

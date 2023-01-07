@@ -1,45 +1,42 @@
-import { SocialMediaService } from '@/sdk';
+import { LikeModel, SocialMediaService } from '@/sdk';
 import {SocialMediaApi} from '@/sdk/api-services/social-media/social-media.api';
 import {CoreService} from '@/services/core.service';
-import {Component} from 'vue-property-decorator';
+import {Component, Prop} from 'vue-property-decorator';
 import VueWrapper from '../Vue/vue.wrapper';
 import CommentBoxComponent from './comment-box/comment-box.component';
 
 @Component({
-    components:{
+    components: {
         CommentBoxComponent
     }
 })
 export default class PostCardComponent extends VueWrapper {
-   public IsLikedByMe = false;
+    public IsLikedByMe = false;
     public commentBox = false;
-    public confirmModel= "confirm-model";
-    public val=0;
+    public confirmModel = 'confirm-model';
+    public val = 0;
+    public postLikes = 0;
+    @Prop()
+    protected readonly likes!: Array<LikeModel>;
 
     public SocialMediaApi = new SocialMediaApi();
 
-    // mounted() {
-    //     new SocialMediaApi().getNotificationsList().subscribe(
-    //         res => {
-    //             console.log(res);
-    //         },
-    //         err => {
-    //             console.log(err);
-    //         }
-    //     );
-    // }
+    mounted() {
+        this.postLikes = this.likes.length;
+       if(!!this.likes.find(like => like.liker!.user!.id == this.UserSession.Session!.uid )){
+        this.IsLikedByMe=true;
+       }
+    }
 
-    SharePost(postId:string){
-        this.ConfirmSrv.open("Share Post",'You want to share this post').then((res) => {
-            
-            if(res){
+    SharePost(postId: string) {
+        this.ConfirmSrv.open('Share Post', 'You want to share this post').then(res => {
+            if (res) {
                 this.LoaderSrv.showFullScreenLoader('Sharing Post...');
                 this.SocialMediaApi.SharePost(postId)
                     .subscribe(
                         res => {
                             console.log(res);
-                            this.AlertSrv.show('success', "Post Share Successfully");
-                            
+                            this.AlertSrv.show('success', 'Post Share Successfully');
                         },
                         err => {}
                     )
@@ -47,22 +44,17 @@ export default class PostCardComponent extends VueWrapper {
                         this.LoaderSrv.hideFullScreenLoader();
                     });
             }
-        
-        })
-        
+        });
     }
-    LikePost(id:string){
-        this.IsLikedByMe =!this.IsLikedByMe;
-        if(this.IsLikedByMe){
-            this.val=1;
+    LikePost(id: string) {
+        this.IsLikedByMe = !this.IsLikedByMe;
+        if (this.IsLikedByMe) {
+            this.postLikes+=1
+        } else {
+            this.postLikes -= 1;
         }
-        else{
-            this.val=0;
-        }
-        new SocialMediaApi().likePost(id).subscribe(res =>{
-            console.log("like res",res);
-        })
+        new SocialMediaApi().likePost(id).subscribe(res => {
+            console.log('like res', res);
+        });
     }
-
-   
 }

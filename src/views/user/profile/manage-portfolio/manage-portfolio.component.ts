@@ -12,7 +12,7 @@ export default class ManagePortfolioComponent extends VueWrapper {
     public showForm = false;
 
     mounted(){
-        if(new UserSession()._session.value?.api_key && new UserSession()._session.value?.api_secret){
+        if(!this.UserSession._session.value!.api_key==null && !this.UserSession._session.value!.api_secret==null){
             this.IsApiAdded = true;
         }
         else{

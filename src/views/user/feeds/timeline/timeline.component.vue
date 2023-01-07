@@ -39,7 +39,7 @@
       >
           <div class="my-2" style="background-color:black" v-for="(items,idx) in socialMediaSrv.createdPosts" :key="idx">
               
-          <post-card :item="items"></post-card>
+          <post-card :item="items" :likes="items.post_likes"></post-card>
      </div>
       </v-tab-item>
       <v-tab-item
@@ -48,7 +48,7 @@
       >
           <div class="my-2" style="background-color:black" v-for="(items,idx) in socialMediaSrv.createdPosts" :key="idx">
               
-          <post-card :item="items"></post-card>
+          <post-card :item="items" :likes="items.post_likes"></post-card>
      </div>
       </v-tab-item>
     </v-tabs-items>

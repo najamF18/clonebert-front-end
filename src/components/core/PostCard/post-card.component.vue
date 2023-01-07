@@ -68,7 +68,7 @@
                     <v-icon>mdi-heart</v-icon>
                 </v-btn>
                 <!-- <span class="subheading mr-2">{{ $attrs.item.post_likes.length }}</span> -->
-                <span class="subheading mr-2">{{ $attrs.item.post_likes.length+val }}</span>
+                <span class="subheading mr-2">{{ postLikes}}</span>
 
                 <v-btn @click="commentBox = !commentBox" class="white--text mr-1" icon>
                     <v-icon>mdi-chat</v-icon>
