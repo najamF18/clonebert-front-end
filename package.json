@@ -1,12 +1,12 @@
 {
-    "name": "mh-parks",
+    "name": "clonebert",
     "version": "0.1.0",
     "private": true,
     "scripts": {
         "start": "npm run serve",
         "ali": "vue-cli-service serve --https true --mode ali",
         "alilocal": "vue-cli-service serve --https true --mode ali-local",
-        "serve": "vue-cli-service serve --https false --mode local",
+        "serve": "vue-cli-service serve --https true --mode local",
         "build": "vue-cli-service build --mode development",
         "prod": "vue-cli-service build --mode production",
         "lint": "vue-cli-service lint"

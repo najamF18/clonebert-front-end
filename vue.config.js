@@ -1,7 +1,7 @@
 module.exports = {
     devServer: {
         host: 'localhost',
-        https: false
+        https: true
     },
     transpileDependencies: ['vuetify'],
     css: {
