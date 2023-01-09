@@ -7,11 +7,31 @@ import {Component} from 'vue-property-decorator';
 @Component
 export default class FollowersComponent extends VueWrapper {
     public socialMediaSrv = new SocialMediaService();
+    public isFollowers = true;
+    public isUsers = false;
+    public isFollowing = false;
+    public isLoading = false;
     mounted() {
         this.socialMediaSrv.getFollowers();
+        this.socialMediaSrv.getUsers();
+        this.socialMediaSrv.getFollowing();
     }
 
-    UnFollowUser(){
-        // new SocialMediaApi().u
+    UnFollowUser(id: string) {
+        new SocialMediaApi().followUser(id).subscribe(res => {
+            console.log('follow', res);
+                this.socialMediaSrv.getFollowers();
+                this.socialMediaSrv.getUsers();
+                this.socialMediaSrv.getFollowing();
+        });
+    }
+
+    FollowUser(id: string) {
+        new SocialMediaApi().followUser(id).subscribe(res => {
+            console.log('follow', res);
+            this.socialMediaSrv.getFollowers();
+            this.socialMediaSrv.getUsers();
+            this.socialMediaSrv.getFollowing();
+        });
     }
 }

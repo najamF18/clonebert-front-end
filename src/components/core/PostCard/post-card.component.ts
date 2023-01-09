@@ -57,4 +57,12 @@ export default class PostCardComponent extends VueWrapper {
             console.log('like res', res);
         });
     }
+
+    // FollowUser(id:string){
+    //     new SocialMediaApi().followUser(id).subscribe(
+    //         res =>{
+    //             console.log("follow",res);
+    //         }
+    //     )
+    // }
 }

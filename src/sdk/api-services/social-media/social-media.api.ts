@@ -4,13 +4,13 @@ import {CommentModel, ForgotPasswordPasswordModel, LoginModel, NotificationModel
 import {ChangeEmailModel} from '@/sdk/models/authentication/change-email.model';
 import {ChangePasswordModel} from '@/sdk/models/authentication/change-password.model';
 import {SettingsChangePasswordModel} from '@/sdk/models/authentication/settings-change-password.model';
-import { FollowerModel } from '@/sdk/models/social-media/follower-model';
+import { FollowerModel, FollowingModel } from '@/sdk/models/social-media/follower-model';
 import {BaseApi} from '../base.api';
 
 @ServiceClass()
 export class SocialMediaApi extends BaseApi {
     public getAllUsers() {
-        return this.GET_Request<any>(`${this.ApiUrl}/social-media/all-users-view/`);
+        return this.GET_Request<Array<UserProfileModel>>(`${this.ApiUrl}/social-media/all-users-view/`);
     }
     public addComment(postId: string, content: string) {
         const data = {
@@ -36,6 +36,10 @@ export class SocialMediaApi extends BaseApi {
 
     public getFollowers() {
         return this.GET_Request<FollowerModel>(`${this.ApiUrl}/social-media/followed-by-view/`);
+    }
+
+    public getFollowing() {
+        return this.GET_Request<FollowingModel>(`${this.ApiUrl}/social-media/follow-list-view/`);
     }
 
     public likePost(postId: string) {

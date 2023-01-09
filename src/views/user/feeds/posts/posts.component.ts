@@ -10,7 +10,7 @@ export default class PostsComponent extends VueWrapper {
     public SocialMediaSrv = new SocialMediaService();
 
     mounted(){
-        this.SocialMediaSrv.getPosts();
+        this.SocialMediaSrv.getFeeds();
     }
     
 }

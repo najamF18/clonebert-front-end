@@ -14,9 +14,29 @@
                 </v-list-item-content>
 
                 <v-row align="center" justify="end">
-                    <v-btn class="white--text" icon>
+                    <div class="d-flex align-center pa-1" v-bind="attrs" v-on="on">
+                        <v-btn class="white--text" icon>
                         <v-icon>mdi-dots-horizontal</v-icon>
                     </v-btn>
+                    </div>
+                    <!-- <v-menu dark min-width="180"  bottom left offset-y transition="slide-y-reverse-transition">
+                <template #activator="{on, attrs}">
+                    <div class="d-flex align-center pa-1" v-bind="attrs" v-on="on">
+                        <v-btn class="white--text" icon>
+                        <v-icon>mdi-dots-horizontal</v-icon>
+                    </v-btn>
+                    </div>
+                </template>
+                <v-list color="darkgrey" dense dark nav>
+                    <v-list-item  link  @click="FollowUser($attrs.item.creator.user.id)">
+                        <v-list-item-icon class="mr-2">
+                            <base-icon color="grey" icon-name="account-remove" />
+                        </v-list-item-icon>
+                        <v-list-item-title class="cursor-pointer white--text">Follow {{ $attrs.item.creator.user.username  }}</v-list-item-title>
+                    </v-list-item>
+                </v-list>
+            </v-menu> -->
+                    
                     <!-- <v-icon class="mr-1">
             mdi-share-variant
           </v-icon>
@@ -79,6 +99,7 @@
                     <v-btn class="white--text mr-1" icon @click="SharePost($attrs.item.id)">
                         <v-icon>mdi-share</v-icon>
                     </v-btn>
+                    <span class="subheading mr-2">{{ $attrs.item.post_shares.length}}</span>
                 </v-row>
             </v-list-item>
         </v-card-actions>

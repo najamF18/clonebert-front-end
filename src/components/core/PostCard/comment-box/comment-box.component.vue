@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="pb-2">
         <v-divider dark class=""></v-divider>
         <div class="text-center pa-5" v-if="isLoading">
             <v-progress-circular :size="50" color="muted" indeterminate></v-progress-circular>

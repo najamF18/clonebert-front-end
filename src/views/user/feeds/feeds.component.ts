@@ -22,7 +22,7 @@ export default class FeedComponent extends VueWrapper {
    
 
     public links= [
-          { title: 'Posts', icon: 'mdi-view-dashboard',link:'Posts' },
+          { title: 'Feeds', icon: 'mdi-view-dashboard',link:'Posts' },
           { title: 'Timeline', icon: 'mdi-forum',link:'Timeline' },
         ];
 

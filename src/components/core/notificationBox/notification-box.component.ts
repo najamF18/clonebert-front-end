@@ -13,7 +13,7 @@ export default class NotificationBox extends VueWrapper {
     public connection:WebSocket|null = null;;
     
     created(){
-        this.connection = new WebSocket('ws://54.249.213.34/ws/notification-alert/');
+        this.connection = new WebSocket('wss://clonebert.com/ws/notification-alert/');
 
         this.connection.onopen = function(e) {
             console.log(e);

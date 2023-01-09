@@ -18,14 +18,14 @@
             class="primarypurple--text"
           >
            
-            <span>Post Created</span>
+            <span>Posts</span>
           </v-tab>
 
           <v-tab
             href="#mobile-tabs-5-2"
             class="primarypurple--text"
           >
-            <span>Post Shared</span>
+            <span>Shared Post</span>
           </v-tab>
 
         </v-tabs>
