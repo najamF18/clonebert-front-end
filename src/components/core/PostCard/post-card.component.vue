@@ -47,9 +47,7 @@
             </v-list-item>
         </v-list>
 
-        <v-row class="px-5 ma-0">
-            <span class="description text-start">{{ $attrs.item.title }}</span>
-        </v-row>
+       
 
         <v-row class="px-5 ma-0">
             <span class="description text-start">{{ $attrs.item.description }}</span>

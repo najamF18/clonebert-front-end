@@ -7,17 +7,21 @@ export class AlertService {
         type: 'success' | 'warning' | 'error' | 'info' | 'question',
         message: string,
         background: string = '#191c24',
-        color: string = '#ffffff',
         position?: 'top' | 'center' | 'bottom',
-        timer?: number
+        timer: number = 3000,
+        timerProgressBar: boolean = true,
+        showConfirmButton:boolean=false,
     ) {
         return Swal.fire({
+            toast: true,
             icon: type,
-            html: message,
-            position: position ?? 'center',
+            html: `<div style="margin-top:20px;font-size: 0.9rem;">${message}</div>`,
+            position: position ?? 'top-end',
             timer,
             background,
-            color
+            color: '#ffff',
+            showConfirmButton,
+            timerProgressBar
         });
     }
 }
