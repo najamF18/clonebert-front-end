@@ -90,4 +90,12 @@ export class SocialMediaApi extends BaseApi {
     public getTimeline() {
         return this.GET_Request<any>(`${this.ApiUrl}/social-media/timeline-view/`);
     }
+
+    public getBlockUsers() {
+        return this.GET_Request<any>(`${this.ApiUrl}/social-media/block-list-view/`);
+    }
+    public blockUser(id:string) {
+        return this.GET_Request<any>(`${this.ApiUrl}/social-media/block-user-view/${id}/`);
+        
+    }
 }

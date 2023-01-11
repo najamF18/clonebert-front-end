@@ -39,7 +39,7 @@ export const UserRoutes: Array<RouteConfig> = [
                        path: 'feeds',
                        name: 'Feeds',
                        component: FeedComponent,
-                       redirect:'feeds/posts',
+                       redirect: 'feeds/posts',
                        meta: {
                            showable: true,
                            icon: 'playlist-play',
@@ -86,16 +86,106 @@ export const UserRoutes: Array<RouteConfig> = [
                        }
                    },
                    {
-                       path: 'analytics',
-                       name: 'Analytics',
-                       component: AnalyticsComponent,
+                       path: 'profile',
+                       name: 'Profile',
+                       redirect: 'profile/my-profile',
+                       component: ProfileComponent,
                        meta: {
                            showable: true,
-                           icon: 'chart-bar',
+                           icon: 'cog',
                            color: 'blue',
                            sequence: 1,
-                           title: 'Analytics'
-                       }
+                           title: 'Setting'
+                       },
+                       children: [
+                           {
+                               path: 'my-profile',
+                               name: 'My Profile',
+                               meta: {
+                                   showable: true,
+                                   icon: 'mdi-account-outline',
+                                   sequence: 1,
+                                   position: 1,
+                                   metaTitle: 'My Profile'
+                               },
+                               component: BasicInfoComponent
+                           },
+
+                           {
+                               path: 'manage-portfolio',
+                               name: 'Manage Portfolio',
+                               meta: {
+                                   showable: true,
+                                   icon: 'mdi-book-cog-outline',
+                                   sequence: 1,
+                                   position: 1,
+                                   metaTitle: 'Portfolio'
+                               },
+                               component: ManagePortfolioComponent
+                           },
+
+                           {
+                               path: 'change-privacy',
+                               name: 'Change Privacy',
+                               meta: {
+                                   showable: true,
+                                   icon: 'mdi-eye-off-outline',
+                                   sequence: 2,
+                                   position: 1,
+                                   metaTitle: 'Privacy'
+                               },
+                               component: ChangePrivacyComponent
+                           },
+
+                           {
+                               path: 'change-password',
+                               name: 'Change Password',
+                               meta: {
+                                   showable: true,
+                                   icon: 'mdi-lock-outline',
+                                   sequence: 3,
+                                   position: 1,
+                                   metaTitle: 'Change Password'
+                               },
+                               component: ChangePasswordComponent
+                           },
+                           {
+                               path: 'change-email',
+                               name: 'Change Email',
+                               meta: {
+                                   showable: true,
+                                   icon: 'mdi-email-outline',
+                                   sequence: 4,
+                                   position: 1,
+                                   metaTitle: 'Change Email'
+                               },
+                               component: ChangeEmailComponent
+                           },
+                           {
+                               path: 'blocked-users',
+                               name: 'Blocked Users',
+                               meta: {
+                                   showable: true,
+                                   icon: 'mdi-account-lock-outline',
+                                   sequence: 5,
+                                   position: 1,
+                                   metaTitle: 'Blocked Users'
+                               },
+                               component: BlockedUsersComponent
+                           },
+                           {
+                               path: 'disable-account',
+                               name: 'Disable Account',
+                               meta: {
+                                   showable: true,
+                                   icon: 'mdi-account-cancel-outline',
+                                   sequence: 6,
+                                   position: 1,
+                                   metaTitle: 'Disable Account'
+                               },
+                               component: DisableAccountComponent
+                           }
+                       ]
                    },
                    {
                        path: 'profile',

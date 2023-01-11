@@ -1,5 +1,22 @@
+
+import { UserSession } from '@/sdk';
+
 <template>
-  <v-card elevation="20" class="pt-5 ma-auto" width="80%" color="black"   rounded="lg">
+  <v-card width="80%" color="black" class="ma-auto">
+          <div class="my-2" v-for="(items,idx) in socialMediaSrv.timelinePosts" :key="idx">
+              
+          <post-card :item="items" :likes="items.post_likes">
+            
+            <template v-if="items.creator.user.id != UserSession.Session.uid" #share>
+              <div>
+            <h4 class="text-start font-weight-light grey--text px-5 pt-3 mb-1" >You shared this post.</h4>
+         <v-divider dark class="mx-2"></v-divider>
+        </div>
+            </template>
+          </post-card>
+     </div>
+     </v-card>
+  <!-- <v-card elevation="20" class="pt-5 ma-auto" width="80%" color="black"   rounded="lg">
     <v-toolbar flat dense color="darkgrey" >
 
       <v-toolbar-title class="white--text">Your TimeLine</v-toolbar-title>
@@ -39,7 +56,7 @@
       >
           <div class="my-2" style="background-color:black" v-for="(items,idx) in socialMediaSrv.createdPosts" :key="idx">
               
-          <post-card :item="items" :likes="items.post_likes"></post-card>
+          
      </div>
       </v-tab-item>
       <v-tab-item
@@ -52,7 +69,7 @@
      </div>
       </v-tab-item>
     </v-tabs-items>
-  </v-card>
+  </v-card> -->
 </template>
 
 <script lang="ts" src="./timeline.component.ts" />

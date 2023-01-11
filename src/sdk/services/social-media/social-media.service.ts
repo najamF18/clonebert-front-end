@@ -16,8 +16,8 @@ export class SocialMediaService {
     public allUsers = new Array<UserProfileModel>();
     public notifications = new BehaviorSubject(Array<NotificationModel>());
     public totalNotification = new BehaviorSubject(0);
-    public sharedPosts = new Array<PostModel>();
-    public createdPosts = new Array<PostModel>();
+    public timelinePosts = new Array<PostModel>();
+    public blockedUser :Array<UserProfileModel> = [];
 
     getPosts() {
         this.LoadingSrv.showFullScreenLoader('Loading...');
@@ -102,8 +102,10 @@ export class SocialMediaService {
             .getTimeline()
             .subscribe(res => {
                 console.log(res);
-                this.createdPosts = res.posts_created;
-                this.sharedPosts = res.posts_shared;
+                this.timelinePosts = res.posts_created;
+                this.timelinePosts = this.timelinePosts.concat(...this.timelinePosts,res.posts_shared);
+                this.timelinePosts.sort((a, b) => Number(new Date(a.timestamp!))-  Number(new Date(b.timestamp!))).reverse();
+                console.log('my time',this.timelinePosts);
             })
             .add(() => {
                 this.LoadingSrv.hideFullScreenLoader();
@@ -124,5 +126,14 @@ export class SocialMediaService {
             .add(() => {
                 this.LoadingSrv.hideFullScreenLoader();
             });
+    }
+
+    getBlockUser(){
+        new SocialMediaApi().getBlockUsers().subscribe(
+            res =>{
+                console.log(res.blocks);
+                this.blockedUser = res.blocks;
+            }
+        )
     }
 }

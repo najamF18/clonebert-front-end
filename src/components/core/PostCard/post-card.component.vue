@@ -1,6 +1,8 @@
 <template>
     <v-card color="darkgrey" rounded="lg" elevation="20" class="ma-auto" width="600">
-        <v-divider></v-divider>
+        
+        <slot name="share" />
+        
         
         <v-list color="darkgrey" class="px-2" :rounded=true>
             <v-list-item class="grow">
@@ -13,13 +15,13 @@
                     <v-list-item-subtitle class="grey--text text-start">{{ $helpers.getTimeAgo($attrs.item.timestamp) }}</v-list-item-subtitle>
                 </v-list-item-content>
 
-                <v-row align="center" justify="end">
+                <!-- <v-row align="center" justify="end">
                     <div class="d-flex align-center pa-1" v-bind="attrs" v-on="on">
                         <v-btn class="white--text" icon>
                         <v-icon>mdi-dots-horizontal</v-icon>
                     </v-btn>
                     </div>
-                    <!-- <v-menu dark min-width="180"  bottom left offset-y transition="slide-y-reverse-transition">
+                    <v-menu dark min-width="180"  bottom left offset-y transition="slide-y-reverse-transition">
                 <template #activator="{on, attrs}">
                     <div class="d-flex align-center pa-1" v-bind="attrs" v-on="on">
                         <v-btn class="white--text" icon>
@@ -35,13 +37,13 @@
                         <v-list-item-title class="cursor-pointer white--text">Follow {{ $attrs.item.creator.user.username  }}</v-list-item-title>
                     </v-list-item>
                 </v-list>
-            </v-menu> -->
+            </v-menu>
                     
-                    <!-- <v-icon class="mr-1">
+                    <v-icon class="mr-1">
             mdi-share-variant
           </v-icon>
-          <span class="subheading">45</span> -->
-                </v-row>
+          <span class="subheading">45</span>
+                </v-row> -->
             </v-list-item>
         </v-list>
 

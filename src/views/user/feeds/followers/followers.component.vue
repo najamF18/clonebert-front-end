@@ -52,6 +52,9 @@
                 </v-row>
             </v-card>
             <div v-if="isFollowers">
+                <div v-if="socialMediaSrv.myFollowers.value.followed_by.length>0">
+
+            
                 <div class="d-flex justify-space-between py-2">
                     <h3>{{ socialMediaSrv.myFollowers.value.followed_by.length }} Followers</h3>
                 </div>
@@ -67,8 +70,13 @@
                             <!-- <v-list-item-subtitle class="grey--text text-start">4 hours ago</v-list-item-subtitle> -->
                         </v-list-item-content>
 
-                        <!-- <v-row align="center" justify="end">
-                    <v-menu dark min-width="180"  bottom left offset-y transition="slide-y-reverse-transition">
+                        <v-row align="center" justify="end">
+                            <div class="d-flex align-center pa-1" @click="UnBlockUser(item.id)">
+                        <v-btn class="red--text" icon>
+                        <v-icon>mdi-account-off</v-icon>
+                    </v-btn>
+                    </div>
+                    <!-- <v-menu dark min-width="180"  bottom left offset-y transition="slide-y-reverse-transition">
                 <template #activator="{on, attrs}">
                     <div class="d-flex align-center pa-1" v-bind="attrs" v-on="on">
                         <v-btn class="white--text" icon>
@@ -84,16 +92,24 @@
                         <v-list-item-title class="cursor-pointer white--text">Unfollow {{ item.user.username }}</v-list-item-title>
                     </v-list-item>
                 </v-list>
-            </v-menu>
+            </v-menu> -->
                    
-                </v-row> -->
+                </v-row>
                     </v-list-item>
                 </v-list>
+                    </div>
+                    <div v-else>
+                        <div class="d-flex justify-center py-2">
+                    <h4 class="font-weight-light ">No followers</h4>
+                </div>
+                    </div>
             </div>
 
             <div v-if="isUsers">
+                <div v-if="socialMediaSrv.allUsers.length>0">
+
                 <div class="d-flex justify-space-between py-2">
-                    <h3>{{ socialMediaSrv.allUsers.length }} Followers</h3>
+                    <h3>{{ socialMediaSrv.allUsers.length }} All Users</h3>
                 </div>
                 <v-divider dark class=""></v-divider>
                 <v-list color="darkgrey " class="my-2" rounded="lg">
@@ -139,8 +155,16 @@
                         </v-row>
                     </v-list-item>
                 </v-list>
+                </div>
+                <div v-else>
+                        <div class="d-flex justify-center py-2">
+                    <h4 class="font-weight-light ">No Users</h4>
+                </div>
+                    </div>
             </div>
             <div v-if="isFollowing">
+                <div v-if="socialMediaSrv.myFollowing.value.follows.length>0">
+               
                 <div class="d-flex justify-space-between py-2">
                     <h3>{{ socialMediaSrv.myFollowing.value.follows.length }} Following</h3>
                 </div>
@@ -186,6 +210,12 @@
                     </v-list-item>
                        
                 </v-list>
+                </div>
+                 <div v-else>
+                        <div class="d-flex justify-center py-2">
+                    <h4 class="font-weight-light ">No following</h4>
+                </div>
+                    </div>
             </div>
         </v-col>
     </v-row>

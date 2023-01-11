@@ -50,7 +50,7 @@
                             {{ item.market_price.toFixed(2) }}
                         </template>
                         <template v-slot:[`item.gains`]="{item}">
-                            <v-chip  :color="getColor(item.gains)" dark label>
+                            <v-chip  v-if="item.gains" :color="getColor(item.gains)" dark label>
                                 {{ item.gains.toFixed(2) }}
                             </v-chip>
                         </template>

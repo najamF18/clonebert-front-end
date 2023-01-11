@@ -26,7 +26,7 @@
                 <v-icon small color="secondary "> mdi-at </v-icon>
                 <h5 class="white--text ml-1 mt-1">{{ userProfile.user.username }}</h5>
             </div>
-            <v-menu dark min-width="180" bottom offset-y transition="slide-y-reverse-transition">
+            <!-- <v-menu dark min-width="180" bottom offset-y transition="slide-y-reverse-transition">
                 <template #activator="{on, attrs}">
                     <div class="d-flex align-center pa-1" v-bind="attrs" v-on="on">
                         <v-icon size="20" color="accent"> mdi-dots-vertical </v-icon>
@@ -40,7 +40,7 @@
                         <v-list-item-title class="cursor-pointer white--text">{{ item.title }}</v-list-item-title>
                     </v-list-item>
                 </v-list>
-            </v-menu>
+            </v-menu> -->
         </div>
 
         <div v-if="!CoreSrv.Drawer.Mini">

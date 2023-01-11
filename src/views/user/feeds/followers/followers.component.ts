@@ -20,9 +20,9 @@ export default class FollowersComponent extends VueWrapper {
     UnFollowUser(id: string) {
         new SocialMediaApi().followUser(id).subscribe(res => {
             console.log('follow', res);
-                this.socialMediaSrv.getFollowers();
-                this.socialMediaSrv.getUsers();
-                this.socialMediaSrv.getFollowing();
+            this.socialMediaSrv.getFollowers();
+            this.socialMediaSrv.getUsers();
+            this.socialMediaSrv.getFollowing();
         });
     }
 
@@ -33,5 +33,24 @@ export default class FollowersComponent extends VueWrapper {
             this.socialMediaSrv.getUsers();
             this.socialMediaSrv.getFollowing();
         });
+    }
+
+    public UnBlockUser(id: string) {
+        this.LoaderSrv.showFullScreenLoader('Loading...');
+        new SocialMediaApi()
+            .blockUser(id)
+            .subscribe(
+                res => {
+                    this.AlertSrv.show('success', 'User Unblocked Successfully');
+                    this.socialMediaSrv.getFollowers();
+                    this.socialMediaSrv.getBlockUser();
+                },
+                err => {
+                    this.AlertSrv.show('error', err.message);
+                }
+            )
+            .add(() => {
+                this.LoaderSrv.hideFullScreenLoader();
+            });
     }
 }

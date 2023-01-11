@@ -36,10 +36,7 @@
                 </v-btn>
             </div>
             <div class="my-3">
-                <base-text-field label="Post Title" :value.sync="newPost.title" autofocus outlined hide-details></base-text-field>
-            </div>
-            <div class="my-3">
-                <base-textarea outlined hide-details :value.sync="newPost.description" title="Post Description"></base-textarea>
+                <base-textarea outlined hide-details :value.sync="newPost.description"  title="Post Description"></base-textarea>
             </div>
             <div class="my-3">
                 <drag-drop-upload-component :file.sync="newPost.media_file" label="Upload Media File"></drag-drop-upload-component>
