@@ -244,7 +244,10 @@ td {
     color: #6c7293 !important;
     font-weight: bold;
 }
-
+.my-swal {
+            background: rgba(255, 255, 255, .8);
+            backdrop-filter: blur(2px);
+        }
 .v-data-table thead th:nth-of-type(n) {
     background-color: #191c24!important;
     color: #6c7293 !important;

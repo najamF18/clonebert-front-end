@@ -14,14 +14,15 @@ export class AlertService {
     ) {
         return Swal.fire({
             toast: true,
+            width:'60vw',
             icon: type,
             html: `<div style="margin-top:20px;font-size: 0.9rem;">${message}</div>`,
-            position: position ?? 'top-end',
+            position: position ?? 'top',
             timer,
             background,
             color: '#ffff',
             showConfirmButton,
-            timerProgressBar
+            timerProgressBar,
         });
     }
 }

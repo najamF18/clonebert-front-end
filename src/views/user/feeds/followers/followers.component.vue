@@ -124,29 +124,17 @@
                         </v-list-item-content>
 
                         <v-row align="center" justify="end">
-                            <v-menu dark min-width="180" bottom left offset-y transition="slide-y-reverse-transition">
-                                <template #activator="{on, attrs}">
-                                    <div class="d-flex align-center pa-1" v-bind="attrs" v-on="on">
-                                        <v-btn class="white--text" icon>
-                                            <v-icon>mdi-dots-horizontal</v-icon>
+                             <div class="d-flex align-center pa-1" v-if="!socialMediaSrv.myFollowing.value.follows.find(data => {return data.user.id===item.user.id} )" >
+                                        <v-btn class="white--text" icon @click="FollowUser(item.id)">
+                                            <v-icon>mdi-account-heart</v-icon>
                                         </v-btn>
                                     </div>
-                                </template>
-                                <v-list color="darkgrey" dense dark nav>
-                                    <v-list-item link v-if="!socialMediaSrv.myFollowing.value.follows.find(data => {return data.user.id===item.user.id} )" @click="FollowUser(item.id)">
-                                        <v-list-item-icon class="mr-2">
-                                            <base-icon color="grey" icon-name="account-heart" />
-                                        </v-list-item-icon>
-                                        <v-list-item-title class="cursor-pointer white--text">Follow {{ item.user.username }}</v-list-item-title>
-                                    </v-list-item>
-                                     <v-list-item link v-else @click="UnFollowUser(item.id)">
-                                        <v-list-item-icon class="mr-2">
-                                            <base-icon color="grey" icon-name="account-remove" />
-                                        </v-list-item-icon>
-                                        <v-list-item-title class="cursor-pointer white--text">Unfollow {{ item.user.username }}</v-list-item-title>
-                                    </v-list-item>
-                                </v-list>
-                            </v-menu>
+                                    <div class="d-flex align-center pa-1" v-else >
+                                        <v-btn class="white--text" icon  @click="UnFollowUser(item.id)">
+                                            <v-icon>mdi-account-remove</v-icon>
+                                        </v-btn>
+                                    </div>
+                         
 
                             <!-- <v-icon class="mr-1">
             mdi-share-variant
@@ -181,26 +169,14 @@
                         </v-list-item-content>
 
                         <v-row align="center" justify="end">
-                            <v-menu dark min-width="180" bottom left offset-y transition="slide-y-reverse-transition">
-                                <template #activator="{on, attrs}">
-                                    <div class="d-flex align-center pa-1"  v-bind="attrs" v-on="on">
-                                        <v-btn  :ref="item.id" class="white--text" icon>
-                                            <v-icon>mdi-dots-horizontal</v-icon>
+                              <div class="d-flex align-center pa-1" >
+                                        <v-btn  :ref="item.id" class="white--text" icon @click="UnFollowUser(item.id)">
+                                            <v-icon>mdi-account-remove</v-icon>
                                         </v-btn>
                                        
                                         
                                     </div>
-                                </template>
-                                <v-list color="darkgrey" dense dark nav>
-                                    <v-list-item link @click="UnFollowUser(item.id)">
-                                        <v-list-item-icon class="mr-2">
-                                            <base-icon color="grey" icon-name="account-remove" />
-                                        </v-list-item-icon>
-                                        <v-list-item-title class="cursor-pointer white--text">Unfollow {{ item.user.username }}</v-list-item-title>
-                                    </v-list-item>
-                                    
-                                </v-list>
-                            </v-menu>
+                        
 
                             <!-- <v-icon class="mr-1">
             mdi-share-variant

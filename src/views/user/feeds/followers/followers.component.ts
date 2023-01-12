@@ -41,7 +41,7 @@ export default class FollowersComponent extends VueWrapper {
             .blockUser(id)
             .subscribe(
                 res => {
-                    this.AlertSrv.show('success', 'User Unblocked Successfully');
+                    this.AlertSrv.show('success', 'User Blocked Successfully');
                     this.socialMediaSrv.getFollowers();
                     this.socialMediaSrv.getBlockUser();
                 },
