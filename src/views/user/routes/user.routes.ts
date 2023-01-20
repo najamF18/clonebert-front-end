@@ -15,6 +15,7 @@ import HoldingComponent from './../profile/holdings/holdings.component';
 import BasicInfoComponent from '../profile/basic-info/basic-info.component';
 import PostsComponent from './../feeds/posts/posts.component';
 import TimelineComponent from '../feeds/timeline/timeline.component';
+import UserTimelineViewComponent from '../user-timeline-view/user-time-line.component';
 
 export const UserRoutes: Array<RouteConfig> = [
            {
@@ -280,69 +281,15 @@ export const UserRoutes: Array<RouteConfig> = [
                                },
                                component: DisableAccountComponent
                            }
-                           // {
-                           //     path: 'my-company',
-                           //     name: 'My Company',
-                           //     meta: {
-                           //         showable: true,
-                           //         icon: 'mdi-domain',
-                           //         sequence: 3,
-                           //         position: 1,
-                           //         metaTitle: 'My Company'
-                           //     },
-                           //     component: MyCompanyComponent
-                           // },
-                           // {
-                           //     path: 'email-notifications',
-                           //     name: 'Email Notifications',
-                           //     meta: {
-                           //         showable: true,
-                           //         icon: 'mdi-bell-outline',
-                           //         sequence: 4,
-                           //         position: 1,
-                           //         metaTitle: 'Email Notifications'
-                           //     },
-                           //     component: EmailNotificationsComponent
-                           // },
-                           // {
-                           //     path: 'my-quick-links',
-                           //     name: 'My Quick Links',
-                           //     meta: {
-                           //         showable: true,
-                           //         icon: 'mdi-link',
-                           //         sequence: 5,
-                           //         position: 1,
-                           //         metaTitle: 'My Quick Links'
-                           //     },
-                           //     component: MyQuickLinksComponent
-                           // },
-                           // {
-                           //     path: 'social-media',
-                           //     name: 'Social Media',
-                           //     meta: {
-                           //         showable: true,
-                           //         icon: 'mdi-facebook',
-                           //         sequence: 6,
-                           //         position: 1,
-                           //         metaTitle: 'Social Media'
-                           //     },
-                           //     component: SocialMediaComponent
-                           // },
-                           // {
-                           //     path: 'billing-and-plans',
-                           //     name: 'Billing & Plans',
-                           //     meta: {
-                           //         title: 'Billing & Plans',
-                           //         showable: true,
-                           //         icon: 'mdi-credit-card-outline',
-                           //         sequence: 7,
-                           //         position: 1,
-                           //         metaTitle: 'Billing & Plans'
-                           //     },
-                           //     component: BillingAndAccountComponent
-                           // }
+                           
                        ]
-                   }
+                   },
+                    {
+                               path: 'user-timeline',
+                               name: 'User-Timeline',
+                               component: AnalyticsComponent
+                           },
+
                ]
            }
        ];

@@ -3,9 +3,13 @@ import { UserSession } from '@/sdk';
 
 <template>
   <v-card width="80%" color="black" class="ma-auto">
-          <div class="my-2" v-for="(items,idx) in socialMediaSrv.timelinePosts" :key="idx">
-              
-          <post-card :item="items" :likes="items.post_likes">
+    <!-- <router-link 
+    :to="{name: 'Timeline', hash: '#hello'}">
+    Availability
+  </router-link> -->
+          <div class="my-2" v-for="(items,idx) in socialMediaSrv.timelinePosts" :key="idx" :id="'post-'+items.id">
+             <!-- <span class="white--text"> {{ items.id }}</span> -->
+          <post-card :item="items" :likes="items.post_likes" >
             
             <template v-if="items.creator.user.id != UserSession.Session.uid" #share>
               <div>
@@ -15,7 +19,11 @@ import { UserSession } from '@/sdk';
             </template>
           </post-card>
      </div>
+     <!-- <div id="hello" class="white--text">
+      Hello
+     </div> -->
      </v-card>
+     
   <!-- <v-card elevation="20" class="pt-5 ma-auto" width="80%" color="black"   rounded="lg">
     <v-toolbar flat dense color="darkgrey" >
 

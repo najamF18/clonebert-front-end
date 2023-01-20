@@ -1,7 +1,7 @@
 <template>
     <v-row class="pa-5">
         <v-col cols="8" class="text-end">
-            <v-card elevation="20" class="pa-5 ma-auto" width="80%" color="darkgrey" rounded="lg">
+            <v-card elevation="20" class="pa-3 ma-auto" width="80%" color="darkgrey" rounded="lg">
                 <v-row>
                     <v-col v-for="(item,idx) in links" :key="idx" @click="ChangeRoute(item.link)" cols="6" class="pa-3 ma-auto cursor-pointer " :class="
                             !!$route.matched.find(x => x.name === item.link)? 'border': 'simple'
@@ -17,7 +17,11 @@
                 </v-row>
             </v-card>
             <v-card class="ma-auto py-2" color="black" style="width:80%">
+                <div class="d-flex justify-space-between align-center">
+                    <base-text-field placeholder="Search" :value.sync="SocialMediaSrv.text" hide-details @input="SocialMediaSrv.SearchP()"  append-icon="mdi-magnify" outlined ></base-text-field>
                 <v-btn color="muted" @click="CoreSrv.OpenModal(model)"> Create Post </v-btn>
+                </div>
+                 
             </v-card>
             
 <router-view :key="$route.fullPath" />

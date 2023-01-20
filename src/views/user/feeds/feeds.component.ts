@@ -12,6 +12,7 @@ import { SocialMediaService } from '@/sdk';
     }
 })
 export default class FeedComponent extends VueWrapper {
+    public SocialMediaSrv = new SocialMediaService();
     public model = 'post-model';
     public newPost = {
         media_file: '',

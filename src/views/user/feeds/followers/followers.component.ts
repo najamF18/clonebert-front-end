@@ -11,6 +11,7 @@ export default class FollowersComponent extends VueWrapper {
     public isUsers = false;
     public isFollowing = false;
     public isLoading = false;
+ 
     mounted() {
         this.socialMediaSrv.getFollowers();
         this.socialMediaSrv.getUsers();
@@ -53,4 +54,6 @@ export default class FollowersComponent extends VueWrapper {
                 this.LoaderSrv.hideFullScreenLoader();
             });
     }
+
+  
 }

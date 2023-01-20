@@ -94,8 +94,21 @@ export class SocialMediaApi extends BaseApi {
     public getBlockUsers() {
         return this.GET_Request<any>(`${this.ApiUrl}/social-media/block-list-view/`);
     }
-    public blockUser(id:string) {
+    public blockUser(id: string) {
         return this.GET_Request<any>(`${this.ApiUrl}/social-media/block-user-view/${id}/`);
-        
+    }
+
+    public searchUser(username: string) {
+        const data = {
+            username: username
+        };
+        return this.POST_Request<Array<UserProfileModel>>(`${this.ApiUrl}/social-media/search-user/`, data);
+    }
+
+    public searchPost(text: string) {
+        const data = {
+            text: text
+        };
+        return this.POST_Request<Array<UserProfileModel>>(`${this.ApiUrl}/social-media/search-post/`, data);
     }
 }

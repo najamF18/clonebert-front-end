@@ -1,9 +1,9 @@
 import {ServiceClass} from '@/decorators';
-import { SocialMediaApi } from '@/sdk/api-services/social-media/social-media.api';
+import {SocialMediaApi} from '@/sdk/api-services/social-media/social-media.api';
 import {NotificationModel, PostModel, SignupModel, UserProfileModel} from '@/sdk/models';
-import { FollowerModel, FollowingModel } from '@/sdk/models/social-media/follower-model';
+import {FollowerModel, FollowingModel} from '@/sdk/models/social-media/follower-model';
 import {BehaviorSubject} from 'rxjs';
-import { LoaderService } from '../shared/loader.service';
+import {LoaderService} from '../shared/loader.service';
 
 @ServiceClass()
 export class SocialMediaService {
@@ -17,7 +17,9 @@ export class SocialMediaService {
     public notifications = new BehaviorSubject(Array<NotificationModel>());
     public totalNotification = new BehaviorSubject(0);
     public timelinePosts = new Array<PostModel>();
-    public blockedUser :Array<UserProfileModel> = [];
+    public blockedUser: Array<UserProfileModel> = [];
+    public username: string | null = null;
+    public text: string | null = null;
 
     getPosts() {
         this.LoadingSrv.showFullScreenLoader('Loading...');
@@ -103,9 +105,9 @@ export class SocialMediaService {
             .subscribe(res => {
                 console.log(res);
                 this.timelinePosts = res.posts_created;
-                this.timelinePosts = this.timelinePosts.concat(...this.timelinePosts,res.posts_shared);
-                this.timelinePosts.sort((a, b) => Number(new Date(a.timestamp!))-  Number(new Date(b.timestamp!))).reverse();
-                console.log('my time',this.timelinePosts);
+                this.timelinePosts = this.timelinePosts.concat(...this.timelinePosts, res.posts_shared);
+                this.timelinePosts.sort((a, b) => Number(new Date(a.timestamp!)) - Number(new Date(b.timestamp!))).reverse();
+                console.log('my time', this.timelinePosts);
             })
             .add(() => {
                 this.LoadingSrv.hideFullScreenLoader();
@@ -128,12 +130,54 @@ export class SocialMediaService {
             });
     }
 
-    getBlockUser(){
-        new SocialMediaApi().getBlockUsers().subscribe(
-            res =>{
-                console.log(res.blocks);
-                this.blockedUser = res.blocks;
-            }
-        )
+    getBlockUser() {
+        new SocialMediaApi().getBlockUsers().subscribe(res => {
+            console.log(res.blocks);
+            this.blockedUser = res.blocks;
+        });
+    }
+
+    searchUsers() {
+        this.LoadingSrv.showFullScreenLoader('loading');
+        new SocialMediaApi()
+            .searchUser(this.username!)
+            .subscribe(res => {
+                this.allUsers = res.data.users;
+                console.log(res, 'searchUsers', this.allUsers);
+            })
+            .add(() => this.LoadingSrv.hideFullScreenLoader());
+    }
+
+    searchPosts() {
+        this.LoadingSrv.showFullScreenLoader('loading');
+        new SocialMediaApi()
+            .searchPost(this.text!)
+            .subscribe(res => {
+                this.feeds.next(res.data.posts);
+                this.timelinePosts= res.data.posts;
+                console.log(res, 'searchPosts');
+            })
+            .add(() => this.LoadingSrv.hideFullScreenLoader());
+    }
+    public Search() {
+        console.log(this.username);
+        if (!this.username) {
+          this.getUsers();
+        }
+        if (this.username!.length >= 3) {
+            this.searchUsers();
+            // this.username = null;
+        }
+    }
+
+    public SearchP() {
+        console.log(this.text);
+        if (!this.text) {
+            this.getFeeds();
+        }
+        if (this.text!.length >= 3) {
+            this.searchPosts();
+            // this.username = null;
+        }
     }
 }

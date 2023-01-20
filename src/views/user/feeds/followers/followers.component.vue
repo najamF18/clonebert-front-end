@@ -1,7 +1,7 @@
 <template>
     <v-row>
         <v-col cols="12" class="text-end">
-            <v-card elevation="20" class="pa-5 ma-auto" width="100%" color="darkgrey" rounded="lg">
+            <v-card elevation="20" class="pa-3 ma-auto" width="100%" color="darkgrey" rounded="lg">
                 <v-row>
                     <v-col
                         @click="
@@ -14,7 +14,7 @@
                         :class="isFollowers ? 'border' : 'simple'"
                     >
                         <div class="text-center">
-                            <v-icon :class="isFollowers ? 'primarypurple--text' : 'white--text'">mdi-account-heart</v-icon>
+                            <v-icon size="20" class="mr-1" :class="isFollowers ? 'primarypurple--text' : 'white--text'">mdi-account-heart</v-icon>
                             <span :class="isFollowers ? 'primarypurple--text' : 'white--text'">Followers</span>
                         </div>
                     </v-col>
@@ -30,7 +30,7 @@
                         :class="isFollowing ? 'border' : 'simple'"
                     >
                         <div class="text-center">
-                            <v-icon :class="isFollowing ? 'primarypurple--text' : 'white--text'">mdi-account-multiple-check</v-icon>
+                            <v-icon size="20" class="mr-1" :class="isFollowing ? 'primarypurple--text' : 'white--text'">mdi-account-multiple-check</v-icon>
                             <span :class="isFollowing ? 'primarypurple--text' : 'white--text'">Following</span>
                         </div>
                     </v-col>
@@ -45,7 +45,7 @@
                         :class="isUsers ? 'border' : 'simple'"
                     >
                         <div class="text-center">
-                            <v-icon :class="isUsers ? 'primarypurple--text' : 'white--text'">mdi-account-group</v-icon>
+                            <v-icon  size="20" class="mr-1" :class="isUsers ? 'primarypurple--text' : 'white--text'">mdi-account-group</v-icon>
                             <span :class="isUsers ? 'primarypurple--text' : 'white--text'">All Users</span>
                         </div>
                     </v-col>
@@ -106,12 +106,13 @@
             </div>
 
             <div v-if="isUsers">
-                <div v-if="socialMediaSrv.allUsers.length>0">
 
                 <div class="d-flex justify-space-between py-2">
                     <h3>{{ socialMediaSrv.allUsers.length }} All Users</h3>
                 </div>
                 <v-divider dark class=""></v-divider>
+                  <base-text-field placeholder="Search" :value.sync="socialMediaSrv.username" hide-details @input="socialMediaSrv.Search()"  append-icon="mdi-magnify" outlined ></base-text-field>
+                   <div v-if="socialMediaSrv.allUsers.length>0">
                 <v-list color="darkgrey " class="my-2" rounded="lg">
                     <v-list-item class="grow card" v-for="item in socialMediaSrv.allUsers" :key="item.id">
                         <v-list-item-avatar size="60">
