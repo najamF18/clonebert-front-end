@@ -21,9 +21,12 @@ export default class FollowersComponent extends VueWrapper {
     UnFollowUser(id: string) {
         new SocialMediaApi().followUser(id).subscribe(res => {
             console.log('follow', res);
-            this.socialMediaSrv.getFollowers();
-            this.socialMediaSrv.getUsers();
-            this.socialMediaSrv.getFollowing();
+               this.socialMediaSrv.getFollowers();
+               this.socialMediaSrv.getUsers();
+               this.socialMediaSrv.getFollowing();
+               this.socialMediaSrv.getFeeds();
+               this.socialMediaSrv.getTimelinePosts();
+            
         });
     }
 
@@ -33,6 +36,8 @@ export default class FollowersComponent extends VueWrapper {
             this.socialMediaSrv.getFollowers();
             this.socialMediaSrv.getUsers();
             this.socialMediaSrv.getFollowing();
+            this.socialMediaSrv.getFeeds();
+            this.socialMediaSrv.getTimelinePosts();
         });
     }
 
@@ -45,6 +50,8 @@ export default class FollowersComponent extends VueWrapper {
                     this.AlertSrv.show('success', 'User Blocked Successfully');
                     this.socialMediaSrv.getFollowers();
                     this.socialMediaSrv.getBlockUser();
+                    this.socialMediaSrv.getFeeds();
+                    this.socialMediaSrv.getTimelinePosts();
                 },
                 err => {
                     this.AlertSrv.show('error', err.message);
