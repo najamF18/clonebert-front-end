@@ -174,6 +174,7 @@ export class SocialMediaService {
         console.log(this.text);
         if (!this.text) {
             this.getFeeds();
+            this.getTimelinePosts();
         }
         if (this.text!.length >= 3) {
             this.searchPosts();
