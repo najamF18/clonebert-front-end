@@ -44,7 +44,8 @@
         </v-list>
          <v-divider></v-divider>
         <v-list color="darkgrey" v-if="SocialMediaSrv.notifications.value.length>0">
-          <v-list-item class="simple cursor-pointer" v-for="(item) in SocialMediaSrv.notifications.value" :key="item.id">
+          <v-list-item class="simple cursor-pointer" v-for="(item) in SocialMediaSrv.notifications.value" @click="$router.push({name:'Notification View',params:{id:item.post_id}});ReadNotification(item.id,item.description)" :key="item.id">
+            
             <v-list-item-avatar size="60">
               <img
                 :src="item.sender.profile_pic"

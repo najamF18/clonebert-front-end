@@ -26,6 +26,11 @@ export class SocialMediaApi extends BaseApi {
     public UpdateProfile(userId: string, data: FormData) {
         return this.PUT_Request<any>(`${this.ApiUrl}/social-media/user-profile-update-view/${userId}/`, data);
     }
+
+    public UpdatePrivacy(userId: string, data: FormData) {
+        return this.PATCH_Request<any>(`${this.ApiUrl}/social-media/user-profile-update-view/${userId}/`, data);
+    }
+
     public getFeed() {
         return this.GET_Request<any>(`${this.ApiUrl}/social-media/feed-view/`);
     }
@@ -110,5 +115,17 @@ export class SocialMediaApi extends BaseApi {
             text: text
         };
         return this.POST_Request<Array<UserProfileModel>>(`${this.ApiUrl}/social-media/search-post/`, data);
+    }
+
+    public getUserDashboard(user_id: string) {
+        return this.GET_Request<any>(`${this.ApiUrl}/social-media/user-dashboard/${user_id}/`);
+    }
+
+    public getPostById(id: string) {
+        return this.GET_Request<PostModel>(`${this.ApiUrl}/social-media/post-update-view/${id}/`);
+    }
+
+    public getUserById(id: string) {
+        return this.GET_Request<UserProfileModel>(`${this.ApiUrl}/social-media/user-profile-retrieve-view/${id}/`);
     }
 }

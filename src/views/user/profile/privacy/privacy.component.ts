@@ -1,32 +1,34 @@
 import VueWrapper from '@/components/core/Vue/vue.wrapper';
 import Component from 'vue-class-component';
+import { UsersService } from '@/sdk/services/users/users.service';
+import { SocialMediaApi } from '@/sdk/api-services/social-media/social-media.api';
 
 @Component
 export default class ChangePrivacyComponent extends VueWrapper {
+    public userSrv = new UsersService();
+    public mounted() {
+        this.userSrv.getUserProfile();
+    }
 
-    public privacySwitch:boolean = true
-    // public mounted() {
-    //     this.currentEmail = this.UserSession.Session?.email!;
-    //     console.log(this.UserSession.Session?.email);
-    // }
+    public UpdateProfile() {
+        this.LoaderSrv.showFullScreenLoader();
+        const fd = new FormData();
 
-    // public changeEmail() {
-    //     this.LoaderSrv.showFullScreenLoader();
-    //     new AccountsApi()
-    //         .changeEmail(this.changeEmailData)
-    //         .subscribe(
-    //             res => {
-    //                 this.AlertSrv.show('success', 'Email changed successfully!');
-    //                 this.changeEmailData = new ChangeEmailModel();
-    //                 this.UserSession.clear();
-    //                 this.$router.push({name: 'Login'});
-    //             },
-    //             err => {
-    //                 this.AlertSrv.show('error', err.message);
-    //             }
-    //         )
-    //         .add(() => {
-    //             this.LoaderSrv.hideFullScreenLoader();
-    //         });
-    // }
+        fd.append('privacy', (this.userSrv.userProfile.privacy as unknown) as string);
+        new SocialMediaApi()
+            .UpdatePrivacy(this.userSrv.userProfile?.id!, fd)
+            .subscribe(
+                res => {
+                    this.AlertSrv.show('success', 'Privacy updated successfully!');
+                    this.userSrv.getUserProfile();
+                    console.log(res);
+                },
+                err => {
+                    this.AlertSrv.show('error', err.message);
+                }
+            )
+            .add(() => {
+                this.LoaderSrv.hideFullScreenLoader();
+            });
+    }
 }

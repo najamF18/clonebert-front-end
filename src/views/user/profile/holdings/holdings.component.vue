@@ -59,7 +59,7 @@
                         </template>
                     </v-data-table>
                 </v-col> </v-row
-            >'
+            >
         </base-card>
     </div>
 </template>

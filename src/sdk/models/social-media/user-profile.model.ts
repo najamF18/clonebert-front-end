@@ -3,6 +3,8 @@ export class UserProfileModel {
     public user: UserModel | null = null;
     public profile_pic: string | null = null;
     public location: string | null = null;
+    public privacy: boolean | null = true;
+    public description: string | null = null;
 
     constructor(data?: Partial<UserProfileModel>) {
         Object.assign(this, data);

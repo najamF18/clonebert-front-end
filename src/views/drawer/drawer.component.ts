@@ -6,13 +6,14 @@ import {ApiAuth, UserSession} from '@/sdk/core';
 import {ShowableRoute} from '@/globals';
 import { CoreService } from '@/services/core.service';
 import { SocialMediaApi } from '@/sdk/api-services/social-media/social-media.api';
+import { UsersService } from '@/sdk/services/users/users.service';
 
 @Component
 export default class DrawerComponent extends VueWrapper {
     public MainLinks: Array<ShowableRoute> = [];
     public CoreSrv = new CoreService();
-    public userProfile = new UserProfileModel();
     public socialMediaSrv= new SocialMediaService();
+    public userSrv= new UsersService();
 
     public created() {
         this.MainLinks = this.$helpers.getShowableRoutes('User') ?? [];
@@ -20,14 +21,10 @@ export default class DrawerComponent extends VueWrapper {
         // console.log(this.MainLinks);
     }
     mounted() {
-        this.getUserProfile();
+        this.userSrv.getUserProfile();
     }
 
-    getUserProfile() {
-        new SocialMediaApi().getProfile().subscribe(res => {
-            this.userProfile = res[0];
-        });
-    }
+   
 
     public items = [
         {

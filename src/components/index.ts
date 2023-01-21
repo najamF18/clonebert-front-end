@@ -41,6 +41,7 @@ import AreaWidget from './widgets/Area-Widget/area-widget.component';
 import TradingView from './widgets/trading-view/trading-view.component';
 import BaseIncreaseDecreaseComponent from './shared/base-increase-decrese/base-increase-decrease.component';
 import PostCardComponent from './core/PostCard/post-card.component';
+import BackPageComponent from './shared/back-page/back-page.component';
 
 // Vuetify Components
 Vue.component('base-text-field', BaseTextField);
@@ -62,6 +63,7 @@ Vue.component('base-dialog', BaseDialog);
 Vue.component('base-title-text', BaseTitleTextComponent);
 Vue.component('base-currency-field', BaseCurrencyField);
 Vue.component('base-increase-decrease-component', BaseIncreaseDecreaseComponent);
+Vue.component('back-page',BackPageComponent);
 
 // Custom Components
 Vue.component('search-component', SearchComponent);

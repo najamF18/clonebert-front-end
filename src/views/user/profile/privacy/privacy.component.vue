@@ -8,7 +8,7 @@
                     </v-alert>
                     <div class="mb-3 white--text flex row mx-auto">
                         <p class="align-self-center mr-3 font-weight-regular">Change Privacy Status</p>
-                        <v-switch color="success" v-model="privacySwitch" inset></v-switch>
+                        <v-switch color="success" v-model="userSrv.userProfile.privacy" @change="UpdateProfile()" inset></v-switch>
                     </div>
                 </v-col>
             </v-row>

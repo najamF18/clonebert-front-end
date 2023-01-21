@@ -7,7 +7,7 @@
                          <div class="d-flex justify-center align-end height-200">
                         <v-hover v-slot="{hover}">
                             <v-avatar class="cursor-pointer" size="150">
-                                <img :src="image" />
+                                <img :src="UserSrv.image" />
                                 <v-fade-transition>
                                     <v-overlay v-if="hover" absolute color="secondary">
                                         <v-icon size="40" color="white" @click="$refs.file.click()"> mdi-camera-plus </v-icon>
@@ -18,15 +18,19 @@
                         </v-hover>
                     </div>
                         <div class="mb-3">
-                            <base-text-field label="UserName" hide-details :disabled="true" :value.sync="userProfile.user.username"/>
+                            <base-text-field label="UserName" hide-details :disabled="true" :value.sync="UserSrv.userProfile.user.username"/>
                         </div>
 
                         <div class="mb-3">
-                            <base-text-field label="Email" hide-details :disabled="true" :value.sync="userProfile.user.email"/>
+                            <base-text-field label="Email" hide-details :disabled="true" :value.sync="UserSrv.userProfile.user.email"/>
                         </div>
 
                         <div class="mb-3">
-                            <base-text-field label="Location" hide-details :value.sync="userProfile.location" />
+                            <base-textarea title="Description" hide-details :value.sync="UserSrv.userProfile.description" />
+                        </div>
+
+                        <div class="mb-3">
+                            <base-text-field label="Location" hide-details :value.sync="UserSrv.userProfile.location" />
                         </div>
 
                         <div class="mt-5">

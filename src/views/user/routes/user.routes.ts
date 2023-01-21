@@ -16,6 +16,8 @@ import BasicInfoComponent from '../profile/basic-info/basic-info.component';
 import PostsComponent from './../feeds/posts/posts.component';
 import TimelineComponent from '../feeds/timeline/timeline.component';
 import UserTimelineViewComponent from '../user-timeline-view/user-time-line.component';
+import NotificationViewComponent from '../notification-view/notification-view.component';
+import UserDashboardComponent from '../user-dashboard/user-dashboard.component';
 
 export const UserRoutes: Array<RouteConfig> = [
            {
@@ -84,6 +86,30 @@ export const UserRoutes: Array<RouteConfig> = [
                            color: 'green',
                            sequence: 1,
                            title: 'Holdings'
+                       }
+                   },
+                   {
+                       path: 'notification/:id?',
+                       name: 'Notification View',
+                       component: NotificationViewComponent,
+                       meta: {
+                           showable: false,
+                           icon: 'table-large',
+                           color: 'green',
+                           sequence: 1,
+                           title: 'Notification View'
+                       }
+                   },
+                   {
+                       path: 'user-profile/:id?',
+                       name: 'User Profile View',
+                       component: UserDashboardComponent,
+                       meta: {
+                           showable: false,
+                           icon: 'table-large',
+                           color: 'green',
+                           sequence: 1,
+                           title: 'User Profile View'
                        }
                    },
                    {
@@ -281,15 +307,13 @@ export const UserRoutes: Array<RouteConfig> = [
                                },
                                component: DisableAccountComponent
                            }
-                           
                        ]
                    },
-                    {
-                               path: 'user-timeline',
-                               name: 'User-Timeline',
-                               component: AnalyticsComponent
-                           },
-
+                   {
+                       path: 'user-timeline',
+                       name: 'User-Timeline',
+                       component: AnalyticsComponent
+                   }
                ]
            }
        ];

@@ -2,6 +2,7 @@ import { UserProfileModel } from "./user-profile.model";
 
 export class NotificationModel {
            public id: string | null = null;
+           public post_id: string | null = null;
            public description: string | null = null;
            public isRead: string | null = null;
            public sender: UserProfileModel | null = null;
