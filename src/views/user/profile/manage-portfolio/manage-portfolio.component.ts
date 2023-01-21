@@ -39,6 +39,7 @@ export default class ManagePortfolioComponent extends VueWrapper {
                    console.log(err);
                    this.AlertSrv.show('error',"Invalid API Key ");
                    this.RemoveKeys();
+                    this.UserSession.clearApiKeys();
                 }
             ).add(() => {
                 this.LoaderSrv.hideFullScreenLoader();
