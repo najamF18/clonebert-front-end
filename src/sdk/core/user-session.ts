@@ -101,4 +101,11 @@ export class UserSession {
             this._session.next(null);
         }
     }
+
+    public clearApiKeys(): void {
+        if (this._session.value) {
+           this.Cookie.remove(`${this.prefix}api_key`);
+           this.Cookie.remove(`${this.prefix}api_secret`);
+        }
+    }
 }

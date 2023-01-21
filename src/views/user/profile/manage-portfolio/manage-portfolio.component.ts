@@ -60,6 +60,7 @@ export default class ManagePortfolioComponent extends VueWrapper {
 
     Unlink(){
         this.RemoveKeys();
+        this.UserSession.clearApiKeys();
         this.AlertSrv.show('success', 'Unlinked successfully');
     }
 

@@ -23,7 +23,7 @@
                 </v-row>
             </base-form>
 
-            <v-row v-if="!IsApiAdded && !showForm">
+            <v-row v-if="!CoreSrv.IsApiLinked && !showForm">
                 <v-col cols="12">
                     <v-sheet outlined elevation="5" class="pa-2  my-2 white--text flex row justify-space-between  darkgrey">
                         <p class="align-self-center mr-3 font-weight-regular">Coinbase</p>
@@ -33,7 +33,7 @@
                     </v-sheet>
                 </v-col>
             </v-row>
-            <v-row v-if="IsApiAdded">
+            <v-row v-if="CoreSrv.IsApiLinked">
                 <v-col cols="12">
                     <v-sheet outlined elevation="5" class="pa-2  my-2 white--text flex row justify-space-between  darkgrey">
                         <p class="align-self-center mr-3 font-weight-regular">Coinbase</p>

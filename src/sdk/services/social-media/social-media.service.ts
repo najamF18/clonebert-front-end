@@ -17,6 +17,7 @@ export class SocialMediaService {
     public notifications = new BehaviorSubject(Array<NotificationModel>());
     public totalNotification = new BehaviorSubject(0);
     public timelinePosts = new Array<PostModel>();
+    public tempTimelinePosts = new Array<PostModel>();
     public blockedUser: Array<UserProfileModel> = [];
     public username: string | null = null;
     public text: string | null = null;
@@ -27,7 +28,7 @@ export class SocialMediaService {
             .getPosts()
             .subscribe(
                 res => {
-                    console.log(res);
+                    console.log(res, 'posts');
                     this.posts.next(res);
                 },
                 err => {}
@@ -104,14 +105,26 @@ export class SocialMediaService {
             .getTimeline()
             .subscribe(res => {
                 console.log(res);
-                this.timelinePosts = res.posts_created;
-                this.timelinePosts = this.timelinePosts.concat(...this.timelinePosts, res.posts_shared);
+                this.tempTimelinePosts = res.posts_created;
+                this.timelinePosts = this.tempTimelinePosts.concat(res.posts_shared);
                 this.timelinePosts.sort((a, b) => Number(new Date(a.timestamp!)) - Number(new Date(b.timestamp!))).reverse();
                 console.log('my time', this.timelinePosts);
             })
             .add(() => {
                 this.LoadingSrv.hideFullScreenLoader();
             });
+    }
+
+    getTimelinePostss() {
+        new SocialMediaApi()
+            .getTimeline()
+            .subscribe(res => {
+                console.log(res);
+                this.tempTimelinePosts = res.posts_created;
+                this.timelinePosts = this.tempTimelinePosts.concat(res.posts_shared);
+                this.timelinePosts.sort((a, b) => Number(new Date(a.timestamp!)) - Number(new Date(b.timestamp!))).reverse();
+                console.log('my time', this.timelinePosts);
+            })
     }
 
     getFeeds() {
@@ -128,6 +141,23 @@ export class SocialMediaService {
             .add(() => {
                 this.LoadingSrv.hideFullScreenLoader();
             });
+    }
+
+    getFeedss() {
+        this.socialMediaApi.getFeed().subscribe(
+            res => {
+                console.log(res);
+                this.feeds.next(res);
+            },
+            err => {}
+        );
+    }
+
+    getPostss() {
+        this.socialMediaApi.getPosts().subscribe(res => {
+            console.log(res, 'posts');
+            this.posts.next(res);
+        });
     }
 
     getBlockUser() {
@@ -154,7 +184,7 @@ export class SocialMediaService {
             .searchPost(this.text!)
             .subscribe(res => {
                 this.feeds.next(res.data.posts);
-                this.timelinePosts= res.data.posts;
+                this.timelinePosts = res.data.posts;
                 console.log(res, 'searchPosts');
             })
             .add(() => this.LoadingSrv.hideFullScreenLoader());
@@ -162,7 +192,7 @@ export class SocialMediaService {
     public Search() {
         console.log(this.username);
         if (!this.username) {
-          this.getUsers();
+            this.getUsers();
         }
         if (this.username!.length >= 3) {
             this.searchUsers();

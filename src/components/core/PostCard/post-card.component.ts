@@ -16,6 +16,7 @@ export default class PostCardComponent extends VueWrapper {
     public confirmModel = 'confirm-model';
     public val = 0;
     public postLikes = 0;
+    public socialMediaSrv = new SocialMediaService();
     @Prop()
     protected readonly likes!: Array<LikeModel>;
 
@@ -55,6 +56,9 @@ export default class PostCardComponent extends VueWrapper {
         }
         new SocialMediaApi().likePost(id).subscribe(res => {
             console.log('like res', res);
+            this.socialMediaSrv.getFeedss();
+            this.socialMediaSrv.getTimelinePostss();
+            this.socialMediaSrv.getPostss();
         });
     }
 

@@ -1,5 +1,6 @@
 import {ServiceClass} from '@/decorators';
 import { TransactionsApi } from '@/sdk/api-services';
+import { UserSession } from '@/sdk/core';
 import {BehaviorSubject} from 'rxjs';
 import {DataOptions} from 'vuetify';
 import {LoaderService} from '../shared/loader.service';
@@ -13,7 +14,7 @@ export class TransactionService {
     public TransactionApi = new TransactionsApi();
 
     getHoldingsData() {
-        this.LoadingSrv.showFullScreenLoader("Loading...");
+        this.LoadingSrv.showFullScreenLoader('Loading...');
         this.TransactionApi.HoldingsList()
             .subscribe(
                 res => {
@@ -27,9 +28,9 @@ export class TransactionService {
             .add(() => {
                 this.LoadingSrv.hideFullScreenLoader();
             });
-    } 
+    }
 
-     getPieChartData() {
+    getPieChartData() {
         this.LoadingSrv.showFullScreenLoader('Loading...');
         this.TransactionApi.PieChart()
             .subscribe(
@@ -42,11 +43,11 @@ export class TransactionService {
                 }
             )
             .add(() => {
-                   this.LoadingSrv.hideFullScreenLoader();
+                this.LoadingSrv.hideFullScreenLoader();
             });
     }
 
-    getTransactionsData(){
+    getTransactionsData() {
         this.LoadingSrv.showFullScreenLoader('Loading...');
         this.TransactionApi.TransactionsList()
             .subscribe(
@@ -62,4 +63,6 @@ export class TransactionService {
                 this.LoadingSrv.hideFullScreenLoader();
             });
     }
+
+    
 }

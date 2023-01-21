@@ -169,11 +169,12 @@ export class CoreService {
         Status: 'TRUE'
     };
 
-    get IsApiLinked(){
-        if (!new UserSession()._session.value!.api_key == null && !new UserSession()._session.value!.api_secret == null) {
+    get IsApiLinked() {
+        if (new UserSession().Session!.api_key != null && new UserSession().Session!.api_secret != null) {
             return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
     public confirmCompWidth = 400;
