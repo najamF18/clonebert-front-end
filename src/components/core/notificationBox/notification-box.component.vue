@@ -31,7 +31,7 @@
               <v-list-item-title class="title">Notifications</v-list-item-title>
             </v-list-item-content>
 
-            <v-list-item-action>
+            <!-- <v-list-item-action>
               <v-btn
             color="primary"
             text
@@ -39,13 +39,13 @@
           >
             Read all
           </v-btn>
-            </v-list-item-action>
+            </v-list-item-action> -->
           </v-list-item>
         </v-list>
-         <v-divider></v-divider>
+         <v-divider dark class="mx-3"></v-divider>
         <v-list color="darkgrey" v-if="SocialMediaSrv.notifications.value.length>0">
-          <v-list-item class="simple cursor-pointer" v-for="(item) in SocialMediaSrv.notifications.value" @click="$router.push({name:'Notification View',params:{id:item.post_id}});ReadNotification(item.id,item.description)" :key="item.id">
-            
+          <v-list-item class="simple " v-for="(item) in SocialMediaSrv.notifications.value"  :key="item.id">
+             <div class="d-flex cursor-pointer flex-grow-1" @click="$router.push({name:'Notification View',params:{id:item.post_id}});ReadNotification(item.id,item.description)">
             <v-list-item-avatar size="60">
               <img
                 :src="item.sender.profile_pic"
@@ -58,6 +58,7 @@
               <v-list-item-title class="grey--text ">{{item.description}}</v-list-item-title>
               <v-list-item-subtitle class="grey--text ">{{$helpers.getTimeAgo(item.timestamp)}}</v-list-item-subtitle>
             </v-list-item-content>
+            </div>
 
             <v-list-item-action v-if="!item.isRead">
               <v-btn
@@ -73,7 +74,7 @@
 
         <v-list color="darkgrey "  v-else>
            
-            <div  class="text-center darkgrey white--text">No Notifications</div>
+            <div  class="text-center darkgrey white--text pa-5">No Notifications</div>
         </v-list>
 
         <v-divider></v-divider>

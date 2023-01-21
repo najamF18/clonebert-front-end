@@ -14,10 +14,8 @@ import { SocialMediaService } from '@/sdk';
 export default class FeedComponent extends VueWrapper {
     public SocialMediaSrv = new SocialMediaService();
     public model = 'post-model';
-    public newPost = {
-        media_file: '',
-        description: ''
-    };
+    public media_file:Blob|null = null;
+    public description:string|null = null;
 
     public links = [
         {title: 'Feeds', icon: 'mdi-view-dashboard', link: 'Posts'},
@@ -26,11 +24,10 @@ export default class FeedComponent extends VueWrapper {
 
     CreatePost() {
         this.LoaderSrv.showFullScreenLoader('Creating Post');
-        console.log(this.newPost);
         const fd = new FormData();
-        fd.append('description', this.newPost.description);
+        fd.append('description', this.description!);
 
-        fd.append('media_file', (this.newPost.media_file as unknown) as Blob);
+        fd.append('media_file', this.media_file!);
 
         new SocialMediaApi()
             .CreatePost(fd)
@@ -40,6 +37,8 @@ export default class FeedComponent extends VueWrapper {
 
                     new SocialMediaService().getTimelinePosts();
                     this.CoreSrv.CloseModal(this.model);
+                    this.description = null;
+                    this.media_file = null;
                 },
                 err => {
                     this.AlertSrv.show('error', err);

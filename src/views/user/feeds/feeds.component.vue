@@ -40,10 +40,10 @@
                 </v-btn>
             </div>
             <div class="my-3">
-                <base-textarea outlined hide-details :value.sync="newPost.description"  title="Post Description"></base-textarea>
+                <base-textarea outlined hide-details :value.sync="description"  title="Post Description"></base-textarea>
             </div>
             <div class="my-3">
-                <drag-drop-upload-component :file.sync="newPost.media_file" label="Upload Media File"></drag-drop-upload-component>
+                <drag-drop-upload-component :file.sync="media_file" label="Upload Media File"></drag-drop-upload-component>
             </div>
             <div class="text-end my-3">
                 <v-btn color="primarypurple" @click="CreatePost()"> Create Post </v-btn>
