@@ -12,6 +12,7 @@ export default class UserDashboardComponent extends VueWrapper {
     public defaultsSort = true;
     public transactionData = new Array<TransactionModel>();
     public holdingData = new Array<HoldingModel>();
+    public isError = false;
     // public UserSrv = new UsersService();
 
     public TransactionsHeaders = [
@@ -50,8 +51,11 @@ export default class UserDashboardComponent extends VueWrapper {
             this.LoaderSrv.showFullScreenLoader("Loading...");
             new SocialMediaApi().getUserDashboard(this.$route.params.id).subscribe(res => {
                 console.log(res);
+                this.isError = false;
                 this.transactionData = res.transactions;
                 this.holdingData = res.holdings;
+            },err =>{
+                this.isError= true;
             }).add(() => this.LoaderSrv.hideFullScreenLoader());
             new SocialMediaApi().getUserById(this.$route.params.id).subscribe(res => {
                 console.log(res);
