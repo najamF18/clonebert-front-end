@@ -190,14 +190,12 @@ export class SocialMediaService {
             .add(() => this.LoadingSrv.hideFullScreenLoader());
     }
     public Search() {
-        console.log(this.username);
         if (!this.username) {
             this.getUsers();
         }
-        if (this.username!.length >= 3) {
-            this.searchUsers();
-            // this.username = null;
-        }
+        // if (this.username!.length >= 3) {
+        //     this.searchUsers();
+        // }
     }
 
     public SearchP() {
@@ -206,9 +204,8 @@ export class SocialMediaService {
             this.getFeeds();
             this.getTimelinePosts();
         }
-        if (this.text!.length >= 3) {
-            this.searchPosts();
-            // this.username = null;
-        }
+        // if (this.text!.length >= 3) {
+        //     this.searchPosts();
+        // }
     }
 }

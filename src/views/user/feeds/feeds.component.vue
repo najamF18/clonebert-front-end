@@ -1,7 +1,8 @@
 <template>
+    <v-container>
     <v-row class="pa-5">
-        <v-col cols="8" class="text-end">
-            <v-card elevation="20" class="pa-3 ma-auto" width="80%" color="darkgrey" rounded="lg">
+        <v-col cols="12" class="text-end">
+            <v-card elevation="20" class="pa-3 ma-auto" max-width="600" color="darkgrey" rounded="lg">
                 <v-row>
                     <v-col v-for="(item,idx) in links" :key="idx" @click="ChangeRoute(item.link)" cols="6" class="pa-3 ma-auto cursor-pointer " :class="
                             !!$route.matched.find(x => x.name === item.link)? 'border': 'simple'
@@ -16,21 +17,22 @@
                     </v-col>
                 </v-row>
             </v-card>
-            <v-card class="ma-auto py-2" color="black" style="width:80%">
+            <v-card class="ma-auto py-2" color="black" width="600">
                 <div class="d-flex justify-space-between align-center">
-                    <base-text-field placeholder="Search" :value.sync="SocialMediaSrv.text" hide-details @input="SocialMediaSrv.SearchP()"  append-icon="mdi-magnify" outlined ></base-text-field>
-                <v-btn color="muted" @click="CoreSrv.OpenModal(model)"> Create Post </v-btn>
+                    <base-text-field placeholder="Search" :value.sync="SocialMediaSrv.text" hide-details @input="SocialMediaSrv.SearchP()" @keypress.enter="SocialMediaSrv.searchPosts()"  append-icon="mdi-magnify" outlined ></base-text-field>
+                <v-btn color="muted white--text px-8" @click="CoreSrv.OpenModal(model)"> Post </v-btn>
                 </div>
                  
             </v-card>
-            
 <router-view :key="$route.fullPath" />
+            
+
            
         </v-col>
 
-        <v-col cols="4" class="text-center">
+        <!-- <v-col cols="4" class="text-center">
             <FollowersComponent></FollowersComponent>
-        </v-col>
+        </v-col> -->
 
         <base-dialog :name="model" width="50%">
             <div class="d-flex justify-space-between mb-3">
@@ -46,10 +48,11 @@
                 <drag-drop-upload-component :file.sync="media_file" label="Upload Media File"></drag-drop-upload-component>
             </div>
             <div class="text-end my-3">
-                <v-btn color="primarypurple" @click="CreatePost()"> Create Post </v-btn>
+                <v-btn color="primarypurple white--text px-8" @click="CreatePost()"> Post </v-btn>
             </div>
         </base-dialog>
     </v-row>
+    </v-container>
 </template>
 
 
