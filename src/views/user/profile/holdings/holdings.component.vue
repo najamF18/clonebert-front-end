@@ -38,24 +38,24 @@
                 <v-col cols="12">
                     <v-data-table :headers="HoldingsHeaders" :items="HoldingsData.value" :items-per-page="5" class="theme--dark">
                         <template v-slot:[`item.book_price`]="{item}">
-                            {{ item.book_price.toFixed(2) }}
+                            {{ item.book_price.toPrecision(2) }}
                         </template>
                         <template v-slot:[`item.book_value`]="{item}">
-                            {{ item.book_value.toFixed(2) }}
+                            {{ item.book_value.toPrecision(2) }}
                         </template>
                         <template v-slot:[`item.market_value`]="{item}">
-                            {{ item.market_value.toFixed(2) }}
+                            {{ item.market_value.toPrecision(2) }}
                         </template>
                         <template v-slot:[`item.market_price`]="{item}">
-                            {{ item.market_price.toFixed(2) }}
+                            {{ item.market_price.toPrecision(2) }}
                         </template>
                         <template v-slot:[`item.gains`]="{item}">
                             <v-chip  v-if="item.gains" :color="getColor(item.gains)" dark label>
-                                {{ item.gains.toFixed(2) }}
+                                {{ item.gains.toPrecision(2) }}
                             </v-chip>
                         </template>
                         <template v-slot:[`item.position`]="{item}">
-                            {{ isNumber(item.position) ? item.position.toFixed(2) : item.position }}
+                            {{ isNumber(item.position) ? item.position.toPrecision(2) : item.position }}
                         </template>
                     </v-data-table>
                 </v-col> </v-row

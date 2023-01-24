@@ -22,6 +22,8 @@ export default class DrawerComponent extends VueWrapper {
     }
     mounted() {
         this.userSrv.getUserProfile();
+        this.socialMediaSrv.getFollowers();
+        this.socialMediaSrv.getFollowing();
     }
 
    
