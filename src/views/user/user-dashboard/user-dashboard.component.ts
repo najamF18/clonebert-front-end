@@ -48,18 +48,24 @@ export default class UserDashboardComponent extends VueWrapper {
 
     mounted() {
         if (this.$route.params.id) {
-            this.LoaderSrv.showFullScreenLoader("Loading...");
-            new SocialMediaApi().getUserDashboard(this.$route.params.id).subscribe(res => {
-                console.log(res);
-                this.isError = false;
-                this.transactionData = res.transactions;
-                this.holdingData = res.holdings;
-            },err =>{
-                this.isError= true;
-            }).add(() => this.LoaderSrv.hideFullScreenLoader());
+            this.LoaderSrv.showFullScreenLoader('Loading...');
+            new SocialMediaApi()
+                .getUserDashboard(this.$route.params.id)
+                .subscribe(
+                    res => {
+                        console.log(res);
+                        this.isError = false;
+                        this.transactionData = res.transactions;
+                        this.holdingData = res.holdings;
+                    },
+                    err => {
+                        this.isError = true;
+                    }
+                )
+                .add(() => this.LoaderSrv.hideFullScreenLoader());
             new SocialMediaApi().getUserById(this.$route.params.id).subscribe(res => {
                 console.log(res);
-                this.user =res;
+                this.user = res;
             });
         }
     }
@@ -86,5 +92,8 @@ export default class UserDashboardComponent extends VueWrapper {
     isNumber(val: any) {
         if (isNaN(val)) return false;
         return true;
+    }
+    getVal(val: any) {
+        return val.toString().replace('-', '');
     }
 }

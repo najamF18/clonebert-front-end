@@ -91,4 +91,8 @@ export default class TransactionComponent extends VueWrapper {
 
         return date.toLocaleDateString() + ' ' + date.toLocaleTimeString(navigator.language, {hour: '2-digit', minute: '2-digit'});
     }
+
+    getVal(val:any){
+        return val.toString().replace('-','');
+    }
 }

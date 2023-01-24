@@ -2,7 +2,7 @@
     <div>
         <v-app-bar color="darkgrey" app clipped dark>
             <v-app-bar-nav-icon @click="CoreSrv.Drawer.Mini = !CoreSrv.Drawer.Mini" color="muted"></v-app-bar-nav-icon>
-            <v-text-field class="white--text ml-2" placeholder="Search" outlined dense hide-details />
+           
             <v-spacer></v-spacer>
 
             <v-btn v-if="!CoreSrv.IsApiLinked" to="/user/profile/manage-portfolio" color="warning" elevation="2" small>

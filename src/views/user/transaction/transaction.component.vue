@@ -46,27 +46,35 @@
                         </template> -->
 
                         <template v-slot:[`item.book_price`]="{item}">
-                            {{ item.book_price.toFixed(2) }}
+                            {{getVal(item.book_price.toPrecision(2)) }}
+                        </template>
+
+                        <template v-slot:[`item.book_value`]="{item}">
+                            {{getVal(item.book_value.toPrecision(2)) }}
                         </template>
 
                         
                         <template v-slot:[`item.gains`]="{item}">
                             
                             <v-chip v-if="!!item.gains" :color="getColor(item.gains)" dark label>
-                           {{ item.gains ? item.gains.toFixed(2) : item.gains }}
+                           {{ item.gains ? item.gains.toPrecision(2)  : item.gains }}
                            </v-chip>
                            <div v-else> N/A</div>
                         </template>
 
                         <template v-slot:[`item.native_amount.amount`]="{item}">
-                            {{ item.native_amount.amount.toFixed(2) }}
+                            {{ item.native_amount.amount.toPrecision(2)  }}
+                        </template>
+
+                        <template v-slot:[`item.amount.amount`]="{item}">
+                            {{ getVal(item.amount.amount)  }}
                         </template>
 
                         <template v-slot:[`item.market_value`]="{item}">
-                            {{ item.market_value.toFixed(2) }}
+                            {{ getVal(item.market_value.toPrecision(2))  }}
                         </template>
                         <template v-slot:[`item.market_price`]="{item}">
-                            {{ item.market_price.toFixed(2) }}
+                            {{ getVal(item.market_price.toPrecision(2))  }}
                         </template>
                     </v-data-table>
                 </v-col>
