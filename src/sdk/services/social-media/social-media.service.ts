@@ -191,7 +191,7 @@ export class SocialMediaService {
     }
     public Search() {
         if (!this.username) {
-            this.getUsers();
+            this.allUsers = [];
         }
         // if (this.username!.length >= 3) {
         //     this.searchUsers();

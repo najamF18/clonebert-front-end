@@ -113,7 +113,7 @@
 
             <div v-if="isUsers">
                 <div class="d-flex justify-space-between py-2 white--text">
-                    <h3>{{ socialMediaSrv.allUsers.length }} All Users</h3>
+                    <h3> All Users</h3>
                 </div>
                 <v-divider dark class=""></v-divider>
                 <base-text-field

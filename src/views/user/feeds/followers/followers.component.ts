@@ -13,8 +13,12 @@ export default class FollowersComponent extends VueWrapper {
     public isLoading = false;
  
     mounted() {
+        if(this.$route.hash =='#following'){
+            this.isFollowers = false;
+            this.isFollowing = true;
+        }
+        this.socialMediaSrv.allUsers =[];
         this.socialMediaSrv.getFollowers();
-        this.socialMediaSrv.getUsers();
         this.socialMediaSrv.getFollowing();
     }
 
@@ -22,7 +26,6 @@ export default class FollowersComponent extends VueWrapper {
         new SocialMediaApi().followUser(id).subscribe(res => {
             console.log('follow', res);
                this.socialMediaSrv.getFollowers();
-               this.socialMediaSrv.getUsers();
                this.socialMediaSrv.getFollowing();
                this.socialMediaSrv.getFeeds();
                this.socialMediaSrv.getTimelinePosts();
@@ -34,7 +37,6 @@ export default class FollowersComponent extends VueWrapper {
         new SocialMediaApi().followUser(id).subscribe(res => {
             console.log('follow', res);
             this.socialMediaSrv.getFollowers();
-            this.socialMediaSrv.getUsers();
             this.socialMediaSrv.getFollowing();
             this.socialMediaSrv.getFeeds();
             this.socialMediaSrv.getTimelinePosts();
