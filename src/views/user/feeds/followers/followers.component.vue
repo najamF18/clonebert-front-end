@@ -5,45 +5,33 @@
             <v-card elevation="20" class="pa-3 ma-auto" width="60%" color="darkgrey" rounded="lg">
                 <v-row>
                     <v-col
-                        @click="
-                            isUsers = false;
-                            isFollowing = false;
-                            isFollowers = true;
-                        "
-                        cols="4"
+                        cols="12"
                         class="px-1 py-3 ma-auto cursor-pointer"
                         :class="isFollowers ? 'border' : 'simple'"
+                        v-if="isFollowers"
                     >
                         <div class="text-center">
                             <v-icon size="20" class="mr-1" :class="isFollowers ? 'primarypurple--text' : 'white--text'">mdi-account-heart</v-icon>
-                            <span :class="isFollowers ? 'primarypurple--text' : 'white--text'">Followers</span>
+                            <span :class="isFollowers ? 'primarypurple--text' : 'white--text'">Your Followers</span>
                         </div>
                     </v-col>
 
                     <v-col
-                        @click="
-                            isUsers = false;
-                            isFollowers = false;
-                            isFollowing = true;
-                        "
-                        cols="4"
+                        cols="12"
                         class="px-1 py-3 ma-auto cursor-pointer"
                         :class="isFollowing ? 'border' : 'simple'"
+                        v-if="isFollowing"
                     >
                         <div class="text-center">
                             <v-icon size="20" class="mr-1" :class="isFollowing ? 'primarypurple--text' : 'white--text'">mdi-account-multiple-check</v-icon>
-                            <span :class="isFollowing ? 'primarypurple--text' : 'white--text'">Following</span>
+                            <span :class="isFollowing ? 'primarypurple--text' : 'white--text'">Your Following</span>
                         </div>
                     </v-col>
                     <v-col
-                        @click="
-                            isFollowers = false;
-                            isFollowing = false;
-                            isUsers = true;
-                        "
-                        cols="4"
+                        cols="12"
                         class="px-1 py-3 ma-auto cursor-pointer"
                         :class="isUsers ? 'border' : 'simple'"
+                        v-if="isUsers"
                     >
                         <div class="text-center">
                             <v-icon size="20" class="mr-1" :class="isUsers ? 'primarypurple--text' : 'white--text'">mdi-account-group</v-icon>

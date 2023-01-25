@@ -16,6 +16,17 @@ export default class FollowersComponent extends VueWrapper {
         if(this.$route.hash =='#following'){
             this.isFollowers = false;
             this.isFollowing = true;
+            this.isUsers = false;
+        }
+        if (this.$route.hash == '#followers') {
+            this.isFollowers = true;
+            this.isFollowing = false;
+            this.isUsers = false;
+        }
+        if (this.$route.name == 'Users') {
+            this.isFollowers = false;
+            this.isFollowing = false;
+            this.isUsers = true;
         }
         this.socialMediaSrv.allUsers =[];
         this.socialMediaSrv.getFollowers();

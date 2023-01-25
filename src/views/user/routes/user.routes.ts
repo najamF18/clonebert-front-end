@@ -65,6 +65,18 @@ export const UserRoutes: Array<RouteConfig> = [
                            }
                        ]
                    },
+                   {
+                       path: 'users',
+                       name: 'Users',
+                       component: FollowersComponent,
+                       meta: {
+                           showable: true,
+                           icon: 'account-multiple',
+                           color: 'yellow',
+                           sequence: 1,
+                           title: 'Users'
+                       }
+                   },
 
                    {
                        path: 'transaction',

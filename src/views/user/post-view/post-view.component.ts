@@ -12,7 +12,7 @@ export default class PostViewComponent extends VueWrapper {
     mounted() {
         if (this.$route.params.id) {
             console.log(this.$route.params.id);
-            new SocialMediaApi().getPostById(this.$route.params.id).subscribe(res => {
+            new SocialMediaApi().getSharedPostById(this.$route.params.id).subscribe(res => {
                 console.log(res);
                 this.post = res;
                 console.log(this.post, 'post');

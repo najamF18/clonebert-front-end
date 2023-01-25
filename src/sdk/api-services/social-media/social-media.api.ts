@@ -125,6 +125,10 @@ export class SocialMediaApi extends BaseApi {
         return this.GET_Request<PostModel>(`${this.ApiUrl}/social-media/post-update-view/${id}/`);
     }
 
+    public getSharedPostById(id: string) {
+        return this.GET_Request<PostModel>(`${this.ApiUrl}/social-media/post-get-view/${id}/`);
+    }
+
     public getUserById(id: string) {
         return this.GET_Request<UserProfileModel>(`${this.ApiUrl}/social-media/user-profile-retrieve-view/${id}/`);
     }
