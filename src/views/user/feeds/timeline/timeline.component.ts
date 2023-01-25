@@ -12,4 +12,8 @@ export default class TimelineComponent extends VueWrapper {
         this.socialMediaSrv.getTimelinePosts();
         this.socialMediaSrv.getPosts();
     }
+
+    handleShowPost(id:any){
+        this.$router.push({name: 'Post View', params: {id: id}});
+    }
 }

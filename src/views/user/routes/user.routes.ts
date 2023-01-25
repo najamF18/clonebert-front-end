@@ -19,6 +19,7 @@ import UserTimelineViewComponent from '../user-timeline-view/user-time-line.comp
 import NotificationViewComponent from '../notification-view/notification-view.component';
 import UserDashboardComponent from '../user-dashboard/user-dashboard.component';
 import FollowersComponent from '../feeds/followers/followers.component';
+import PostViewComponent from '../post-view/post-view.component';
 
 export const UserRoutes: Array<RouteConfig> = [
            {
@@ -93,6 +94,18 @@ export const UserRoutes: Array<RouteConfig> = [
                        path: 'notification/:id?',
                        name: 'Notification View',
                        component: NotificationViewComponent,
+                       meta: {
+                           showable: false,
+                           icon: 'table-large',
+                           color: 'green',
+                           sequence: 1,
+                           title: 'Notification View'
+                       }
+                   },
+                   {
+                       path: 'post/:id?',
+                       name: 'Post View',
+                       component: PostViewComponent,
                        meta: {
                            showable: false,
                            icon: 'table-large',

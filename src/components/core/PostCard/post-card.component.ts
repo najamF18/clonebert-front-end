@@ -69,4 +69,9 @@ export default class PostCardComponent extends VueWrapper {
     //         }
     //     )
     // }
+
+    handlePost(id:any){
+        this.$emit('showPost',id);
+        console.log("showPost",id);
+    }
 }
