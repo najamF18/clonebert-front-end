@@ -21,6 +21,7 @@
                      v-on="on"
                      @click="on"
                      v-bind="attrs"
+                      clearable
                      append-icon="mdi-magnify"
                      outlined
                      dense
