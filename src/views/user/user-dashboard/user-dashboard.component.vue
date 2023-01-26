@@ -9,7 +9,7 @@
             </v-avatar>
             
         </div>
-        <div class="py-5 px-10">
+        <div class="py-5" :class="[{'px-2':$vuetify.breakpoint.smAndDown},{'px-10':$vuetify.breakpoint.mdAndUp}]">
                     <back-page></back-page>
         <v-row align-content="center">
             <v-col cols="12" md="3" align-self="center">
@@ -36,7 +36,7 @@
                 </base-card>
 
                 <base-card class="pa-2 mt-3 darkgrey elevation-4 rounded-lg">
-                    <v-tabs v-model="tabs" fixed-tabs vertical color="darkgrey">
+                    <v-tabs v-model="tabs" fixed-tabs  slider-size="3" :vertical="$vuetify.breakpoint.mdAndUp"  color="darkgrey">
                         <v-tabs-slider color="primarypurple"></v-tabs-slider>
                         <v-tab href="#mobile-tabs-5-1" class="white--text darkgrey">
                             <span>Transactions</span>

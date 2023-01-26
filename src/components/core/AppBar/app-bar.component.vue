@@ -1,7 +1,8 @@
 <template>
     <div>
         <v-app-bar color="darkgrey" app clipped dark>
-            <v-app-bar-nav-icon @click="CoreSrv.Drawer.Mini = !CoreSrv.Drawer.Mini" color="muted"></v-app-bar-nav-icon>
+            <v-app-bar-nav-icon v-if="CoreSrv.Drawer.MobileScreen  == true" @click="CoreSrv.Drawer.Mode = !CoreSrv.Drawer.Mode" color="muted"></v-app-bar-nav-icon>
+            <v-app-bar-nav-icon v-if="CoreSrv.Drawer.MobileScreen  == false" @click="CoreSrv.Drawer.Mini = !CoreSrv.Drawer.Mini" color="muted"></v-app-bar-nav-icon>
            <!-- <v-text-field class="white--text ml-2" placeholde
             r="Search" outlined dense hide-details /> -->
              <v-menu

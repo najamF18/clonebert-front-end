@@ -9,4 +9,18 @@ import DrawerComponent from '../drawer/drawer.component';
         AppBarComponent
     }
 })
-export default class UserComponent extends VueWrapper {}
+export default class UserComponent extends VueWrapper {
+    created() {
+        this.MobileSize();
+    }
+
+    public MobileSize() {
+        if (window.innerWidth <= 991) {
+            this.CoreSrv.Drawer.MobileScreen = true;
+            this.CoreSrv.block = true;
+        } else if (window.innerWidth >= 991) {
+            this.CoreSrv.Drawer.MobileScreen = false;
+            this.CoreSrv.block = false;
+        }
+    }
+}

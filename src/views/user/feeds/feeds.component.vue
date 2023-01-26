@@ -2,7 +2,7 @@
     <v-container>
     <v-row class="pa-5">
         <v-col cols="12" class="text-end">
-            <v-card elevation="20" class="pa-3 ma-auto" max-width="600" color="darkgrey" rounded="lg">
+            <v-card elevation="20" class="pa-3 ma-auto"  max-width="600" color="darkgrey" rounded="lg">
                 <v-row>
                     <v-col v-for="(item,idx) in links" :key="idx" @click="ChangeRoute(item.link)" cols="6" class="pa-3 ma-auto cursor-pointer " :class="
                             !!$route.matched.find(x => x.name === item.link)? 'border': 'simple'

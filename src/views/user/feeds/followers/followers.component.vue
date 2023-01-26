@@ -2,7 +2,7 @@
     <v-container>
     <v-row>
         <v-col cols="12" class="text-end">
-            <v-card elevation="20" class="pa-3 ma-auto" width="60%" color="darkgrey" rounded="lg">
+            <v-card elevation="20" class="pa-3 ma-auto" width="60%"   color="darkgrey" rounded="lg">
                 <v-row>
                     <v-col
                         cols="12"
