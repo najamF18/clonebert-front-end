@@ -102,6 +102,9 @@ export class SocialMediaApi extends BaseApi {
     public blockUser(id: string) {
         return this.GET_Request<any>(`${this.ApiUrl}/social-media/block-user-view/${id}/`);
     }
+    public removeFollower(id: string) {
+        return this.GET_Request<any>(`${this.ApiUrl}/social-media/remove-follower-view/${id}/`);
+    }
 
     public searchUser(username: string) {
         const data = {

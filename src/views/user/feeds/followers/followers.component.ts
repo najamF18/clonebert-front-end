@@ -11,9 +11,9 @@ export default class FollowersComponent extends VueWrapper {
     public isUsers = false;
     public isFollowing = false;
     public isLoading = false;
- 
+
     mounted() {
-        if(this.$route.hash =='#following'){
+        if (this.$route.hash == '#following') {
             this.isFollowers = false;
             this.isFollowing = true;
             this.isUsers = false;
@@ -28,7 +28,7 @@ export default class FollowersComponent extends VueWrapper {
             this.isFollowing = false;
             this.isUsers = true;
         }
-        this.socialMediaSrv.allUsers =[];
+        this.socialMediaSrv.allUsers = [];
         this.socialMediaSrv.getFollowers();
         this.socialMediaSrv.getFollowing();
     }
@@ -36,17 +36,25 @@ export default class FollowersComponent extends VueWrapper {
     UnFollowUser(id: string) {
         new SocialMediaApi().followUser(id).subscribe(res => {
             console.log('follow', res);
-               this.socialMediaSrv.getFollowers();
-               this.socialMediaSrv.getFollowing();
-               this.socialMediaSrv.getFeeds();
-               this.socialMediaSrv.getTimelinePosts();
-            
+            this.socialMediaSrv.getFollowers();
+            this.socialMediaSrv.getFollowing();
+            this.socialMediaSrv.getFeeds();
+            this.socialMediaSrv.getTimelinePosts();
         });
     }
 
     FollowUser(id: string) {
         new SocialMediaApi().followUser(id).subscribe(res => {
             console.log('follow', res);
+            this.socialMediaSrv.getFollowers();
+            this.socialMediaSrv.getFollowing();
+            this.socialMediaSrv.getFeeds();
+            this.socialMediaSrv.getTimelinePosts();
+        });
+    }
+
+    RemoveFollower(id: string) {
+        new SocialMediaApi().removeFollower(id).subscribe(res => {
             this.socialMediaSrv.getFollowers();
             this.socialMediaSrv.getFollowing();
             this.socialMediaSrv.getFeeds();
@@ -62,6 +70,7 @@ export default class FollowersComponent extends VueWrapper {
                 res => {
                     this.AlertSrv.show('success', 'User Blocked Successfully');
                     this.socialMediaSrv.getFollowers();
+                    this.socialMediaSrv.getFollowing();
                     this.socialMediaSrv.getBlockUser();
                     this.socialMediaSrv.getFeeds();
                     this.socialMediaSrv.getTimelinePosts();
@@ -74,6 +83,4 @@ export default class FollowersComponent extends VueWrapper {
                 this.LoaderSrv.hideFullScreenLoader();
             });
     }
-
-  
 }

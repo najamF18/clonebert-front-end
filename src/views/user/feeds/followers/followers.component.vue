@@ -12,7 +12,7 @@
                     >
                         <div class="text-center">
                             <v-icon size="20" class="mr-1" :class="isFollowers ? 'primarypurple--text' : 'white--text'">mdi-account-heart</v-icon>
-                            <span :class="isFollowers ? 'primarypurple--text' : 'white--text'">Your Followers</span>
+                            <span :class="isFollowers ? 'primarypurple--text' : 'white--text'">Followers</span>
                         </div>
                     </v-col>
 
@@ -24,7 +24,7 @@
                     >
                         <div class="text-center">
                             <v-icon size="20" class="mr-1" :class="isFollowing ? 'primarypurple--text' : 'white--text'">mdi-account-multiple-check</v-icon>
-                            <span :class="isFollowing ? 'primarypurple--text' : 'white--text'">Your Following</span>
+                            <span :class="isFollowing ? 'primarypurple--text' : 'white--text'">Following</span>
                         </div>
                     </v-col>
                     <v-col
@@ -56,11 +56,21 @@
 
                                 <v-list-item-content>
                                     <v-list-item-title class="white--text text-start">{{ item.user.username }}</v-list-item-title>
-                                    <!-- <v-list-item-subtitle class="grey--text text-start">4 hours ago</v-list-item-subtitle> -->
+                                   
                                 </v-list-item-content>
                             </div>
 
                             <v-row align="center" justify="end">
+                                <div class="d-flex align-center pa-1" @click="RemoveFollower(item.id)">
+                                    <v-tooltip top>
+                                        <template v-slot:activator="{on, attrs}">
+                                            <v-btn class="white--text" icon v-on="on" v-bind="attrs">
+                                                <v-icon>mdi-account-minus</v-icon>
+                                            </v-btn>
+                                        </template>
+                                        <span>Remove {{ item.user.username }}</span>
+                                    </v-tooltip>
+                                </div>
                                 <div class="d-flex align-center pa-1" @click="UnBlockUser(item.id)">
                                     <v-tooltip top>
                                         <template v-slot:activator="{on, attrs}">
@@ -71,23 +81,7 @@
                                         <span>Block {{ item.user.username }}</span>
                                     </v-tooltip>
                                 </div>
-                                <!-- <v-menu dark min-width="180"  bottom left offset-y transition="slide-y-reverse-transition">
-                <template #activator="{on, attrs}">
-                    <div class="d-flex align-center pa-1" v-bind="attrs" v-on="on">
-                        <v-btn class="white--text" icon>
-                        <v-icon>mdi-dots-horizontal</v-icon>
-                    </v-btn>
-                    </div>
-                </template>
-                <v-list color="darkgrey" dense dark nav>
-                    <v-list-item  link  @click="UnFollowUser(item.id)">
-                        <v-list-item-icon class="mr-2">
-                            <base-icon color="grey" icon-name="account-remove" />
-                        </v-list-item-icon>
-                        <v-list-item-title class="cursor-pointer white--text">Unfollow {{ item.user.username }}</v-list-item-title>
-                    </v-list-item>
-                </v-list>
-            </v-menu> -->
+                               
                             </v-row>
                         </v-list-item>
                     </v-list>
@@ -155,6 +149,7 @@
                                         <span>Unfollow {{ item.user.username }}</span>
                                     </v-tooltip>
                                 </div>
+                                  
 
                                 <!-- <v-icon class="mr-1">
             mdi-share-variant
@@ -201,11 +196,17 @@
                                     </v-tooltip>
                                     
                                 </div>
+                                 <div class="d-flex align-center pa-1" @click="UnBlockUser(item.id)">
+                                    <v-tooltip top>
+                                        <template v-slot:activator="{on, attrs}">
+                                            <v-btn class="red--text" icon v-on="on" v-bind="attrs">
+                                                <v-icon>mdi-account-off</v-icon>
+                                            </v-btn>
+                                        </template>
+                                        <span>Block {{ item.user.username }}</span>
+                                    </v-tooltip>
+                                </div>
 
-                                <!-- <v-icon class="mr-1">
-            mdi-share-variant
-          </v-icon>
-          <span class="subheading">45</span> -->
                             </v-row>
                         </v-list-item>
                     </v-list>

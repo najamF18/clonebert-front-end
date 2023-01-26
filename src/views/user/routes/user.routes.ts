@@ -65,18 +65,6 @@ export const UserRoutes: Array<RouteConfig> = [
                            }
                        ]
                    },
-                   {
-                       path: 'users',
-                       name: 'Users',
-                       component: FollowersComponent,
-                       meta: {
-                           showable: true,
-                           icon: 'account-multiple',
-                           color: 'yellow',
-                           sequence: 1,
-                           title: 'Users'
-                       }
-                   },
 
                    {
                        path: 'transaction',
@@ -138,18 +126,18 @@ export const UserRoutes: Array<RouteConfig> = [
                            title: 'Notification View'
                        }
                    },
-                   {
-                       path: 'user-profile/:id?',
-                       name: 'User Profile View',
-                       component: UserDashboardComponent,
-                       meta: {
-                           showable: false,
-                           icon: 'table-large',
-                           color: 'green',
-                           sequence: 1,
-                           title: 'User Profile View'
-                       }
-                   },
+                //    {
+                //        path: 'user-profile/:id?',
+                //        name: 'User Profile View',
+                //        component: UserDashboardComponent,
+                //        meta: {
+                //            showable: false,
+                //            icon: 'table-large',
+                //            color: 'green',
+                //            sequence: 1,
+                //            title: 'User Profile View'
+                //        }
+                //    },
                    {
                        path: 'profile',
                        name: 'Profile',
@@ -353,5 +341,17 @@ export const UserRoutes: Array<RouteConfig> = [
                        component: AnalyticsComponent
                    }
                ]
+           },
+           {
+               path: '/user-profile/:id?',
+               name: 'User Profile View',
+               component: UserDashboardComponent,
+               meta: {
+                   showable: false,
+                   icon: 'table-large',
+                   color: 'green',
+                   sequence: 1,
+                   title: 'User Profile View'
+               }
            }
        ];

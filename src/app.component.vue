@@ -1,5 +1,5 @@
 <template>
-    <v-app class="height-100x">
+    <v-app class="height-100x " style="background-color:black">
         <confirm-component />
         <router-view />
         <v-fade-transition>

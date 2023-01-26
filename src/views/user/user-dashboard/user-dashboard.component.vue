@@ -1,6 +1,16 @@
 <template>
-    <v-container class="black">
-        <back-page></back-page>
+    <!-- <v-container class="black"> -->
+        <v-container fluid class="py-0 px-0 height-100vh" style="position: relative;">
+            <v-main class="height-100x overflow-auto">
+                <div class="black white--text lighten-5 " style="minHeight:100vh">
+                     <div class="d-flex white darkgrey">
+            <v-avatar  tile min-width="55" width="200" @click="$router.push({name:'Dashboard'})" height="70">
+                <v-img height="40" contain class="transparent cursor-pointer" width="50" src="/images/logo.svg" />
+            </v-avatar>
+            
+        </div>
+        <div class="py-5 px-10">
+                    <back-page></back-page>
         <v-row align-content="center">
             <v-col cols="12" md="3" align-self="center">
                 <base-card class="pa-10 mt-3 darkgrey elevation-4 rounded-lg">
@@ -133,6 +143,10 @@
                 </base-card>
             </v-col>
         </v-row>
+        </div>
+                </div>
+            </v-main>
+        
     </v-container>
 </template>
 
