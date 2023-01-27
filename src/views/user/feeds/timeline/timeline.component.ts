@@ -10,7 +10,7 @@ export default class TimelineComponent extends VueWrapper {
 
     mounted(){
         this.socialMediaSrv.getTimelinePosts();
-        this.socialMediaSrv.getPosts();
+        // this.socialMediaSrv.getPosts();
     }
 
     handleShowPost(id:any){

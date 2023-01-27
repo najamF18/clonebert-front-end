@@ -27,7 +27,7 @@
             dense
             solo
             dark
-            rows="3"
+            :rows="$attrs.rows?$attrs.rows:3"
             class="height-100x"
         >
             <template v-slot:label v-if="!!$attrs.label">

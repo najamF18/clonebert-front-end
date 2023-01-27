@@ -1,6 +1,6 @@
 import {ServiceClass} from '@/decorators';
 import {SocialMediaApi} from '@/sdk/api-services/social-media/social-media.api';
-import {NotificationModel, PostModel, SignupModel, UserProfileModel} from '@/sdk/models';
+import {NotificationModel, PostModel, SignupModel, TimelinePostModel, UserProfileModel} from '@/sdk/models';
 import {FollowerModel, FollowingModel} from '@/sdk/models/social-media/follower-model';
 import {BehaviorSubject} from 'rxjs';
 import {LoaderService} from '../shared/loader.service';
@@ -9,34 +9,36 @@ import {LoaderService} from '../shared/loader.service';
 export class SocialMediaService {
     public socialMediaApi = new SocialMediaApi();
     public LoadingSrv = new LoaderService();
-    public posts = new BehaviorSubject(Array<PostModel>());
-    public feeds = new BehaviorSubject(Array<PostModel>());
+    // public posts = new Array<TimelinePostModel>();
+    // public tempPosts = new Array<TimelinePostModel>();
+    public tempFeeds = new Array<TimelinePostModel>();
+    public feeds = new Array<TimelinePostModel>();
     public myFollowers = new BehaviorSubject(new FollowerModel());
     public myFollowing = new BehaviorSubject(new FollowingModel());
     public allUsers = new Array<UserProfileModel>();
     public notifications = new BehaviorSubject(Array<NotificationModel>());
     public totalNotification = new BehaviorSubject(0);
-    public timelinePosts = new Array<PostModel>();
-    public tempTimelinePosts = new Array<PostModel>();
+    public timelinePosts = new Array<TimelinePostModel>();
+    public tempTimelinePosts = new Array<TimelinePostModel>();
     public blockedUser: Array<UserProfileModel> = [];
     public username: string | null = null;
     public text: string | null = null;
 
-    getPosts() {
-        this.LoadingSrv.showFullScreenLoader('Loading...');
-        this.socialMediaApi
-            .getPosts()
-            .subscribe(
-                res => {
-                    console.log(res, 'posts');
-                    this.posts.next(res);
-                },
-                err => {}
-            )
-            .add(() => {
-                this.LoadingSrv.hideFullScreenLoader();
-            });
-    }
+    // getPosts() {
+    //     this.LoadingSrv.showFullScreenLoader('Loading...');
+    //     this.socialMediaApi
+    //         .getPosts()
+    //         .subscribe(
+    //             res => {
+    //                 console.log(res, 'posts');
+    //                 this.posts.next(res);
+    //             },
+    //             err => {}
+    //         )
+    //         .add(() => {
+    //             this.LoadingSrv.hideFullScreenLoader();
+    //         });
+    // }
 
     getFollowers() {
         this.LoadingSrv.showFullScreenLoader('Loading...');
@@ -134,7 +136,9 @@ export class SocialMediaService {
             .subscribe(
                 res => {
                     console.log(res);
-                    this.feeds.next(res);
+                     this.tempFeeds = res.posts;
+                     this.feeds = this.tempFeeds.concat(res.posts_shared);
+                     this.feeds.sort((a, b) => Number(new Date(a.timestamp!)) - Number(new Date(b.timestamp!))).reverse();
                 },
                 err => {}
             )
@@ -147,18 +151,20 @@ export class SocialMediaService {
         this.socialMediaApi.getFeed().subscribe(
             res => {
                 console.log(res);
-                this.feeds.next(res);
+                 this.tempFeeds = res.posts;
+                 this.feeds = this.tempFeeds.concat(res.posts_shared);
+                 this.feeds.sort((a, b) => Number(new Date(a.timestamp!)) - Number(new Date(b.timestamp!))).reverse();
             },
             err => {}
         );
     }
 
-    getPostss() {
-        this.socialMediaApi.getPosts().subscribe(res => {
-            console.log(res, 'posts');
-            this.posts.next(res);
-        });
-    }
+    // getPostss() {
+    //     this.socialMediaApi.getPosts().subscribe(res => {
+    //         console.log(res, 'posts');
+    //         this.posts.next(res);
+    //     });
+    // }
 
     getBlockUser() {
         new SocialMediaApi().getBlockUsers().subscribe(res => {
@@ -183,9 +189,9 @@ export class SocialMediaService {
         new SocialMediaApi()
             .searchPost(this.text!)
             .subscribe(res => {
-                this.feeds.next(res.data.posts);
+                this.feeds=res.data.posts;
                 this.timelinePosts = res.data.posts;
-                console.log(res, 'searchPosts');
+                console.log(res, 'searchPosts',this.timelinePosts,"timeline");
             })
             .add(() => this.LoadingSrv.hideFullScreenLoader());
     }

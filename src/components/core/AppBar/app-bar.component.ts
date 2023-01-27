@@ -42,6 +42,7 @@ export default class AppBarComponent extends VueWrapper {
                 res => {
                     this.AlertSrv.show('success', 'User Blocked Successfully');
                     this.socialMediaSrv.getFollowers();
+                    this.socialMediaSrv.searchUsers()
                     this.socialMediaSrv.getFollowing();
                     this.socialMediaSrv.getBlockUser();
                     this.socialMediaSrv.getFeeds();

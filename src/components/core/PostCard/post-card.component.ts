@@ -16,6 +16,8 @@ export default class PostCardComponent extends VueWrapper {
     public confirmModel = 'confirm-model';
     public val = 0;
     public postLikes = 0;
+    public shareModel = 'share-model';
+    public description = '';
     public socialMediaSrv = new SocialMediaService();
     @Prop()
     protected readonly likes!: Array<LikeModel>;
@@ -30,23 +32,24 @@ export default class PostCardComponent extends VueWrapper {
     }
 
     SharePost(postId: string) {
-        this.ConfirmSrv.open('Share Post', 'You want to share this post').then(res => {
-            if (res) {
-                this.LoaderSrv.showFullScreenLoader('Sharing Post...');
-                this.SocialMediaApi.SharePost(postId)
-                    .subscribe(
-                        res => {
-                            console.log(res);
-                            this.AlertSrv.show('success', 'Post Share Successfully');
-                        },
-                        err => {}
-                    )
-                    .add(() => {
-                        this.LoaderSrv.hideFullScreenLoader();
-                    });
-            }
-        });
+         this.LoaderSrv.showFullScreenLoader('Sharing Post...');
+         this.SocialMediaApi.SharePost(postId,this.description)
+             .subscribe(
+                 res => {
+                     console.log(res);
+                     this.CoreSrv.CloseModal(`model-${postId}`);
+                     this.description = '';
+                     this.AlertSrv.show('success', 'Post Share Successfully');
+                     this.socialMediaSrv.getFeeds();
+                     this.socialMediaSrv.getTimelinePosts();
+                 },
+                 err => {}
+             )
+             .add(() => {
+                 this.LoaderSrv.hideFullScreenLoader();
+             });
     }
+
     LikePost(id: string) {
         this.IsLikedByMe = !this.IsLikedByMe;
         if (this.IsLikedByMe) {
@@ -58,7 +61,7 @@ export default class PostCardComponent extends VueWrapper {
             console.log('like res', res);
             this.socialMediaSrv.getFeedss();
             this.socialMediaSrv.getTimelinePostss();
-            this.socialMediaSrv.getPostss();
+            // this.socialMediaSrv.getPostss();
         });
     }
 
@@ -70,8 +73,8 @@ export default class PostCardComponent extends VueWrapper {
     //     )
     // }
 
-    handlePost(id:any){
-        this.$emit('showPost',id);
-        console.log("showPost",id);
-    }
+    // handlePost(id:any){
+    //     this.$emit('showPost',id);
+    //     console.log("showPost",id);
+    // }
 }

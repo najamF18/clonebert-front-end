@@ -16,6 +16,37 @@ export class PostModel {
            }
        }
 
+export class TimelinePostModel{
+    public id: string | null = null;
+    public post_comments: Array<CommentModel> | null = null;
+    public post_likes: Array<LikeModel> | null = null;
+    public post_shares: Array<ShareModel> | null = null;
+    public creator: UserProfileModel | null = null;
+    public media_file: string | null = null;
+    public title: string | null = null;
+    public description: string | null = null;
+    public timestamp: string | null = null;
+    public post_id: SharedPostModel | null = null;
+    public shared_by: UserProfileModel | null = null;
+
+    constructor(data?: Partial<TimelinePostModel>) {
+        Object.assign(this, data);
+    }
+}
+
+export class SharedPostModel {
+    public id: string | null = null;
+    public creator: UserProfileModel | null = null;
+    public media_file: string | null = null;
+    public description: string | null = null;
+    public timestamp: string | null = null;
+
+    constructor(data?: Partial<TimelinePostModel>) {
+        Object.assign(this, data);
+    }
+}
+
+
 
 export class CommentModel {
            public id: string | null = null;

@@ -72,8 +72,11 @@ export class SocialMediaApi extends BaseApi {
         return this.POST_Request<any>(`${this.ApiUrl}/social-media/post-view/`, data);
     }
 
-    public SharePost(postId: string) {
-        return this.GET_Request<any>(`${this.ApiUrl}/social-media/share-post-view/${postId}/`);
+    public SharePost(postId: string,description: string) {
+        const data = {
+            description: description,
+        }
+        return this.POST_Request<any>(`${this.ApiUrl}/social-media/share-post-view/${postId}/`,data);
     }
 
     public timelinePosts(postId: string) {
@@ -117,7 +120,7 @@ export class SocialMediaApi extends BaseApi {
         const data = {
             text: text
         };
-        return this.POST_Request<Array<UserProfileModel>>(`${this.ApiUrl}/social-media/search-post/`, data);
+        return this.POST_Request<any>(`${this.ApiUrl}/social-media/search-post/`, data);
     }
 
     public getUserDashboard(user_id: string) {

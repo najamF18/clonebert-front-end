@@ -42,6 +42,7 @@ import TradingView from './widgets/trading-view/trading-view.component';
 import BaseIncreaseDecreaseComponent from './shared/base-increase-decrese/base-increase-decrease.component';
 import PostCardComponent from './core/PostCard/post-card.component';
 import BackPageComponent from './shared/back-page/back-page.component';
+import SharePostCardComponent from './core/SharePostCard/share-post-card.component';
 
 // Vuetify Components
 Vue.component('base-text-field', BaseTextField);
@@ -73,6 +74,7 @@ Vue.component('save-wrapper-component', SaveWrapperComponent);
 Vue.component('pagination-component', PaginationComponent);
 Vue.component('base-breadcrumbs', BaseBreadcrumbsComponent);
 Vue.component('post-card',PostCardComponent);
+Vue.component('share-post-card',SharePostCardComponent);
 Vue.component('full-page-dialog', FullPageDialogComponent);
 Vue.component('base-title-box', BaseTitleBoxComponent);
 Vue.component('drag-drop-upload-component', DragDropUploadComponent);

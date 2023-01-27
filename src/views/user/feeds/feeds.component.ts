@@ -3,7 +3,7 @@ import DrawerComponent from '@/views/drawer/drawer.component';
 import {Component} from 'vue-property-decorator';
 import { SocialMediaApi } from '@/sdk/api-services/social-media/social-media.api';
 import FollowersComponent from './followers/followers.component';
-import { PostModel, SocialMediaService } from '@/sdk';
+import { PostModel, SocialMediaService, TimelinePostModel } from '@/sdk';
 
 
 @Component({
@@ -34,7 +34,7 @@ export default class FeedComponent extends VueWrapper {
             .subscribe(
                 res => {
                     this.AlertSrv.show('success', 'post created successfully');
-                    this.SocialMediaSrv.timelinePosts = new Array<PostModel>();
+                    this.SocialMediaSrv.timelinePosts = new Array<TimelinePostModel>();
                     this.SocialMediaSrv.getTimelinePosts();
                     this.CoreSrv.CloseModal(this.model);
                     this.description = null;

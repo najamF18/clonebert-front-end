@@ -57,20 +57,20 @@
                                     <v-tooltip top>
                                         <template v-slot:activator="{on, attrs}">
                                             <v-btn class="white--text" icon @click="FollowUser(item.id)" v-on="on" v-bind="attrs">
-                                                <v-icon>mdi-account-heart</v-icon>
+                                                <v-icon>mdi-account-plus</v-icon>
                                             </v-btn>
                                         </template>
-                                        <span>Follow {{ item.user.username }}</span>
+                                        <span>follow {{ item.user.username }}</span>
                                     </v-tooltip>
                                 </div>
                                 <div class="d-flex align-center pa-1" v-else>
                                     <v-tooltip top>
                                         <template v-slot:activator="{on, attrs}">
                                             <v-btn class="white--text" icon @click="UnFollowUser(item.id)" v-on="on" v-bind="attrs">
-                                                <v-icon>mdi-account-remove</v-icon>
+                                                <v-icon>mdi-account-minus</v-icon>
                                             </v-btn>
                                         </template>
-                                        <span>Unfollow {{ item.user.username }}</span>
+                                        <span>unfollow {{ item.user.username }}</span>
                                     </v-tooltip>
                                 </div>
 
@@ -81,7 +81,7 @@
                                                 <v-icon>mdi-account-off</v-icon>
                                             </v-btn>
                                         </template>
-                                        <span>Block {{ item.user.username }}</span>
+                                        <span>block {{ item.user.username }}</span>
                                     </v-tooltip>
                                 </div>
 

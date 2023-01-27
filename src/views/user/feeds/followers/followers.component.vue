@@ -68,7 +68,7 @@
                                                 <v-icon>mdi-account-minus</v-icon>
                                             </v-btn>
                                         </template>
-                                        <span>Remove {{ item.user.username }}</span>
+                                        <span>unfollow {{ item.user.username }}</span>
                                     </v-tooltip>
                                 </div>
                                 <div class="d-flex align-center pa-1" @click="UnBlockUser(item.id)">
@@ -78,7 +78,7 @@
                                                 <v-icon>mdi-account-off</v-icon>
                                             </v-btn>
                                         </template>
-                                        <span>Block {{ item.user.username }}</span>
+                                        <span>block {{ item.user.username }}</span>
                                     </v-tooltip>
                                 </div>
                                
@@ -93,7 +93,7 @@
                 </div>
             </div>
 
-            <div v-if="isUsers">
+            <!-- <div v-if="isUsers">
                 <div class="d-flex justify-space-between py-2 white--text">
                     <h3> All Users</h3>
                 </div>
@@ -117,7 +117,7 @@
 
                                 <v-list-item-content>
                                     <v-list-item-title class="white--text text-start">{{ item.user.username }}</v-list-item-title>
-                                    <!-- <v-list-item-subtitle class="grey--text text-start">4 hours ago</v-list-item-subtitle> -->
+                                   
                                 </v-list-item-content>
                             </div>
 
@@ -136,7 +136,7 @@
                                                 <v-icon>mdi-account-heart</v-icon>
                                             </v-btn>
                                         </template>
-                                        <span>Follow {{ item.user.username }}</span>
+                                        <span>follow {{ item.user.username }}</span>
                                     </v-tooltip>
                                 </div>
                                 <div class="d-flex align-center pa-1" v-else>
@@ -151,10 +151,6 @@
                                 </div>
                                   
 
-                                <!-- <v-icon class="mr-1">
-            mdi-share-variant
-          </v-icon>
-          <span class="subheading">45</span> -->
                             </v-row>
                         </v-list-item>
                     </v-list>
@@ -164,7 +160,7 @@
                         <h4 class="font-weight-light white--text">No Users</h4>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div v-if="isFollowing">
                 <div v-if="socialMediaSrv.myFollowing.value.follows.length > 0">
                     <div class="d-flex justify-space-between py-2 white--text">
@@ -189,10 +185,10 @@
                                       <v-tooltip top>
                                         <template v-slot:activator="{on, attrs}">
                                             <v-btn :ref="item.id" class="white--text" icon @click="UnFollowUser(item.id)" v-on="on" v-bind="attrs">
-                                        <v-icon>mdi-account-remove</v-icon>
+                                        <v-icon>mdi-account-minus</v-icon>
                                     </v-btn>
                                         </template>
-                                        <span>Unfollow {{ item.user.username }}</span>
+                                        <span>unfollow {{ item.user.username }}</span>
                                     </v-tooltip>
                                     
                                 </div>
@@ -203,7 +199,7 @@
                                                 <v-icon>mdi-account-off</v-icon>
                                             </v-btn>
                                         </template>
-                                        <span>Block {{ item.user.username }}</span>
+                                        <span>block {{ item.user.username }}</span>
                                     </v-tooltip>
                                 </div>
 
