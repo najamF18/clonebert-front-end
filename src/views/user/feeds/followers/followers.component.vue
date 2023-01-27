@@ -68,7 +68,7 @@
                                                 <v-icon>mdi-account-minus</v-icon>
                                             </v-btn>
                                         </template>
-                                        <span>unfollow {{ item.user.username }}</span>
+                                        <span>unfollow</span>
                                     </v-tooltip>
                                 </div>
                                 <div class="d-flex align-center pa-1" @click="UnBlockUser(item.id)">
@@ -78,7 +78,7 @@
                                                 <v-icon>mdi-account-off</v-icon>
                                             </v-btn>
                                         </template>
-                                        <span>block {{ item.user.username }}</span>
+                                        <span>block</span>
                                     </v-tooltip>
                                 </div>
                                
@@ -93,74 +93,7 @@
                 </div>
             </div>
 
-            <!-- <div v-if="isUsers">
-                <div class="d-flex justify-space-between py-2 white--text">
-                    <h3> All Users</h3>
-                </div>
-                <v-divider dark class=""></v-divider>
-                <base-text-field
-                    placeholder="Search"
-                    :value.sync="socialMediaSrv.username"
-                    hide-details
-                    @input="socialMediaSrv.Search()"
-                    @keypress.enter="socialMediaSrv.searchUsers()"
-                    append-icon="mdi-magnify"
-                    outlined
-                ></base-text-field>
-                <div v-if="socialMediaSrv.allUsers.length > 0">
-                    <v-list color="darkgrey " class="my-2" rounded="lg">
-                        <v-list-item class="grow card" v-for="item in socialMediaSrv.allUsers" :key="item.id">
-                            <div class="d-flex cursor-pointer flex-grow-1" @click="$router.push({name: 'User Profile View', params: {id: item.id}})">
-                                <v-list-item-avatar size="60">
-                                    <img :src="item.profile_pic ? item.profile_pic : 'https://cdn.vuetifyjs.com/images/john.jpg'" alt="John" />
-                                </v-list-item-avatar>
-
-                                <v-list-item-content>
-                                    <v-list-item-title class="white--text text-start">{{ item.user.username }}</v-list-item-title>
-                                   
-                                </v-list-item-content>
-                            </div>
-
-                            <v-row align="center" justify="end">
-                                <div
-                                    class="d-flex align-center pa-1"
-                                    v-if="
-                                        !socialMediaSrv.myFollowing.value.follows.find(data => {
-                                            return data.user.id === item.user.id;
-                                        })
-                                    "
-                                >
-                                    <v-tooltip top>
-                                        <template v-slot:activator="{on, attrs}">
-                                            <v-btn class="white--text" icon @click="FollowUser(item.id)" v-on="on" v-bind="attrs">
-                                                <v-icon>mdi-account-heart</v-icon>
-                                            </v-btn>
-                                        </template>
-                                        <span>follow {{ item.user.username }}</span>
-                                    </v-tooltip>
-                                </div>
-                                <div class="d-flex align-center pa-1" v-else>
-                                    <v-tooltip top>
-                                        <template v-slot:activator="{on, attrs}">
-                                            <v-btn class="white--text" icon @click="UnFollowUser(item.id)" v-on="on" v-bind="attrs">
-                                                <v-icon>mdi-account-remove</v-icon>
-                                            </v-btn>
-                                        </template>
-                                        <span>Unfollow {{ item.user.username }}</span>
-                                    </v-tooltip>
-                                </div>
-                                  
-
-                            </v-row>
-                        </v-list-item>
-                    </v-list>
-                </div>
-                <div v-else>
-                    <div class="d-flex justify-center py-2">
-                        <h4 class="font-weight-light white--text">No Users</h4>
-                    </div>
-                </div>
-            </div> -->
+           
             <div v-if="isFollowing">
                 <div v-if="socialMediaSrv.myFollowing.value.follows.length > 0">
                     <div class="d-flex justify-space-between py-2 white--text">
@@ -188,7 +121,7 @@
                                         <v-icon>mdi-account-minus</v-icon>
                                     </v-btn>
                                         </template>
-                                        <span>unfollow {{ item.user.username }}</span>
+                                        <span>unfollow </span>
                                     </v-tooltip>
                                     
                                 </div>
@@ -199,7 +132,7 @@
                                                 <v-icon>mdi-account-off</v-icon>
                                             </v-btn>
                                         </template>
-                                        <span>block {{ item.user.username }}</span>
+                                        <span>block </span>
                                     </v-tooltip>
                                 </div>
 

@@ -60,7 +60,7 @@
                                                 <v-icon>mdi-account-plus</v-icon>
                                             </v-btn>
                                         </template>
-                                        <span>follow {{ item.user.username }}</span>
+                                        <span>follow </span>
                                     </v-tooltip>
                                 </div>
                                 <div class="d-flex align-center pa-1" v-else>
@@ -70,7 +70,7 @@
                                                 <v-icon>mdi-account-minus</v-icon>
                                             </v-btn>
                                         </template>
-                                        <span>unfollow {{ item.user.username }}</span>
+                                        <span>unfollow </span>
                                     </v-tooltip>
                                 </div>
 
@@ -81,7 +81,7 @@
                                                 <v-icon>mdi-account-off</v-icon>
                                             </v-btn>
                                         </template>
-                                        <span>block {{ item.user.username }}</span>
+                                        <span>block </span>
                                     </v-tooltip>
                                 </div>
 
