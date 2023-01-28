@@ -184,7 +184,13 @@
             </base-card>
 
             
-            <div v-if="openLink.feeds" class="pa-5  black  elevation-4 rounded-lg">
+            <div v-if="openLink.feeds">
+                <div v-if="socialMediaSrv.userTimelineError">
+                    <base-card class="pa-5 mt-3 darkgrey elevation-4 rounded-lg">
+                     <v-alert dense outlined type="error" color="error"> You need to follow {{ user.user.username }} to see trading data </v-alert>
+                     </base-card>
+                </div>
+                <div class="pa-5  black  elevation-4 rounded-lg" v-else>
                 
                  <v-card width="80%"  class="ma-auto mt-5 black">
               <v-row>
@@ -211,6 +217,7 @@
                         No Posts 
                     </div>
      </v-card>
+     </div>
             </div>
 
 
@@ -263,7 +270,12 @@
                                 </v-row>
                             </div>
                             <div v-else>
-                                <v-alert dense outlined type="error" color="error"> You need to follow {{ user.user.username }} to see trading data </v-alert>
+                                <div v-if="CoreSrv.IsApiLinked">
+                                    <v-alert dense outlined type="error" color="error"> You need to follow {{ user.user.username }} to see trading data </v-alert>
+                                </div>
+                                <div v-else>
+                                    <v-alert dense outlined type="error" color="error"> Your Api Keys are not <strong>Set</strong> or <strong>Invalid </strong>.  </v-alert>
+                                </div>
                             </div>
                         </base-card>
 
@@ -300,7 +312,12 @@
                                 </v-row>
                             </div>
                             <div v-else>
-                                <v-alert dense outlined type="error" color="error"> You need to follow {{ user.user.username }} to see trading data </v-alert>
+                                <div v-if="CoreSrv.IsApiLinked">
+                                    <v-alert dense outlined type="error" color="error"> You need to follow {{ user.user.username }} to see trading data </v-alert>
+                                </div>
+                                <div v-else>
+                                    <v-alert dense outlined type="error" color="error"> Your Api Keys are not <strong>Set</strong> or <strong>Invalid </strong>.  </v-alert>
+                                </div>
                             </div>
                 </base-card>
             </v-col>

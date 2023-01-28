@@ -23,6 +23,7 @@ export class SocialMediaService {
     public blockedUser: Array<UserProfileModel> = [];
     public username: string | null = null;
     public text: string | null = null;
+    public userTimelineError= false;
 
     // getPosts() {
     //     this.LoadingSrv.showFullScreenLoader('Loading...');
@@ -221,6 +222,9 @@ export class SocialMediaService {
                 this.userFeeds.sort((a, b) => Number(new Date(a.timestamp!)) - Number(new Date(b.timestamp!))).reverse();
                 console.log(this.userFeeds,'UserFeeds');
             
+        },
+        err =>{
+            this.userTimelineError = true;
         });
     }
 }
