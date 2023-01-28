@@ -43,6 +43,9 @@ import BaseIncreaseDecreaseComponent from './shared/base-increase-decrese/base-i
 import PostCardComponent from './core/PostCard/post-card.component';
 import BackPageComponent from './shared/back-page/back-page.component';
 import SharePostCardComponent from './core/SharePostCard/share-post-card.component';
+import ShareUserPostCardComponent from './core/shared-user-post-card/shared-user-post-card.component';
+import UserPostCardComponent from './core/user-post-card/user-post-card.component';
+import UserTransactionWidget from './widgets/User-Transaction-Widget/user-transaction-widget.component';
 
 // Vuetify Components
 Vue.component('base-text-field', BaseTextField);
@@ -75,6 +78,8 @@ Vue.component('pagination-component', PaginationComponent);
 Vue.component('base-breadcrumbs', BaseBreadcrumbsComponent);
 Vue.component('post-card',PostCardComponent);
 Vue.component('share-post-card',SharePostCardComponent);
+Vue.component('share-user-post-card',ShareUserPostCardComponent);
+Vue.component('user-post-card',UserPostCardComponent);
 Vue.component('full-page-dialog', FullPageDialogComponent);
 Vue.component('base-title-box', BaseTitleBoxComponent);
 Vue.component('drag-drop-upload-component', DragDropUploadComponent);
@@ -86,6 +91,7 @@ Vue.component('wysiwyg-editor-component', WysiwygEditorComponent);
 Vue.component('base-chart', BaseChart);
 Vue.component('base-icon', BaseIconComponent);
 Vue.component('transaction-chart', TransactionHistoryComponent);
+Vue.component('user-transaction-chart', UserTransactionWidget);
 Vue.component('candle-chart', CandleChartWidget);
 Vue.component('line-widget', LineWidget);
 Vue.component('area-widget', AreaWidget);

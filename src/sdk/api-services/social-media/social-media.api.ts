@@ -1,5 +1,6 @@
 import {ServiceClass} from '@/decorators';
 import {AnyObject} from '@/globals';
+import { UserSession } from '@/sdk/core';
 import {CommentModel, ForgotPasswordPasswordModel, LoginModel, NotificationModel, PostModel, SessionModel, SignupModel, UserProfileModel} from '@/sdk/models';
 import {ChangeEmailModel} from '@/sdk/models/authentication/change-email.model';
 import {ChangePasswordModel} from '@/sdk/models/authentication/change-password.model';
@@ -72,11 +73,11 @@ export class SocialMediaApi extends BaseApi {
         return this.POST_Request<any>(`${this.ApiUrl}/social-media/post-view/`, data);
     }
 
-    public SharePost(postId: string,description: string) {
+    public SharePost(postId: string, description: string) {
         const data = {
-            description: description,
-        }
-        return this.POST_Request<any>(`${this.ApiUrl}/social-media/share-post-view/${postId}/`,data);
+            description: description
+        };
+        return this.POST_Request<any>(`${this.ApiUrl}/social-media/share-post-view/${postId}/`, data);
     }
 
     public timelinePosts(postId: string) {
@@ -124,9 +125,13 @@ export class SocialMediaApi extends BaseApi {
     }
 
     public getUserDashboard(user_id: string) {
-        return this.GET_Request<any>(`${this.ApiUrl}/social-media/user-dashboard/${user_id}/`);
+        const c = new UserSession()._session.value;
+        return this.GET_Request<any>(`${this.ApiUrl}/social-media/user-dashboard/${user_id}?api_key=${c?.api_key}&api_secret=${c?.api_secret}`);
     }
 
+    public getUserTimeline(user_id: string) {
+        return this.GET_Request<any>(`${this.ApiUrl}/social-media/user-timeline/${user_id}`);
+    }
     public getPostById(id: string) {
         return this.GET_Request<PostModel>(`${this.ApiUrl}/social-media/post-update-view/${id}/`);
     }
@@ -136,6 +141,6 @@ export class SocialMediaApi extends BaseApi {
     }
 
     public getUserById(id: string) {
-        return this.GET_Request<UserProfileModel>(`${this.ApiUrl}/social-media/user-profile-retrieve-view/${id}/`);
+        return this.GET_Request<any>(`${this.ApiUrl}/social-media/user-profile-retrieve-view/${id}/`);
     }
 }

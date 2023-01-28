@@ -12,8 +12,51 @@ export default class UserDashboardComponent extends VueWrapper {
     public defaultsSort = true;
     public transactionData = new Array<TransactionModel>();
     public holdingData = new Array<HoldingModel>();
+    public follow_list = [];
+    public followed_by_list = [];
+    public pieChartData = [];
+    public gains_holdings = 0;
+    public gains_transactions= 0;
+    public pie_data= [];
     public isError = false;
+    public openLink = {
+        Dashboard: true,
+        feeds: false,
+        holdings: false,
+        transaction: false
+    };
     // public UserSrv = new UsersService();
+
+    public Links = [
+        {
+            Icon: 'speedometer',
+            Title: 'Dashboard',
+            Color: 'primarypurple',
+            Method: this.openDashboard,
+            IsOpen: this.openLink.Dashboard
+        },
+        {
+            Icon: 'playlist-play',
+            Title: 'Feed',
+            Color: 'orange',
+            Method: this.openFeeds,
+            IsOpen: this.openLink.feeds
+        },
+        {
+            Icon: 'table-large',
+            Title: 'Transactions',
+            Color: 'red',
+            Method: this.openTransaction,
+            IsOpen: this.openLink.transaction
+        },
+        {
+            Icon: 'table-large',
+            Title: 'Holdings',
+            Color: 'green',
+            Method: this.openHoldings,
+            IsOpen: this.openLink.holdings
+        }
+    ];
 
     public TransactionsHeaders = [
         {text: 'Transaction Date', value: 'created_at', width: '180'},
@@ -57,6 +100,9 @@ export default class UserDashboardComponent extends VueWrapper {
                         this.isError = false;
                         this.transactionData = res.transactions;
                         this.holdingData = res.holdings;
+                        this.gains_holdings = res.gains_holdings;
+                        this.gains_transactions = res.gains_transactions;
+                        this.pieChartData = res.pie_data;
                     },
                     err => {
                         this.isError = true;
@@ -66,7 +112,12 @@ export default class UserDashboardComponent extends VueWrapper {
             new SocialMediaApi().getUserById(this.$route.params.id).subscribe(res => {
                 console.log(res);
                 this.user = res;
+                this.follow_list = res.follow_list.follows;
+                this.follow_list = res.followed_by_list.followed_by;
             });
+            this.socialMediaSrv.getUserFeeds(this.$route.params.id);
+
+            
         }
     }
 
@@ -95,5 +146,42 @@ export default class UserDashboardComponent extends VueWrapper {
     }
     getVal(val: any) {
         return val.toString().replace('-', '');
+    }
+
+    get num() {
+        return this.$vuetify.breakpoint.width == 375;
+    }
+
+    openDashboard() {
+        this.openLink = {
+            Dashboard: true,
+            feeds: false,
+            transaction: false,
+            holdings: false
+        };
+    }
+    openFeeds() {
+        this.openLink = {
+            Dashboard: false,
+            feeds: true,
+            transaction: false,
+            holdings: false
+        };
+    }
+    openTransaction() {
+        this.openLink = {
+            Dashboard: false,
+            feeds: false,
+            transaction: true,
+            holdings: false
+        };
+    }
+    openHoldings() {
+        this.openLink = {
+            Dashboard: false,
+            feeds: false,
+            transaction: false,
+            holdings: true
+        };
     }
 }

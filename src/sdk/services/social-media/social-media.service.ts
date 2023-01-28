@@ -9,8 +9,8 @@ import {LoaderService} from '../shared/loader.service';
 export class SocialMediaService {
     public socialMediaApi = new SocialMediaApi();
     public LoadingSrv = new LoaderService();
-    // public posts = new Array<TimelinePostModel>();
-    // public tempPosts = new Array<TimelinePostModel>();
+    public userFeeds = new Array<TimelinePostModel>();
+    public tempUserFeeds = new Array<TimelinePostModel>();
     public tempFeeds = new Array<TimelinePostModel>();
     public feeds = new Array<TimelinePostModel>();
     public myFollowers = new BehaviorSubject(new FollowerModel());
@@ -118,15 +118,13 @@ export class SocialMediaService {
     }
 
     getTimelinePostss() {
-        new SocialMediaApi()
-            .getTimeline()
-            .subscribe(res => {
-                console.log(res);
-                this.tempTimelinePosts = res.posts_created;
-                this.timelinePosts = this.tempTimelinePosts.concat(res.posts_shared);
-                this.timelinePosts.sort((a, b) => Number(new Date(a.timestamp!)) - Number(new Date(b.timestamp!))).reverse();
-                console.log('my time', this.timelinePosts);
-            })
+        new SocialMediaApi().getTimeline().subscribe(res => {
+            console.log(res);
+            this.tempTimelinePosts = res.posts_created;
+            this.timelinePosts = this.tempTimelinePosts.concat(res.posts_shared);
+            this.timelinePosts.sort((a, b) => Number(new Date(a.timestamp!)) - Number(new Date(b.timestamp!))).reverse();
+            console.log('my time', this.timelinePosts);
+        });
     }
 
     getFeeds() {
@@ -136,9 +134,9 @@ export class SocialMediaService {
             .subscribe(
                 res => {
                     console.log(res);
-                     this.tempFeeds = res.posts;
-                     this.feeds = this.tempFeeds.concat(res.posts_shared);
-                     this.feeds.sort((a, b) => Number(new Date(a.timestamp!)) - Number(new Date(b.timestamp!))).reverse();
+                    this.tempFeeds = res.posts;
+                    this.feeds = this.tempFeeds.concat(res.posts_shared);
+                    this.feeds.sort((a, b) => Number(new Date(a.timestamp!)) - Number(new Date(b.timestamp!))).reverse();
                 },
                 err => {}
             )
@@ -151,9 +149,9 @@ export class SocialMediaService {
         this.socialMediaApi.getFeed().subscribe(
             res => {
                 console.log(res);
-                 this.tempFeeds = res.posts;
-                 this.feeds = this.tempFeeds.concat(res.posts_shared);
-                 this.feeds.sort((a, b) => Number(new Date(a.timestamp!)) - Number(new Date(b.timestamp!))).reverse();
+                this.tempFeeds = res.posts;
+                this.feeds = this.tempFeeds.concat(res.posts_shared);
+                this.feeds.sort((a, b) => Number(new Date(a.timestamp!)) - Number(new Date(b.timestamp!))).reverse();
             },
             err => {}
         );
@@ -189,9 +187,9 @@ export class SocialMediaService {
         new SocialMediaApi()
             .searchPost(this.text!)
             .subscribe(res => {
-                this.feeds=res.data.posts;
+                this.feeds = res.data.posts;
                 this.timelinePosts = res.data.posts;
-                console.log(res, 'searchPosts',this.timelinePosts,"timeline");
+                console.log(res, 'searchPosts', this.timelinePosts, 'timeline');
             })
             .add(() => this.LoadingSrv.hideFullScreenLoader());
     }
@@ -213,5 +211,16 @@ export class SocialMediaService {
         // if (this.text!.length >= 3) {
         //     this.searchPosts();
         // }
+    }
+
+    getUserFeeds(id:any){
+        new SocialMediaApi().getUserTimeline(id).subscribe(res => {
+            console.log(res.posts_created, 'post created', res.posts_shared, 'post shared');
+            this.tempUserFeeds = res.posts_created;
+                this.userFeeds = this.tempUserFeeds.concat(res.posts_shared);
+                this.userFeeds.sort((a, b) => Number(new Date(a.timestamp!)) - Number(new Date(b.timestamp!))).reverse();
+                console.log(this.userFeeds,'UserFeeds');
+            
+        });
     }
 }
