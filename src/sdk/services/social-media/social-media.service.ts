@@ -215,6 +215,7 @@ export class SocialMediaService {
     }
 
     getUserFeeds(id:any){
+         this.userTimelineError = false;
         new SocialMediaApi().getUserTimeline(id).subscribe(res => {
             console.log(res.posts_created, 'post created', res.posts_shared, 'post shared');
             this.tempUserFeeds = res.posts_created;
