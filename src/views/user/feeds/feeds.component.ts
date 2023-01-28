@@ -35,7 +35,9 @@ export default class FeedComponent extends VueWrapper {
                 res => {
                     this.AlertSrv.show('success', 'post created successfully');
                     this.SocialMediaSrv.timelinePosts = new Array<TimelinePostModel>();
+                    this.SocialMediaSrv.feeds= new Array<TimelinePostModel>();
                     this.SocialMediaSrv.getTimelinePosts();
+                    this.SocialMediaSrv.getFeeds();
                     this.CoreSrv.CloseModal(this.model);
                     this.description = null;
                     this.media_file = null;
