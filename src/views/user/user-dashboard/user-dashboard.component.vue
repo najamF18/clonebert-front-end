@@ -47,14 +47,31 @@
             </div>
             <div class="flex my-2 ml-3 row">
                 <v-icon small color="secondary "> mdi-run </v-icon>
-                <h6 class="muted--text ml-1 mt-1 mr-2 font-italic caption cursor-pointer" >Following: <a  href="#">{{ follow_list.length}}</a></h6>
+                <h6 class="muted--text ml-1 mt-1 mr-2 font-italic caption cursor-pointer" >Following: <a  href="#"> {{ followed_by_list.length }}</a></h6>
                 <v-icon small color="secondary "> mdi-run </v-icon>
-                <h6 class="muted--text ml-1 mt-1 font-italic caption cursor-pointer" >Follower: <a  href="#">{{ followed_by_list.length }}</a> </h6>
+                <h6 class="muted--text ml-1 mt-1 font-italic caption cursor-pointer" >Follower: <a  href="#"> {{ follow_list.length}}</a> </h6>
             </div>
             <div class="flex my-2 ml-3 row">
                 <v-icon small color="secondary "> mdi-face-agent </v-icon>
                 <h6 class="muted--text ml-1 mt-1 font-italic caption">{{ user.description  }}</h6>
             </div>
+             <div class="flex my-3 ml-2 row" >
+                <v-btn small color="error" outlined class="mx-1" v-if="!socialMediaSrv.blockedUser.find(x => x.id == user.id)"   @click="BlockUser(user.id)">
+                            <v-icon class="mr-1">mdi-account-remove</v-icon> block
+                        </v-btn>
+                        <v-btn v-else small color="success" class="mx-1"  outlined   @click="BlockUser(user.id)">
+                            <v-icon class="mr-1">mdi-account-minus</v-icon> unblock
+                        </v-btn>
+                        <div v-if="socialMediaSrv.myFollowing.value">
+                        <v-btn small color="primarypurple" class="mx-1"  outlined v-if="!!socialMediaSrv.myFollowing.value.follows.find(x => x.id == user.id)"   @click="FollowUser(user.id)">
+                            <v-icon class="mr-1">mdi-account-minus</v-icon> unfollow
+                        </v-btn>
+                        <v-btn small color="primarypurple" class="mx-1" v-else  outlined   @click="FollowUser(user.id)">
+                            <v-icon class="mr-1">mdi-account-plus</v-icon> follow
+                        </v-btn>
+                        </div>
+            </div>
+            
         </div>
 
         <div :class="{'pb-16': num}">
@@ -191,7 +208,7 @@
             <div v-if="openLink.feeds">
                 <div v-if="socialMediaSrv.userTimelineError">
                     <base-card class="pa-5 mt-3 darkgrey elevation-4 rounded-lg">
-                     <v-alert dense outlined type="error" color="error"> You need to follow {{ user.user.username }} to see trading data </v-alert>
+                     <v-alert dense outlined type="error" color="error"> You need to follow {{ user.user.username }} to see view feeds </v-alert>
                      </base-card>
                 </div>
                 <div class="pa-5  black  elevation-4 rounded-lg" v-else>

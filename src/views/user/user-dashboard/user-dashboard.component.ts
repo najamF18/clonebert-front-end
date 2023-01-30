@@ -96,31 +96,8 @@ export default class UserDashboardComponent extends VueWrapper {
 
     mounted() {
         if (this.$route.params.id) {
-            this.LoaderSrv.showFullScreenLoader('Loading...');
-            new SocialMediaApi()
-                .getUserDashboard(this.$route.params.id)
-                .subscribe(
-                    res => {
-                        console.log(res);
-                        this.isError = false;
-                        this.transactionData = res.transactions;
-                        this.holdingData = res.holdings;
-                        this.gains_holdings = res.gains_holdings;
-                        this.gains_transactions = res.gains_transactions;
-                        this.pieChartData = res.pie_data;
-                    },
-                    err => {
-                        this.isError = true;
-                    }
-                )
-                .add(() => this.LoaderSrv.hideFullScreenLoader());
-            new SocialMediaApi().getUserById(this.$route.params.id).subscribe(res => {
-                console.log(res);
-                this.user = res;
-                this.follow_list = res.follow_list.follows;
-                this.follow_list = res.followed_by_list.followed_by;
-            });
-            this.socialMediaSrv.getUserFeeds(this.$route.params.id);
+            
+           this.getUserDashboard()
         }
     }
 
@@ -128,6 +105,35 @@ export default class UserDashboardComponent extends VueWrapper {
     //     this.user = this.socialMediaSrv.allUsers.find(item => item.id == this.$route.params.id)!;
     //     return this.user;
     // }
+
+    getUserDashboard(){
+        this.socialMediaSrv.getFollowing();
+this.LoaderSrv.showFullScreenLoader('Loading...');
+new SocialMediaApi()
+    .getUserDashboard(this.$route.params.id)
+    .subscribe(
+        res => {
+            console.log(res);
+            this.isError = false;
+            this.transactionData = res.transactions;
+            this.holdingData = res.holdings;
+            this.gains_holdings = res.gains_holdings;
+            this.gains_transactions = res.gains_transactions;
+            this.pieChartData = res.pie_data;
+        },
+        err => {
+            this.isError = true;
+        }
+    )
+    .add(() => this.LoaderSrv.hideFullScreenLoader());
+     new SocialMediaApi().getUserById(this.$route.params.id).subscribe(res => {
+         console.log(res);
+         this.user = res;
+         this.follow_list = res.follow_list.follows;
+         this.follow_list = res.followed_by_list.followed_by;
+     });
+     this.socialMediaSrv.getUserFeeds(this.$route.params.id);
+    }
 
     getDateTime(val: any) {
         const date = new Date(val);
@@ -186,5 +192,33 @@ export default class UserDashboardComponent extends VueWrapper {
             transaction: false,
             holdings: true
         };
+    }
+
+    FollowUser(id: string) {
+        new SocialMediaApi().followUser(id).subscribe(res => {
+            console.log('follow', res);
+            this.socialMediaSrv.getFollowers();
+            this.socialMediaSrv.getFollowing();
+            this.getUserDashboard();
+        });
+    }
+
+    BlockUser(id: any) {
+         this.LoaderSrv.showFullScreenLoader('Loading...');
+         new SocialMediaApi()
+             .blockUser(id)
+             .subscribe(
+                 res => {
+                     this.AlertSrv.show('success', 'User Blocked Successfully');
+                     this.socialMediaSrv.getBlockUser();
+                     this.getUserDashboard();
+                 },
+                 err => {
+                     this.AlertSrv.show('error', err.message);
+                 }
+             )
+             .add(() => {
+                 this.LoaderSrv.hideFullScreenLoader();
+             });
     }
 }
