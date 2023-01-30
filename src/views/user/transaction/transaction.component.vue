@@ -41,9 +41,9 @@
                             {{ getDateTime(item.created_at) }}
                         </template>
 
-                        <!-- <template v-slot:[`item.position`]="{item}">
-                            {{ isNumber(item.position) ? item.position.toFixed(2) : item.position }}
-                        </template> -->
+                        <template v-slot:[`item.position`]="{item}">
+                            {{ isNumber(item.position) ? item.position.toPrecision(3) : item.position }}
+                        </template>
 
                         <template v-slot:[`item.book_price`]="{item}">
                             {{getVal(item.book_price.toPrecision(2)) }}
@@ -52,6 +52,8 @@
                         <template v-slot:[`item.book_value`]="{item}">
                             {{getVal(item.book_value.toPrecision(2)) }}
                         </template>
+
+                       
 
                         
                         <template v-slot:[`item.gains`]="{item}">

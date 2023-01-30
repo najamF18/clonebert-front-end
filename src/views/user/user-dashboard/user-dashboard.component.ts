@@ -1,10 +1,15 @@
+import NotificationBox from '@/components/core/notificationBox/notification-box.component';
 import VueWrapper from '@/components/core/Vue/vue.wrapper';
 import {AccountsApi, HoldingModel, LoaderService, SocialMediaService, UserProfileModel} from '@/sdk';
 import { SocialMediaApi } from '@/sdk/api-services/social-media/social-media.api';
 import { TransactionModel } from '@/sdk/models/user/transaction.model';
 import { UsersService } from '@/sdk/services/users/users.service';
 import Component from 'vue-class-component';
-@Component
+@Component({
+    components: {
+        NotificationBox
+    }
+})
 export default class UserDashboardComponent extends VueWrapper {
     public socialMediaSrv = new SocialMediaService();
     public user = new UserProfileModel();
@@ -16,8 +21,8 @@ export default class UserDashboardComponent extends VueWrapper {
     public followed_by_list = [];
     public pieChartData = [];
     public gains_holdings = 0;
-    public gains_transactions= 0;
-    public pie_data= [];
+    public gains_transactions = 0;
+    public pie_data = [];
     public isError = false;
     public openLink = {
         Dashboard: true,
@@ -116,8 +121,6 @@ export default class UserDashboardComponent extends VueWrapper {
                 this.follow_list = res.followed_by_list.followed_by;
             });
             this.socialMediaSrv.getUserFeeds(this.$route.params.id);
-
-            
         }
     }
 

@@ -42,13 +42,24 @@
                 </v-btn>
             </div>
             <div class="my-3">
-                <base-textarea outlined hide-details :value.sync="description"  title="Post Description"></base-textarea>
+                <v-textarea dark flat solo-inverted row-height="40"   background-color="darkgrey" style="color:white"   v-model="description" hide-details  placeholder="What's happening "></v-textarea>
             </div>
-            <div class="my-3">
+            <div v-if="image">
+                <v-avatar tile size="100%">
+                    <v-img :src="image" contain max-width="500" max-height="500" />
+                </v-avatar>
+            </div>
+            <!-- <div class="my-3">
                 <drag-drop-upload-component :file.sync="media_file" label="Upload Media File"></drag-drop-upload-component>
-            </div>
-            <div class="text-end my-3">
-                <v-btn color="primarypurple white--text px-8" @click="CreatePost()"> Post </v-btn>
+            </div> -->
+            <div class="d-flex align-center  justify-space-between my-3">
+                <v-btn color="primarypurple" icon @click="$refs.fileInput.click()" ><v-icon>mdi-camera</v-icon></v-btn>
+                 <input type="file" class="d-none" accept="image/*" ref="fileInput" @change="uploadImage"/>
+                 <div class="align-center">
+                    <span v-if="description" class="mx-3" :class="[{'white--text':count<999},{'red--text':count>998}]">{{ count }}</span>
+                    <span v-else class="white--text mx-3">0</span>
+                     <v-btn color="primarypurple white--text px-8" @click="CreatePost()"> Post </v-btn>
+                 </div>
             </div>
         </base-dialog>
     </v-row>

@@ -5,6 +5,10 @@
                  <v-app-bar color="darkgrey" app clipped dark>
             <v-app-bar-nav-icon v-if="CoreSrv.Drawer.MobileScreen  == true" @click="CoreSrv.Drawer.Mode = !CoreSrv.Drawer.Mode" color="muted"></v-app-bar-nav-icon>
             <v-app-bar-nav-icon v-if="CoreSrv.Drawer.MobileScreen  == false" @click="CoreSrv.Drawer.Mini = !CoreSrv.Drawer.Mini" color="muted"></v-app-bar-nav-icon>
+
+            <v-spacer></v-spacer>
+              <v-divider inset class="ml-2" vertical></v-divider>
+            <NotificationBox></NotificationBox>
             </v-app-bar>
                 <v-navigation-drawer :width="250" v-model="CoreSrv.Drawer.Mode" mobile-breakpoint="991" app color="darkgrey" mini-variant-width="60" :mini-variant="CoreSrv.Drawer.Mini ? true : false">
         <div class="d-flex white darkgrey" :class="[{' pt-1': !CoreSrv.Drawer.Mini}, {'px-1': CoreSrv.Drawer.Mini}]">
@@ -232,7 +236,9 @@
                             {{ getDateTime(item.created_at) }}
                         </template>
 
-                       
+                        <template v-slot:[`item.position`]="{item}">
+                            {{ isNumber(item.position) ? item.position.toPrecision(3) : item.position }}
+                        </template>
 
                         <template v-slot:[`item.book_price`]="{item}">
                             {{getVal(item.book_price.toPrecision(2)) }}

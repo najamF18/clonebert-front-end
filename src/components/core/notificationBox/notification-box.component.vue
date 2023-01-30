@@ -31,15 +31,16 @@
               <v-list-item-title class="title">Notifications</v-list-item-title>
             </v-list-item-content>
 
-            <!-- <v-list-item-action>
+            <v-list-item-action>
               <v-btn
             color="primary"
             text
-            @click="menu = false"
+            :loading="isLoading"
+            @click="ReadAllNotifications()"
           >
             Read all
           </v-btn>
-            </v-list-item-action> -->
+            </v-list-item-action>
           </v-list-item>
         </v-list>
          <v-divider dark class="mx-3"></v-divider>

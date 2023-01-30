@@ -65,6 +65,10 @@ export class SocialMediaApi extends BaseApi {
         return this.PUT_Request<any>(`${this.ApiUrl}/social-media/notification-view/${notificationId}/`, data);
     }
 
+    public ReadAllNotifications() {
+        return this.GET_Request<any>(`${this.ApiUrl}/social-media/read-notifications-view/`);
+    }
+
     public getPosts() {
         return this.GET_Request<Array<PostModel>>(`${this.ApiUrl}/social-media/post-view/`);
     }

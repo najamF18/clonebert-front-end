@@ -1,6 +1,6 @@
 import VueWrapper from '@/components/core/Vue/vue.wrapper';
 import DrawerComponent from '@/views/drawer/drawer.component';
-import {Component} from 'vue-property-decorator';
+import {Component, Watch} from 'vue-property-decorator';
 import { SocialMediaApi } from '@/sdk/api-services/social-media/social-media.api';
 import FollowersComponent from './followers/followers.component';
 import { PostModel, SocialMediaService, TimelinePostModel } from '@/sdk';
@@ -14,13 +14,24 @@ import { PostModel, SocialMediaService, TimelinePostModel } from '@/sdk';
 export default class FeedComponent extends VueWrapper {
     public SocialMediaSrv = new SocialMediaService();
     public model = 'post-model';
-    public media_file:Blob|null = null;
-    public description:string|null = null;
+    public media_file: Blob | null = null;
+    public description: string | null = null;
+    public image: any = null;
+    public counterVal = 0;
+
+    public $refs!: {
+        fileInput: HTMLInputElement;
+    };
 
     public links = [
         {title: 'Feeds', icon: 'mdi-view-dashboard', link: 'Posts'},
         {title: 'Timeline', icon: 'mdi-forum', link: 'Timeline'}
     ];
+
+    @Watch('description')
+    onDescriptionChange() {
+        if (this.description!.length > 999) this.description = this.description!.substring(0, 999);
+    }
 
     CreatePost() {
         this.LoaderSrv.showFullScreenLoader('Creating Post');
@@ -35,7 +46,7 @@ export default class FeedComponent extends VueWrapper {
                 res => {
                     this.AlertSrv.show('success', 'post created successfully');
                     this.SocialMediaSrv.timelinePosts = new Array<TimelinePostModel>();
-                    this.SocialMediaSrv.feeds= new Array<TimelinePostModel>();
+                    this.SocialMediaSrv.feeds = new Array<TimelinePostModel>();
                     this.SocialMediaSrv.getTimelinePosts();
                     this.SocialMediaSrv.getFeeds();
                     this.CoreSrv.CloseModal(this.model);
@@ -55,5 +66,17 @@ export default class FeedComponent extends VueWrapper {
         this.$router.push({name: name});
     }
 
-  
+    uploadImage(event: any) {
+        const file = event.target.files[0];
+        this.media_file = file;
+        const reader = new FileReader();
+        reader.addEventListener('load', () => {
+            this.image = reader.result;
+        });
+        reader.readAsDataURL(file);
+    }
+
+    get count() {
+        return this.description!.length;
+    }
 }
