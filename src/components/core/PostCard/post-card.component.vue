@@ -20,10 +20,10 @@
        
 
         <v-row class="px-5 ma-0">
-            <span class="description text-start">{{ $attrs.item.description }}</span>
+            <span @click="handlePost($attrs.item.id)"  class="description cursor-pointer text-start">{{ $attrs.item.description }}</span>
         </v-row>
 
-        <v-avatar v-if="$helpers.isImageUrl($attrs.item.media_file)" size="100%" class="text-center py-2" tile>
+        <v-avatar v-if="$helpers.isImageUrl($attrs.item.media_file)" @click="handlePost($attrs.item.id)" size="100%" class="text-center cursor-pointer py-2" tile>
             <img
                 :src="$attrs.item.media_file ? $attrs.item.media_file : 'https://cdn.vuetifyjs.com/images/john.jpg'"
                 alt="John"

@@ -5,7 +5,7 @@
               
           <div class="my-2" v-for="(items,idx) in SocialMediaSrv.feeds" :key="idx">
           <share-post-card @showPost="handleShowPost" v-if="items.post_id" :item="items"/>
-          <post-card :item="items" :likes="items.post_likes"></post-card>
+          <post-card @showPost="handleShowPost"  :item="items" :likes="items.post_likes"></post-card>
      </div>
      </v-card>
      </div>

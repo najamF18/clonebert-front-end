@@ -26,34 +26,34 @@ export default class PostCardComponent extends VueWrapper {
 
     mounted() {
         this.postLikes = this.likes.length;
-       if(!!this.likes.find(like => like.liker!.user!.id == this.UserSession.Session!.uid )){
-        this.IsLikedByMe=true;
-       }
+        if (!!this.likes.find(like => like.liker!.user!.id == this.UserSession.Session!.uid)) {
+            this.IsLikedByMe = true;
+        }
     }
 
     SharePost(postId: string) {
-         this.LoaderSrv.showFullScreenLoader('Sharing Post...');
-         this.SocialMediaApi.SharePost(postId,this.description)
-             .subscribe(
-                 res => {
-                     console.log(res);
-                     this.CoreSrv.CloseModal(`model-${postId}`);
-                     this.description = '';
-                     this.AlertSrv.show('success', 'Post Share Successfully');
-                     this.socialMediaSrv.getFeeds();
-                     this.socialMediaSrv.getTimelinePosts();
-                 },
-                 err => {}
-             )
-             .add(() => {
-                 this.LoaderSrv.hideFullScreenLoader();
-             });
+        this.LoaderSrv.showFullScreenLoader('Sharing Post...');
+        this.SocialMediaApi.SharePost(postId, this.description)
+            .subscribe(
+                res => {
+                    console.log(res);
+                    this.CoreSrv.CloseModal(`model-${postId}`);
+                    this.description = '';
+                    this.AlertSrv.show('success', 'Post Share Successfully');
+                    this.socialMediaSrv.getFeeds();
+                    this.socialMediaSrv.getTimelinePosts();
+                },
+                err => {}
+            )
+            .add(() => {
+                this.LoaderSrv.hideFullScreenLoader();
+            });
     }
 
     LikePost(id: string) {
         this.IsLikedByMe = !this.IsLikedByMe;
         if (this.IsLikedByMe) {
-            this.postLikes+=1
+            this.postLikes += 1;
         } else {
             this.postLikes -= 1;
         }
@@ -77,4 +77,9 @@ export default class PostCardComponent extends VueWrapper {
     //     this.$emit('showPost',id);
     //     console.log("showPost",id);
     // }
+
+    handlePost(id: any) {
+        this.$emit('showPost', id);
+        console.log('showPost', id);
+    }
 }

@@ -16,7 +16,7 @@
                         </v-list-item>
                     </v-list>
                     <v-row class="px-5 ma-0">
-            <span class="description text-start">{{ item.description }}</span>
+            <span  class="description text-start">{{ item.description }}</span>
         </v-row>
                     <div class="border-card rounded-lg">
 
@@ -38,7 +38,7 @@
        
 
         <v-row class="px-5 ma-0 pb-2">
-            <span class="description text-start">{{ item.post_id.description }}</span>
+            <span @click="handlePost(item.post_id.id)" class="description cursor-pointer text-start">{{ item.post_id.description }}</span>
         </v-row>
 
         <v-avatar v-if="$helpers.isImageUrl(item.post_id.media_file)"  @click="handlePost(item.post_id.id)" size="100%" class="text-center cursor-pointer pb-2" tile>
