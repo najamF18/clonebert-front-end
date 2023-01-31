@@ -30,7 +30,7 @@ export default class UserDashboardComponent extends VueWrapper {
         holdings: false,
         transaction: false
     };
-    // public UserSrv = new UsersService();
+    public UserSrv = new UsersService();
 
     public Links = [
         {
@@ -95,6 +95,7 @@ export default class UserDashboardComponent extends VueWrapper {
     ];
 
     mounted() {
+        this.UserSrv.getUserProfile();
         if (this.$route.params.id) {
             
            this.getUserDashboard()

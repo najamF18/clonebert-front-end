@@ -5,7 +5,7 @@
         
         
         <v-list  color="darkgrey rounded-lg" class="px-2" :rounded=true>
-            <v-list-item class="grow">
+            <v-list-item class="grow"  @click="$router.push({name: 'User Profile View', params: {id: $attrs.item.creator.id}})">
                 <v-list-item-avatar size="60">
                     <img :src="$attrs.item.creator.profile_pic ? $attrs.item.creator.profile_pic : 'https://cdn.vuetifyjs.com/images/john.jpg'" alt="John" />
                 </v-list-item-avatar>

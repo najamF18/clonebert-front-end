@@ -4,7 +4,7 @@
                     <v-divider dark class="mx-2"></v-divider>
                     <v-list color="darkgrey" class="px-2" :rounded="true">
                     
-                        <v-list-item class="grow">
+                        <v-list-item class="grow" @click="$router.push({name: 'User Profile View', params: {id: item.shared_by.id}})">
                             <v-list-item-avatar size="60">
                                 <img :src="item.shared_by.profile_pic" alt="John" />
                             </v-list-item-avatar>

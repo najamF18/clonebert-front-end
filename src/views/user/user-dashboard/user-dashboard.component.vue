@@ -55,7 +55,11 @@
                 <v-icon small color="secondary "> mdi-face-agent </v-icon>
                 <h6 class="muted--text ml-1 mt-1 font-italic caption">{{ user.description  }}</h6>
             </div>
-             <div class="flex my-3 ml-2 row" >
+
+            <div v-if="$route.params.id == UserSrv.userProfile.id">
+
+            </div>
+             <div v-else class="flex my-3 ml-2 row" >
                 <v-tooltip top  v-if="!socialMediaSrv.blockedUser.find(x => x.id == user.id)">
                                         <template v-slot:activator="{on, attrs}">
                                              <v-btn small icon v-on="on" v-bind="attrs" color="error" class="mx-1"   @click="BlockUser(user.id)">
