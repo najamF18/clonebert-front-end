@@ -285,33 +285,35 @@
                                 <v-row>
                                     <v-col cols="12">
                                        <v-data-table sort-by="created_at" :sort-desc="defaultsSort"  :headers="TransactionsHeaders" :items="transactionData" :items-per-page="5" class="elevation-1 theme--dark">
-                        <template v-slot:[`item.created_at`]="{item}">
+                         <template v-slot:[`item.created_at`]="{item}">
                             {{ getDateTime(item.created_at) }}
                         </template>
 
                         <template v-slot:[`item.position`]="{item}">
-                            {{ isNumber(item.position) ? item.position.toPrecision(3) : item.position }}
+                            {{ isNumber(item.position) ? formatVal(item.position) : item.position }}
                         </template>
 
                         <template v-slot:[`item.book_price`]="{item}">
-                            {{getVal(item.book_price.toPrecision(2)) }}
+                            {{getVal(formatVal(item.book_price)) }}
                         </template>
 
                         <template v-slot:[`item.book_value`]="{item}">
-                            {{getVal(item.book_value.toPrecision(2)) }}
+                            {{getVal(formatVal(item.book_value)) }}
                         </template>
+
+                       
 
                         
                         <template v-slot:[`item.gains`]="{item}">
                             
                             <v-chip v-if="!!item.gains" :color="getColor(item.gains)" dark label>
-                           {{ item.gains ? item.gains.toPrecision(2)  : item.gains }}
+                           {{ item.gains ? formatVal(item.gains)  : item.gains }}
                            </v-chip>
                            <div v-else> N/A</div>
                         </template>
 
                         <template v-slot:[`item.native_amount.amount`]="{item}">
-                            {{ item.native_amount.amount.toPrecision(2)  }}
+                            {{ formatVal(item.native_amount.amount)  }}
                         </template>
 
                         <template v-slot:[`item.amount.amount`]="{item}">
@@ -319,10 +321,10 @@
                         </template>
 
                         <template v-slot:[`item.market_value`]="{item}">
-                            {{ getVal(item.market_value.toPrecision(2))  }}
+                            {{ getVal(formatVal(item.market_value))  }}
                         </template>
                         <template v-slot:[`item.market_price`]="{item}">
-                            {{ getVal(item.market_price.toPrecision(2))  }}
+                            {{ getVal(formatVal(item.market_price))  }}
                         </template>
                     </v-data-table>
                                     </v-col>
@@ -346,26 +348,26 @@
                                 <v-row>
                                     <v-col cols="12">
                                         <v-data-table :headers="HoldingsHeaders" :items="holdingData" :items-per-page="5" class="theme--dark">
-                                            <template v-slot:[`item.book_price`]="{item}">
-                                                {{ item.book_price.toPrecision(2)  }}
-                                            </template>
-                                            <template v-slot:[`item.book_value`]="{item}">
-                                                {{ item.book_value.toPrecision(2) }}
-                                            </template>
-                                            <template v-slot:[`item.market_value`]="{item}">
-                                                {{ item.market_value.toPrecision(2) }}
-                                            </template>
-                                            <template v-slot:[`item.market_price`]="{item}">
-                                                {{ item.market_price.toPrecision(2)  }}
-                                            </template>
-                                            <template v-slot:[`item.gains`]="{item}">
-                                                <v-chip v-if="item.gains" :color="getColor(item.gains)" dark label>
-                                                    {{ item.gains.toPrecision(2)  }}
-                                                </v-chip>
-                                            </template>
-                                            <template v-slot:[`item.position`]="{item}">
-                                                {{ isNumber(item.position) ? item.position.toPrecision(2)  : item.position }}
-                                            </template>
+                                           <template v-slot:[`item.book_price`]="{item}">
+                            {{ formatVal(item.book_price) }}
+                        </template>
+                        <template v-slot:[`item.book_value`]="{item}">
+                            {{ formatVal(item.book_value) }}
+                        </template>
+                        <template v-slot:[`item.market_value`]="{item}">
+                            {{ formatVal(item.market_value) }}
+                        </template>
+                        <template v-slot:[`item.market_price`]="{item}">
+                            {{ formatVal(item.market_price) }}
+                        </template>
+                        <template v-slot:[`item.gains`]="{item}">
+                            <v-chip  v-if="item.gains" :color="getColor(item.gains)" dark label>
+                                {{ formatVal(item.gains) }}
+                            </v-chip>
+                        </template>
+                        <template v-slot:[`item.position`]="{item}">
+                            {{ isNumber(item.position) ? formatVal(item.position) : item.position }}
+                        </template>
                                         </v-data-table>
                                     </v-col>
                                 </v-row>

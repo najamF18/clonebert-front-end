@@ -42,15 +42,15 @@
                         </template>
 
                         <template v-slot:[`item.position`]="{item}">
-                            {{ isNumber(item.position) ? item.position.toPrecision(3) : item.position }}
+                            {{ isNumber(item.position) ? formatVal(item.position) : item.position }}
                         </template>
 
                         <template v-slot:[`item.book_price`]="{item}">
-                            {{getVal(item.book_price.toPrecision(2)) }}
+                            {{getVal(formatVal(item.book_price)) }}
                         </template>
 
                         <template v-slot:[`item.book_value`]="{item}">
-                            {{getVal(item.book_value.toPrecision(2)) }}
+                            {{getVal(formatVal(item.book_value)) }}
                         </template>
 
                        
@@ -59,13 +59,13 @@
                         <template v-slot:[`item.gains`]="{item}">
                             
                             <v-chip v-if="!!item.gains" :color="getColor(item.gains)" dark label>
-                           {{ item.gains ? item.gains.toPrecision(2)  : item.gains }}
+                           {{ item.gains ? formatVal(item.gains)  : item.gains }}
                            </v-chip>
                            <div v-else> N/A</div>
                         </template>
 
                         <template v-slot:[`item.native_amount.amount`]="{item}">
-                            {{ item.native_amount.amount.toPrecision(2)  }}
+                            {{ formatVal(item.native_amount.amount)  }}
                         </template>
 
                         <template v-slot:[`item.amount.amount`]="{item}">
@@ -73,10 +73,10 @@
                         </template>
 
                         <template v-slot:[`item.market_value`]="{item}">
-                            {{ getVal(item.market_value.toPrecision(2))  }}
+                            {{ getVal(formatVal(item.market_value))  }}
                         </template>
                         <template v-slot:[`item.market_price`]="{item}">
-                            {{ getVal(item.market_price.toPrecision(2))  }}
+                            {{ getVal(formatVal(item.market_price))  }}
                         </template>
                     </v-data-table>
                 </v-col>

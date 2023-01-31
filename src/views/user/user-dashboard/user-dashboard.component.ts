@@ -97,8 +97,7 @@ export default class UserDashboardComponent extends VueWrapper {
     mounted() {
         this.UserSrv.getUserProfile();
         if (this.$route.params.id) {
-            
-           this.getUserDashboard()
+            this.getUserDashboard();
         }
     }
 
@@ -107,39 +106,43 @@ export default class UserDashboardComponent extends VueWrapper {
     //     return this.user;
     // }
 
-    getUserDashboard(){
+    getUserDashboard() {
         this.socialMediaSrv.getFollowing();
-this.LoaderSrv.showFullScreenLoader('Loading...');
-new SocialMediaApi()
-    .getUserDashboard(this.$route.params.id)
-    .subscribe(
-        res => {
+        this.LoaderSrv.showFullScreenLoader('Loading...');
+        new SocialMediaApi()
+            .getUserDashboard(this.$route.params.id)
+            .subscribe(
+                res => {
+                    console.log(res);
+                    this.isError = false;
+                    this.transactionData = res.transactions;
+                    this.holdingData = res.holdings;
+                    this.gains_holdings = res.gains_holdings;
+                    this.gains_transactions = res.gains_transactions;
+                    this.pieChartData = res.pie_data;
+                },
+                err => {
+                    this.isError = true;
+                }
+            )
+            .add(() => this.LoaderSrv.hideFullScreenLoader());
+        new SocialMediaApi().getUserById(this.$route.params.id).subscribe(res => {
             console.log(res);
-            this.isError = false;
-            this.transactionData = res.transactions;
-            this.holdingData = res.holdings;
-            this.gains_holdings = res.gains_holdings;
-            this.gains_transactions = res.gains_transactions;
-            this.pieChartData = res.pie_data;
-        },
-        err => {
-            this.isError = true;
-        }
-    )
-    .add(() => this.LoaderSrv.hideFullScreenLoader());
-     new SocialMediaApi().getUserById(this.$route.params.id).subscribe(res => {
-         console.log(res);
-         this.user = res;
-         this.follow_list = res.follow_list.follows;
-         this.follow_list = res.followed_by_list.followed_by;
-     });
-     this.socialMediaSrv.getUserFeeds(this.$route.params.id);
+            this.user = res;
+            this.follow_list = res.follow_list.follows;
+            this.follow_list = res.followed_by_list.followed_by;
+        });
+        this.socialMediaSrv.getUserFeeds(this.$route.params.id);
     }
 
     getDateTime(val: any) {
         const date = new Date(val);
 
         return date.toLocaleDateString() + ' ' + date.toLocaleTimeString(navigator.language, {hour: '2-digit', minute: '2-digit'});
+    }
+
+    formatVal(val: any) {
+        return Math.abs(val) < 0.01 ? val.toPrecision(2) : val.toFixed(2);
     }
 
     getColor(val: any) {
@@ -205,21 +208,21 @@ new SocialMediaApi()
     }
 
     BlockUser(id: any) {
-         this.LoaderSrv.showFullScreenLoader('Loading...');
-         new SocialMediaApi()
-             .blockUser(id)
-             .subscribe(
-                 res => {
-                     this.AlertSrv.show('success', 'User Blocked Successfully');
-                     this.socialMediaSrv.getBlockUser();
-                     this.getUserDashboard();
-                 },
-                 err => {
-                     this.AlertSrv.show('error', err.message);
-                 }
-             )
-             .add(() => {
-                 this.LoaderSrv.hideFullScreenLoader();
-             });
+        this.LoaderSrv.showFullScreenLoader('Loading...');
+        new SocialMediaApi()
+            .blockUser(id)
+            .subscribe(
+                res => {
+                    this.AlertSrv.show('success', 'User Blocked Successfully');
+                    this.socialMediaSrv.getBlockUser();
+                    this.getUserDashboard();
+                },
+                err => {
+                    this.AlertSrv.show('error', err.message);
+                }
+            )
+            .add(() => {
+                this.LoaderSrv.hideFullScreenLoader();
+            });
     }
 }

@@ -12,84 +12,79 @@ import {Component} from 'vue-property-decorator';
 })
 export default class HoldingComponent extends VueWrapper {
     public TransactionApi = new TransactionsApi();
-    public HoldingsData =new BehaviorSubject<any>([]);;
+    public HoldingsData = new BehaviorSubject<any>([]);
     public IsLoginCoinBase = true;
     public FetchTransaction = {
         status: false,
-        loading: false,
-    }
+        loading: false
+    };
     public HoldingsHeaders = [
-          {
+        {
             text: 'Symbol',
             align: 'start',
             value: 'name',
-            width:'110'
-          },
-          { text: 'Currency', value: 'currency',width:'110' },
-          { text: '# Of Shares', value: 'num_shares',width:'130' },
-          { text: 'Book Price', value: 'book_price',width:'120' },
-          { text: 'Book Value', value: 'book_value',width:'120' },
-          { text: 'Market Price', value: 'market_price',width:'130'},
-          { text: 'Market Value', value: 'market_value',width:'130' },
-          { text: 'Position', value: 'position',width:'110' },
-          { text: 'Gains/Loss', value: 'gains',width:'120' },
-        ];
+            width: '110'
+        },
+        {text: 'Currency', value: 'currency', width: '110'},
+        {text: '# Of Shares', value: 'num_shares', width: '130'},
+        {text: 'Book Price', value: 'book_price', width: '120'},
+        {text: 'Book Value', value: 'book_value', width: '120'},
+        {text: 'Market Price', value: 'market_price', width: '130'},
+        {text: 'Market Value', value: 'market_value', width: '130'},
+        {text: 'Position', value: 'position', width: '110'},
+        {text: 'Gains/Loss', value: 'gains', width: '120'}
+    ];
 
-          
-
-    mounted(){
+    mounted() {
         this.getHoldings();
-        
-        
     }
 
-    getHoldings(){
-        this.LoaderSrv.showFullScreenLoader("Loading...");
-        this.TransactionApi.HoldingsList()
-            .subscribe(
+    getHoldings() {
+        this.LoaderSrv.showFullScreenLoader('Loading...');
+        this.TransactionApi.HoldingsList().subscribe(
             res => {
-                    console.log("Holding List",res);
-                    this.HoldingsData.next(res);
-                     this.IsLoginCoinBase=true;
-                     this.LoaderSrv.hideFullScreenLoader();
-                },
-                err => {
-                    this.IsLoginCoinBase=false;
-                    this.LoaderSrv.hideFullScreenLoader();
-                }
-            );
+                console.log('Holding List', res);
+                this.HoldingsData.next(res);
+                this.IsLoginCoinBase = true;
+                this.LoaderSrv.hideFullScreenLoader();
+            },
+            err => {
+                this.IsLoginCoinBase = false;
+                this.LoaderSrv.hideFullScreenLoader();
+            }
+        );
     }
 
-    getColor(val:any){
-        if(val > 0) {
-            return 'rgba(0, 210, 91, 0.3)'
-        }else{
-            return 'rgba(252, 66, 74, 0.3)'
-        }  
+    getColor(val: any) {
+        if (val > 0) {
+            return 'rgba(0, 210, 91, 0.3)';
+        } else {
+            return 'rgba(252, 66, 74, 0.3)';
+        }
     }
 
-    isNumber(val:any){
-        if(isNaN(val)) return false;
+    isNumber(val: any) {
+        if (isNaN(val)) return false;
         return true;
     }
 
-    LoadTransactions(){
+    LoadTransactions() {
         this.FetchTransaction.loading = true;
-        this.TransactionApi.FetchTransaction()
-        .subscribe(
+        this.TransactionApi.FetchTransaction().subscribe(
             res => {
                 this.FetchTransaction.status = true;
                 this.FetchTransaction.loading = false;
                 this.getHoldings();
                 console.log(res);
-                },
-                err => {
-                   console.log(err);
-                   this.FetchTransaction.loading = false;
-                }
-            );
+            },
+            err => {
+                console.log(err);
+                this.FetchTransaction.loading = false;
+            }
+        );
     }
-
-    
-      }
+    formatVal(val: any) {
+        return Math.abs(val) < 0.01 ? val.toPrecision(2) : val.toFixed(2);
+    }
+}
 
