@@ -77,6 +77,12 @@ export default class FeedComponent extends VueWrapper {
     }
 
     get count() {
-        return this.description!.length;
+        if(this.description!){
+            return this.description!.length;
+        }
+        else{
+            return '0';
+        }
+        
     }
 }

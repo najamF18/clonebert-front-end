@@ -56,19 +56,51 @@
                 <h6 class="muted--text ml-1 mt-1 font-italic caption">{{ user.description  }}</h6>
             </div>
              <div class="flex my-3 ml-2 row" >
-                <v-btn small color="error" outlined class="mx-1" v-if="!socialMediaSrv.blockedUser.find(x => x.id == user.id)"   @click="BlockUser(user.id)">
-                            <v-icon class="mr-1">mdi-account-remove</v-icon> block
+                <v-tooltip top  v-if="!socialMediaSrv.blockedUser.find(x => x.id == user.id)">
+                                        <template v-slot:activator="{on, attrs}">
+                                             <v-btn small icon v-on="on" v-bind="attrs" color="error" class="mx-1"   @click="BlockUser(user.id)">
+                            <v-icon size="25" class="mr-1">mdi-account-remove</v-icon>
                         </v-btn>
-                        <v-btn v-else small color="success" class="mx-1"  outlined   @click="BlockUser(user.id)">
-                            <v-icon class="mr-1">mdi-account-minus</v-icon> unblock
+                                        </template>
+                                        <span>block</span>
+                                    </v-tooltip>
+
+
+                                    <v-tooltip top v-else>
+                                        <template v-slot:activator="{on, attrs}">
+                                            <v-btn  small v-on="on" v-bind="attrs"  icon color="success" class="mx-1"     @click="BlockUser(user.id)">
+                            <v-icon size="25" class="mr-1">mdi-account-minus</v-icon> 
                         </v-btn>
-                        <div v-if="socialMediaSrv.myFollowing.value">
-                        <v-btn small color="primarypurple" class="mx-1"  outlined v-if="!!socialMediaSrv.myFollowing.value.follows.find(x => x.id == user.id)"   @click="FollowUser(user.id)">
-                            <v-icon class="mr-1">mdi-account-minus</v-icon> unfollow
+                                        </template>
+                                        <span>unblock</span>
+                                    </v-tooltip>
+
+
+                                    
+
+
+               
+                       
+                        <div v-if="socialMediaSrv.myFollowing.value" class="ml-1">
+                        <v-tooltip top  v-if="!!socialMediaSrv.myFollowing.value.follows.find(x => x.id == user.id)">
+                                        <template v-slot:activator="{on, attrs}">
+                                           <v-btn small  icon color="primarypurple" v-on="on" v-bind="attrs" class="mx-1"      @click="FollowUser(user.id)">
+                            <v-icon size="25" class="mr-1">mdi-account-minus</v-icon>
                         </v-btn>
-                        <v-btn small color="primarypurple" class="mx-1" v-else  outlined   @click="FollowUser(user.id)">
-                            <v-icon class="mr-1">mdi-account-plus</v-icon> follow
+                                        </template>
+                                        <span>unfollow</span>
+                                    </v-tooltip>
+
+
+                                    <v-tooltip top v-else>
+                                        <template v-slot:activator="{on, attrs}">
+                                              <v-btn small icon color="primarypurple" class="mx-1" v-on="on" v-bind="attrs"    @click="FollowUser(user.id)">
+                            <v-icon size="25" class="mr-1">mdi-account-plus</v-icon>
                         </v-btn>
+                                        </template>
+                                        <span>follow</span>
+                                    </v-tooltip>
+                       
                         </div>
             </div>
             

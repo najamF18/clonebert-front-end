@@ -42,7 +42,7 @@
                 </v-btn>
             </div>
             <div class="my-3">
-                <v-textarea dark flat solo-inverted row-height="40"   background-color="darkgrey" style="color:white"   v-model="description" hide-details  placeholder="What's happening "></v-textarea>
+                <v-textarea dark flat solo-inverted row-height="40" rules="max:999"   background-color="darkgrey" style="color:white"   v-model="description" hide-details  placeholder="What's happening "></v-textarea>
             </div>
             <div v-if="image">
                 <v-avatar tile size="100%">
@@ -56,9 +56,9 @@
                 <v-btn color="primarypurple" icon @click="$refs.fileInput.click()" ><v-icon>mdi-camera</v-icon></v-btn>
                  <input type="file" class="d-none" accept="image/*" ref="fileInput" @change="uploadImage"/>
                  <div class="align-center">
-                    <span v-if="description" class="mx-3" :class="[{'white--text':count<999},{'red--text':count>998}]">{{ count }}</span>
-                    <span v-else class="white--text mx-3">0</span>
-                     <v-btn color="primarypurple white--text px-8" @click="CreatePost()"> Post </v-btn>
+                    <span v-if="description" class="mx-3" :class="[{'white--text':count<999},{'red--text':count>998}]">{{ count }} / 999</span>
+                    <span v-else class="white--text mx-3">0 / 999</span>
+                     <v-btn color="primarypurple white--text px-8" :disabled="count>998" @click="CreatePost()"> Post </v-btn>
                  </div>
             </div>
         </base-dialog>
