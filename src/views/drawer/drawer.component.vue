@@ -54,9 +54,9 @@
             </div>
             <div class="flex my-2 ml-3 row">
                 <v-icon small color="secondary "> mdi-run </v-icon>
-                <h6 class="muted--text ml-1 mt-1 mr-2 font-italic caption cursor-pointer" @click="$router.push({name:'Followers View',hash:'#following'})">Following: <a v-if="socialMediaSrv.myFollowing.value.follows" href="#">{{socialMediaSrv.myFollowing.value.follows.length }}</a><a v-else href="#">0</a></h6>
+                <h6 class="muted--text ml-1 mt-1 mr-2 font-italic caption cursor-pointer" @click="$router.push({name:'Followers View',hash:'#following'})">Following: <a v-if="socialMediaSrv.myFollowing.value.follows" style="text-decoration:underline" href="#following">{{socialMediaSrv.myFollowing.value.follows.length }}</a><a v-else href="#">0</a></h6>
                 <v-icon small color="secondary "> mdi-run </v-icon>
-                <h6 class="muted--text ml-1 mt-1 font-italic caption cursor-pointer" @click="$router.push({name:'Followers View',hash:'#followers'})">Followers: <a v-if="socialMediaSrv.myFollowers.value.followed_by" href="#">{{ socialMediaSrv.myFollowers.value.followed_by.length }}</a> <a v-else href="#">0</a></h6>
+                <h6 class="muted--text ml-1 mt-1 font-italic caption cursor-pointer" @click="$router.push({name:'Followers View',hash:'#followers'})">Followers: <a v-if="socialMediaSrv.myFollowers.value.followed_by" style="text-decoration:underline" href="#followers">{{ socialMediaSrv.myFollowers.value.followed_by.length }}</a> <a v-else href="#">0</a></h6>
             </div>
             <div class="flex my-2 ml-3 row">
                 <v-icon small color="secondary "> mdi-face-agent </v-icon>

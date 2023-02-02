@@ -28,7 +28,9 @@ export default class UserDashboardComponent extends VueWrapper {
         Dashboard: true,
         feeds: false,
         holdings: false,
-        transaction: false
+        transaction: false,
+        following: false,
+        follower: false
     };
     public UserSrv = new UsersService();
 
@@ -170,7 +172,9 @@ export default class UserDashboardComponent extends VueWrapper {
             Dashboard: true,
             feeds: false,
             transaction: false,
-            holdings: false
+            holdings: false,
+            follower: false,
+            following: false
         };
     }
     openFeeds() {
@@ -178,7 +182,9 @@ export default class UserDashboardComponent extends VueWrapper {
             Dashboard: false,
             feeds: true,
             transaction: false,
-            holdings: false
+            holdings: false,
+            follower: false,
+            following: false
         };
     }
     openTransaction() {
@@ -186,7 +192,9 @@ export default class UserDashboardComponent extends VueWrapper {
             Dashboard: false,
             feeds: false,
             transaction: true,
-            holdings: false
+            holdings: false,
+            follower: false,
+            following: false
         };
     }
     openHoldings() {
@@ -194,7 +202,29 @@ export default class UserDashboardComponent extends VueWrapper {
             Dashboard: false,
             feeds: false,
             transaction: false,
-            holdings: true
+            holdings: true,
+            follower: false,
+            following: false
+        };
+    }
+    openFollowers() {
+        this.openLink = {
+            Dashboard: false,
+            feeds: false,
+            transaction: false,
+            holdings: false,
+            follower: true,
+            following: false
+        };
+    }
+    openFollowing() {
+        this.openLink = {
+            Dashboard: false,
+            feeds: false,
+            transaction: false,
+            holdings: false,
+            follower: false,
+            following: true
         };
     }
 

@@ -47,9 +47,9 @@
             </div>
             <div class="flex my-2 ml-3 row">
                 <v-icon small color="secondary "> mdi-run </v-icon>
-                <h6 class="muted--text ml-1 mt-1 mr-2 font-italic caption cursor-pointer" >Following: <a  href="#"> {{ followed_by_list.length }}</a></h6>
+                <h6 class="muted--text ml-1 mt-1 mr-2 font-italic caption cursor-pointer" @click="openFollowing()" >Following: <span class="blue--text" style="text-decoration:underline"> {{ followed_by_list.length }}</span></h6>
                 <v-icon small color="secondary "> mdi-run </v-icon>
-                <h6 class="muted--text ml-1 mt-1 font-italic caption cursor-pointer" >Follower: <a  href="#"> {{ follow_list.length}}</a> </h6>
+                <h6 class="muted--text ml-1 mt-1 font-italic caption cursor-pointer" @click="openFollowers()" >Follower: <span class="blue--text" style="text-decoration:underline"> {{ follow_list.length}}</span> </h6>
             </div>
             <div class="flex my-2 ml-3 row">
                 <v-icon small color="secondary "> mdi-face-agent </v-icon>
@@ -381,7 +381,147 @@
                                 </div>
                             </div>
                 </base-card>
+
+                <base-card v-if="openLink.follower" elevation="20" class="pa-3 ma-auto" width="60%"   color="darkgrey" rounded="lg">
+                <v-row>
+                    <v-col
+                        cols="12"
+                        class="px-1 py-3 border ma-auto cursor-pointer"
+                      
+                    >
+                        <div class="text-center">
+                            <v-icon size="20" class="primarypurple--text">mdi-account-heart</v-icon>
+                            <span class="primarypurple--text">Followers</span>
+                        </div>
+                    </v-col>
+                    </v-row>
+                </base-card>
+                 <v-card elevation="20" class="pa-3 ma-auto" width="60%" color="black" rounded="lg">
+            <div v-if="openLink.follower">
+                <div v-if="follow_list.length > 0">
+                    <div class="d-flex justify-space-between py-2 white--text">
+                        <h3>{{ follow_list.length }} Followers</h3>
+                    </div>
+                    <v-divider dark class=""></v-divider>
+                    <v-list color="darkgrey " class="my-2" rounded="lg">
+                        <v-list-item class="grow card" v-for="item in follow_list" :key="item.id">
+                            <div class="d-flex cursor-pointer flex-grow-1" :to="`/user-profile/${item.id}`" @click="$router.push({name: 'User Profile View', params: {id: item.id}})">
+                                <v-list-item-avatar size="60">
+                                    <img :src="item.profile_pic ? item.profile_pic : 'https://cdn.vuetifyjs.com/images/john.jpg'" alt="John" />
+                                </v-list-item-avatar>
+
+                                <v-list-item-content>
+                                    <v-list-item-title class="white--text text-start">{{ item.user.username }}</v-list-item-title>
+                                   
+                                </v-list-item-content>
+                            </div>
+
+                            <!-- <v-row align="center" justify="end">
+                                <div class="d-flex align-center pa-1" @click="RemoveFollower(item.id)">
+                                    <v-tooltip top>
+                                        <template v-slot:activator="{on, attrs}">
+                                            <v-btn class="white--text" icon v-on="on" v-bind="attrs">
+                                                <v-icon>mdi-account-minus</v-icon>
+                                            </v-btn>
+                                        </template>
+                                        <span>unfollow</span>
+                                    </v-tooltip>
+                                </div>
+                                <div class="d-flex align-center pa-1" @click="UnBlockUser(item.id)">
+                                    <v-tooltip top>
+                                        <template v-slot:activator="{on, attrs}">
+                                            <v-btn class="red--text" icon v-on="on" v-bind="attrs">
+                                                <v-icon>mdi-account-off</v-icon>
+                                            </v-btn>
+                                        </template>
+                                        <span>block</span>
+                                    </v-tooltip>
+                                </div>
+                               
+                            </v-row> -->
+                        </v-list-item>
+                    </v-list>
+                </div>
+                <div v-else>
+                    <div class="d-flex justify-center py-2">
+                        <h4 class="font-weight-light white--text">No followers</h4>
+                    </div>
+                </div>
+            </div>
+            </v-card>
+
+
+
+             <base-card v-if="openLink.following" elevation="20" class="pa-3 ma-auto" width="60%"   color="darkgrey" rounded="lg">
+                <v-row>
+                    <v-col
+                        cols="12"
+                        class="px-1 py-3 border ma-auto cursor-pointer"
+                      
+                    >
+                        <div class="text-center">
+                            <v-icon size="20" class="primarypurple--text">mdi-account-heart</v-icon>
+                            <span class="primarypurple--text">Following</span>
+                        </div>
+                    </v-col>
+                    </v-row>
+                </base-card>
+                 <v-card elevation="20" class="pa-3 ma-auto" width="60%" color="black" rounded="lg">
+            <div v-if="openLink.following">
+                <div v-if="followed_by_list.length > 0">
+                    <div class="d-flex justify-space-between py-2 white--text">
+                        <h3>{{ followed_by_list.length }} Following</h3>
+                    </div>
+                    <v-divider dark class=""></v-divider>
+                    <v-list color="darkgrey " class="my-2" rounded="lg">
+                        <v-list-item class="grow card" v-for="item in follow_list" :key="item.id">
+                            <div class="d-flex cursor-pointer flex-grow-1" @click="$router.push({name: 'User Profile View', params: {id: item.id}})">
+                                <v-list-item-avatar size="60">
+                                    <img :src="item.profile_pic ? item.profile_pic : 'https://cdn.vuetifyjs.com/images/john.jpg'" alt="John" />
+                                </v-list-item-avatar>
+
+                                <v-list-item-content>
+                                    <v-list-item-title class="white--text text-start">{{ item.user.username }}</v-list-item-title>
+                                   
+                                </v-list-item-content>
+                            </div>
+
+                            <!-- <v-row align="center" justify="end">
+                                <div class="d-flex align-center pa-1" @click="RemoveFollower(item.id)">
+                                    <v-tooltip top>
+                                        <template v-slot:activator="{on, attrs}">
+                                            <v-btn class="white--text" icon v-on="on" v-bind="attrs">
+                                                <v-icon>mdi-account-minus</v-icon>
+                                            </v-btn>
+                                        </template>
+                                        <span>unfollow</span>
+                                    </v-tooltip>
+                                </div>
+                                <div class="d-flex align-center pa-1" @click="UnBlockUser(item.id)">
+                                    <v-tooltip top>
+                                        <template v-slot:activator="{on, attrs}">
+                                            <v-btn class="red--text" icon v-on="on" v-bind="attrs">
+                                                <v-icon>mdi-account-off</v-icon>
+                                            </v-btn>
+                                        </template>
+                                        <span>block</span>
+                                    </v-tooltip>
+                                </div>
+                               
+                            </v-row> -->
+                        </v-list-item>
+                    </v-list>
+                </div>
+                <div v-else>
+                    <div class="d-flex justify-center py-2">
+                        <h4 class="font-weight-light white--text">No following</h4>
+                    </div>
+                </div>
+            </div>
+            </v-card>
+                
             </v-col>
+           
         </v-row>
         </div>
                 </div>
