@@ -47,9 +47,9 @@
             </div>
             <div class="flex my-2 ml-3 row">
                 <v-icon small color="secondary "> mdi-run </v-icon>
-                <h6 class="muted--text ml-1 mt-1 mr-2 font-italic caption cursor-pointer" @click="openFollowing()" >Following: <span class="blue--text" style="text-decoration:underline"> {{ user.follow_list }}</span></h6>
+                <h6 class="muted--text ml-1 mt-1 mr-2 font-italic caption" >Following: <span  @click="openFollowing()" class="blue--text cursor-pointer" style="text-decoration:underline"> {{ user.follow_list }}</span></h6>
                 <v-icon small color="secondary "> mdi-run </v-icon>
-                <h6 class="muted--text ml-1 mt-1 font-italic caption cursor-pointer" @click="openFollowers()" >Follower: <span class="blue--text" style="text-decoration:underline"> {{ user.followed_by_list}}</span> </h6>
+                <h6 class="muted--text ml-1 mt-1 font-italic caption "  >Follower: <span @click="openFollowers()" class="blue--text cursor-pointer" style="text-decoration:underline"> {{ user.followed_by_list}}</span> </h6>
             </div>
             <div class="flex my-2 ml-3 row">
                 <v-icon small color="secondary "> mdi-face-agent </v-icon>
