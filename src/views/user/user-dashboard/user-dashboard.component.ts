@@ -1,6 +1,6 @@
 import NotificationBox from '@/components/core/notificationBox/notification-box.component';
 import VueWrapper from '@/components/core/Vue/vue.wrapper';
-import {AccountsApi, HoldingModel, LoaderService, SocialMediaService, UserProfileModel} from '@/sdk';
+import {AccountsApi, HoldingModel, LoaderService, SocialMediaService, UserProfileModel, ViewUserModel} from '@/sdk';
 import { SocialMediaApi } from '@/sdk/api-services/social-media/social-media.api';
 import { TransactionModel } from '@/sdk/models/user/transaction.model';
 import { UsersService } from '@/sdk/services/users/users.service';
@@ -12,7 +12,7 @@ import Component from 'vue-class-component';
 })
 export default class UserDashboardComponent extends VueWrapper {
     public socialMediaSrv = new SocialMediaService();
-    public user = new UserProfileModel();
+    public user = new ViewUserModel();
     public tabs = null;
     public defaultsSort = true;
     public transactionData = new Array<TransactionModel>();
@@ -131,10 +131,22 @@ export default class UserDashboardComponent extends VueWrapper {
         new SocialMediaApi().getUserById(this.$route.params.id).subscribe(res => {
             console.log(res);
             this.user = res;
-            this.follow_list = res.follow_list.follows;
-            this.follow_list = res.followed_by_list.followed_by;
         });
         this.socialMediaSrv.getUserFeeds(this.$route.params.id);
+        this.getViewUserFollowList();
+    }
+
+    getViewUserFollowList(){
+        new SocialMediaApi().getViewUserFollowing(this.$route.params.id).subscribe(
+            res =>{
+                console.log(res);
+                this.follow_list = res.follows;
+            }
+        );
+        new SocialMediaApi().getViewUserFollower(this.$route.params.id).subscribe(res => {
+            console.log(res);
+            this.followed_by_list = res.followed_by;
+        });
     }
 
     getDateTime(val: any) {
@@ -254,5 +266,9 @@ export default class UserDashboardComponent extends VueWrapper {
             .add(() => {
                 this.LoaderSrv.hideFullScreenLoader();
             });
+    }
+
+    ViewUser(id:string){
+        window.location.replace(`/user-profile/${id}`);
     }
 }

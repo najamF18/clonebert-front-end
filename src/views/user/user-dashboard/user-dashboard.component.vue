@@ -29,7 +29,7 @@
         
         <div v-if="!CoreSrv.Drawer.Mini" class="d-flex justify-space-between pa-3">
 
-            <div v-if="!!user.user.username " class="flex my-1 ml-3 row">
+            <div v-if="!!user.user " class="flex my-1 ml-3 row">
                 <v-icon small color="secondary "> mdi-at </v-icon>
                 <h5 class="white--text ml-1 mt-1">{{ user.user.username  }}</h5>
             </div>
@@ -47,9 +47,9 @@
             </div>
             <div class="flex my-2 ml-3 row">
                 <v-icon small color="secondary "> mdi-run </v-icon>
-                <h6 class="muted--text ml-1 mt-1 mr-2 font-italic caption cursor-pointer" @click="openFollowing()" >Following: <span class="blue--text" style="text-decoration:underline"> {{ followed_by_list.length }}</span></h6>
+                <h6 class="muted--text ml-1 mt-1 mr-2 font-italic caption cursor-pointer" @click="openFollowing()" >Following: <span class="blue--text" style="text-decoration:underline"> {{ user.follow_list }}</span></h6>
                 <v-icon small color="secondary "> mdi-run </v-icon>
-                <h6 class="muted--text ml-1 mt-1 font-italic caption cursor-pointer" @click="openFollowers()" >Follower: <span class="blue--text" style="text-decoration:underline"> {{ follow_list.length}}</span> </h6>
+                <h6 class="muted--text ml-1 mt-1 font-italic caption cursor-pointer" @click="openFollowers()" >Follower: <span class="blue--text" style="text-decoration:underline"> {{ user.followed_by_list}}</span> </h6>
             </div>
             <div class="flex my-2 ml-3 row">
                 <v-icon small color="secondary "> mdi-face-agent </v-icon>
@@ -398,14 +398,14 @@
                 </base-card>
                  <v-card elevation="20" class="pa-3 ma-auto" width="60%" color="black" rounded="lg">
             <div v-if="openLink.follower">
-                <div v-if="follow_list.length > 0">
+                <div v-if="followed_by_list.length > 0">
                     <div class="d-flex justify-space-between py-2 white--text">
-                        <h3>{{ follow_list.length }} Followers</h3>
+                        <h3>{{ followed_by_list.length }} Followers</h3>
                     </div>
                     <v-divider dark class=""></v-divider>
                     <v-list color="darkgrey " class="my-2" rounded="lg">
-                        <v-list-item class="grow card" v-for="item in follow_list" :key="item.id">
-                            <div class="d-flex cursor-pointer flex-grow-1" :to="`/user-profile/${item.id}`" @click="$router.push({name: 'User Profile View', params: {id: item.id}})">
+                        <v-list-item class="grow card" v-for="item in followed_by_list" :key="item.id">
+                            <div class="d-flex cursor-pointer flex-grow-1"  @click="ViewUser(item.id)">
                                 <v-list-item-avatar size="60">
                                     <img :src="item.profile_pic ? item.profile_pic : 'https://cdn.vuetifyjs.com/images/john.jpg'" alt="John" />
                                 </v-list-item-avatar>
@@ -416,8 +416,19 @@
                                 </v-list-item-content>
                             </div>
 
-                            <!-- <v-row align="center" justify="end">
-                                <div class="d-flex align-center pa-1" @click="RemoveFollower(item.id)">
+                           <v-row v-if="item.id != UserSrv.userProfile.id" align="center" justify="end">
+                                <div v-if="!socialMediaSrv.myFollowing.value.follows.find(i => i.id == item.id)" class="d-flex align-center pa-1" @click="FollowUser(item.id)">
+                                    <v-tooltip top>
+                                        <template v-slot:activator="{on, attrs}">
+                                            <v-btn class="white--text" icon v-on="on" v-bind="attrs">
+                                                <v-icon>mdi-account-plus</v-icon>
+                                            </v-btn>
+                                        </template>
+                                        <span>follow</span>
+                                    </v-tooltip>
+                                </div>
+
+                                <div v-else class="d-flex align-center pa-1" @click="FollowUser(item.id)">
                                     <v-tooltip top>
                                         <template v-slot:activator="{on, attrs}">
                                             <v-btn class="white--text" icon v-on="on" v-bind="attrs">
@@ -427,18 +438,32 @@
                                         <span>unfollow</span>
                                     </v-tooltip>
                                 </div>
-                                <div class="d-flex align-center pa-1" @click="UnBlockUser(item.id)">
-                                    <v-tooltip top>
+
+                                   <div  v-if="!socialMediaSrv.blockedUser.find(x => x.id == item.id)">
+
+                                    <v-tooltip top >
+                                            <template v-slot:activator="{on, attrs}">
+                                                 <v-btn small icon v-on="on" v-bind="attrs" color="error" class="mx-1"   @click="BlockUser(item.id)">
+                                <v-icon size="25" class="mr-1">mdi-account-remove</v-icon>
+                            </v-btn>
+                                            </template>
+                                            <span>block</span>
+                                        </v-tooltip>
+                                </div>
+
+                                <div v-else>
+
+                                    <v-tooltip top >
                                         <template v-slot:activator="{on, attrs}">
-                                            <v-btn class="red--text" icon v-on="on" v-bind="attrs">
-                                                <v-icon>mdi-account-off</v-icon>
-                                            </v-btn>
+                                            <v-btn  small v-on="on" v-bind="attrs"  icon color="success" class="mx-1"     @click="BlockUser(item.id)">
+                            <v-icon size="25" class="mr-1">mdi-account-minus</v-icon> 
+                        </v-btn>
                                         </template>
-                                        <span>block</span>
+                                        <span>unblock</span>
                                     </v-tooltip>
                                 </div>
                                
-                            </v-row> -->
+                            </v-row>
                         </v-list-item>
                     </v-list>
                 </div>
@@ -468,14 +493,14 @@
                 </base-card>
                  <v-card elevation="20" class="pa-3 ma-auto" width="60%" color="black" rounded="lg">
             <div v-if="openLink.following">
-                <div v-if="followed_by_list.length > 0">
+                <div v-if="follow_list.length > 0">
                     <div class="d-flex justify-space-between py-2 white--text">
-                        <h3>{{ followed_by_list.length }} Following</h3>
+                        <h3>{{ follow_list.length }} Following</h3>
                     </div>
                     <v-divider dark class=""></v-divider>
                     <v-list color="darkgrey " class="my-2" rounded="lg">
                         <v-list-item class="grow card" v-for="item in follow_list" :key="item.id">
-                            <div class="d-flex cursor-pointer flex-grow-1" @click="$router.push({name: 'User Profile View', params: {id: item.id}})">
+                            <div class="d-flex cursor-pointer flex-grow-1"  @click="ViewUser(item.id)">
                                 <v-list-item-avatar size="60">
                                     <img :src="item.profile_pic ? item.profile_pic : 'https://cdn.vuetifyjs.com/images/john.jpg'" alt="John" />
                                 </v-list-item-avatar>
@@ -486,8 +511,19 @@
                                 </v-list-item-content>
                             </div>
 
-                            <!-- <v-row align="center" justify="end">
-                                <div class="d-flex align-center pa-1" @click="RemoveFollower(item.id)">
+                            <v-row align="center" justify="end">
+                                <div v-if="!socialMediaSrv.myFollowing.value.follows.find(i => i.id == item.id)" class="d-flex align-center pa-1" @click="FollowUser(item.id)">
+                                    <v-tooltip top>
+                                        <template v-slot:activator="{on, attrs}">
+                                            <v-btn class="white--text" icon v-on="on" v-bind="attrs">
+                                                <v-icon>mdi-account-plus</v-icon>
+                                            </v-btn>
+                                        </template>
+                                        <span>follow</span>
+                                    </v-tooltip>
+                                </div>
+
+                                <div v-else class="d-flex align-center pa-1" @click="FollowUser(item.id)">
                                     <v-tooltip top>
                                         <template v-slot:activator="{on, attrs}">
                                             <v-btn class="white--text" icon v-on="on" v-bind="attrs">
@@ -497,18 +533,32 @@
                                         <span>unfollow</span>
                                     </v-tooltip>
                                 </div>
-                                <div class="d-flex align-center pa-1" @click="UnBlockUser(item.id)">
-                                    <v-tooltip top>
+
+                                <div  v-if="!socialMediaSrv.blockedUser.find(x => x.id == item.id)">
+
+                                    <v-tooltip top >
+                                            <template v-slot:activator="{on, attrs}">
+                                                 <v-btn small icon v-on="on" v-bind="attrs" color="error" class="mx-1"   @click="BlockUser(item.id)">
+                                <v-icon size="25" class="mr-1">mdi-account-remove</v-icon>
+                            </v-btn>
+                                            </template>
+                                            <span>block</span>
+                                        </v-tooltip>
+                                </div>
+
+                                <div v-else>
+
+                                    <v-tooltip top >
                                         <template v-slot:activator="{on, attrs}">
-                                            <v-btn class="red--text" icon v-on="on" v-bind="attrs">
-                                                <v-icon>mdi-account-off</v-icon>
-                                            </v-btn>
+                                            <v-btn  small v-on="on" v-bind="attrs"  icon color="success" class="mx-1"     @click="BlockUser(item.id)">
+                            <v-icon size="25" class="mr-1">mdi-account-minus</v-icon> 
+                        </v-btn>
                                         </template>
-                                        <span>block</span>
+                                        <span>unblock</span>
                                     </v-tooltip>
                                 </div>
                                
-                            </v-row> -->
+                            </v-row>
                         </v-list-item>
                     </v-list>
                 </div>

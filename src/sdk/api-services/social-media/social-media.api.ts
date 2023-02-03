@@ -147,4 +147,12 @@ export class SocialMediaApi extends BaseApi {
     public getUserById(id: string) {
         return this.GET_Request<any>(`${this.ApiUrl}/social-media/user-profile-retrieve-view/${id}/`);
     }
+
+    public getViewUserFollowing(id: string) {
+        return this.GET_Request<any>(`${this.ApiUrl}/social-media/user-follow-list-view/${id}/`);
+    }
+
+    public getViewUserFollower(id: string) {
+        return this.GET_Request<any>(`${this.ApiUrl}/social-media/user-followed-by-view/${id}/`);
+    }
 }

@@ -21,3 +21,13 @@ export class UserModel{
         Object.assign(this, data);
     }
 }
+
+export class ViewUserModel extends UserProfileModel {
+    public follow_list: string | null = null;
+    public followed_by_list: string | null = null;
+
+    constructor(data?: Partial<ViewUserModel>) {
+        super();
+        Object.assign(this, data);
+    }
+}
