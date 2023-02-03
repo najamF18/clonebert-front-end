@@ -55,8 +55,8 @@
                 <div class="mt-3 text-center">
                     <p class="white--text">Already have an Account?<a @click="$router.push({name: 'Login'})"> Sign In</a></p>
                 </div>
-                <div class="mt-3 text-center">
-                    <p class="white--text">By creating an account you are accepting our <a href="#"> Terms & Conditions</a></p>
+                <div class="mt-3 text-center cursor-pointer" @click="$router.push({name:'Terms and Conditions'})">
+                    <p class="white--text">By creating an account you are accepting our <span class="blue--text"> Terms & Conditions</span></p>
                 </div>
             </base-form>
         </base-card>

@@ -199,6 +199,15 @@
                 </v-list-item>
             </v-list>
         </div>
+
+        <template #append>
+            <div class="px-2 mb-3">
+                <v-btn v-if="CoreSrv.Drawer.Mini" @click="logout"  class="secondary" fab dark small >
+                    <v-icon dark> mdi-logout </v-icon>
+                </v-btn>
+                <base-btn v-else @click="logout" block class="secondary"> Logout </base-btn>
+            </div>
+        </template>
         
     </v-navigation-drawer>
                 <div class="black white--text lighten-5 " style="minHeight:100vh">
@@ -250,7 +259,7 @@
                 <div class="pa-5  black  elevation-4 rounded-lg" v-else>
                 
                  <v-card width="80%"  class="ma-auto mt-5 black">
-              <v-row>
+              <!-- <v-row>
                     <v-col
                         cols="12"
                         class="px-1 py-3 mb-5 ma-auto darkgrey  rounded-lg cursor-pointer "
@@ -261,7 +270,7 @@
                             <span class="primarypurple--text">Posts</span>
                         </div>
                     </v-col>
-                    </v-row>
+                    </v-row> -->
                     <div v-if="socialMediaSrv.userFeeds.length > 0">
                         <div  class="my-2" v-for="(items,idx) in socialMediaSrv.userFeeds" :key="idx">
                            

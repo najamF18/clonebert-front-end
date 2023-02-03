@@ -25,7 +25,7 @@ export default class FeedComponent extends VueWrapper {
 
     public links = [
         {title: 'Feeds', icon: 'mdi-view-dashboard', link: 'Posts'},
-        {title: 'Timeline', icon: 'mdi-forum', link: 'Timeline'}
+        {title: 'Activity', icon: 'mdi-forum', link: 'Timeline'}
     ];
 
     @Watch('description')

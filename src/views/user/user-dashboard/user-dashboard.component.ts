@@ -1,6 +1,6 @@
 import NotificationBox from '@/components/core/notificationBox/notification-box.component';
 import VueWrapper from '@/components/core/Vue/vue.wrapper';
-import {AccountsApi, HoldingModel, LoaderService, SocialMediaService, UserProfileModel, ViewUserModel} from '@/sdk';
+import {AccountsApi, HoldingModel, LoaderService, SocialMediaService, UserProfileModel, UserSession, ViewUserModel} from '@/sdk';
 import { SocialMediaApi } from '@/sdk/api-services/social-media/social-media.api';
 import { TransactionModel } from '@/sdk/models/user/transaction.model';
 import { UsersService } from '@/sdk/services/users/users.service';
@@ -136,13 +136,11 @@ export default class UserDashboardComponent extends VueWrapper {
         this.getViewUserFollowList();
     }
 
-    getViewUserFollowList(){
-        new SocialMediaApi().getViewUserFollowing(this.$route.params.id).subscribe(
-            res =>{
-                console.log(res);
-                this.follow_list = res.follows;
-            }
-        );
+    getViewUserFollowList() {
+        new SocialMediaApi().getViewUserFollowing(this.$route.params.id).subscribe(res => {
+            console.log(res);
+            this.follow_list = res.follows;
+        });
         new SocialMediaApi().getViewUserFollower(this.$route.params.id).subscribe(res => {
             console.log(res);
             this.followed_by_list = res.followed_by;
@@ -268,7 +266,22 @@ export default class UserDashboardComponent extends VueWrapper {
             });
     }
 
-    ViewUser(id:string){
+    ViewUser(id: string) {
         window.location.replace(`/user-profile/${id}`);
+    }
+
+    public logout() {
+        this.LoaderSrv.showFullScreenLoader('Logging out...');
+        new AccountsApi().logout().subscribe(
+            res => {
+                new UserSession().clear();
+                this.$router.push({name: 'Login'});
+                this.LoaderSrv.hideFullScreenLoader();
+            },
+            err => {
+                this.AlertSrv.show('error', err.message);
+                this.LoaderSrv.hideFullScreenLoader();
+            }
+        );
     }
 }

@@ -50,7 +50,7 @@ export const UserRoutes: Array<RouteConfig> = [
                            icon: 'playlist-play',
                            color: 'orange',
                            sequence: 1,
-                           title: 'Activity Feed'
+                           title: 'Feeds'
                        },
                        children: [
                            {

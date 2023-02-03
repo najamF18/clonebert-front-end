@@ -52,7 +52,7 @@ export default class DrawerComponent extends VueWrapper {
         this.LoaderSrv.showFullScreenLoader('Logging out...');
         new AccountsApi().logout().subscribe(
             res => {
-                console.log('Holding List', res);
+                
                 new UserSession().clear();
                 this.$router.push({name: 'Login'});
                 this.LoaderSrv.hideFullScreenLoader();
