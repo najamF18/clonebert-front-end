@@ -85,4 +85,10 @@ export default class FeedComponent extends VueWrapper {
         }
         
     }
+
+    RemoveImage(){
+        this.image=null;
+        this.media_file=null;
+       this.$refs.fileInput.value="";
+    }
 }

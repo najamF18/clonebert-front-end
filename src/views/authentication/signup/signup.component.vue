@@ -12,9 +12,9 @@
             </v-row>
             <br /><br />
             <h3 style="font-size:1.5rem; font-weight:500" class=" white--text text-left mb-3">Sign Up</h3>
-            <base-form @submit="signup" #default="{invalid}">
+            <base-form @submit="signup" ref="baseForm" #default="{invalid}">
                 <div class="mb-3">
-                    <search-component @search="SearchInput" :error="error" :errorMessage="errorMessage" label="Username" />
+                    <search-component @search="SearchInput"  :error="error" :errorMessage="errorMessage" label="Username" />
                 </div>
                 <div class="mb-3">
                     <base-text-field label="Email" hide-details :value.sync="signupData.email" />

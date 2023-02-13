@@ -45,9 +45,14 @@
                 <v-textarea dark flat solo-inverted row-height="40" rules="max:999"   background-color="darkgrey" style="color:white"   v-model="description" hide-details  placeholder="What's happening "></v-textarea>
             </div>
             <div v-if="image">
+                <base-card class="text-end px-2 darkgrey elevation-0">
+               <v-btn color="error" icon @click="RemoveImage()">
+                    <v-icon>mdi-close</v-icon>
+                </v-btn>
                 <v-avatar tile size="100%">
                     <v-img :src="image" contain max-width="500" max-height="500" />
                 </v-avatar>
+            </base-card>
             </div>
             <!-- <div class="my-3">
                 <drag-drop-upload-component :file.sync="media_file" label="Upload Media File"></drag-drop-upload-component>

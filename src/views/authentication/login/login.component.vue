@@ -11,6 +11,13 @@
                 </v-col>
             </v-row>
             <br /><br />
+            <div v-if="$route.params.msg">
+                <v-alert
+    type="info"
+    text
+    color="white"
+  >{{ $route.params.msg }}</v-alert>
+            </div>
             <h3 style="font-size:1.5rem; font-weight:500" class=" white--text text-left mb-3">Sign In</h3>
             <base-form @submit="login">
                 <div class="mb-3">

@@ -11,6 +11,10 @@ export default class SignupComponent extends VueWrapper {
 
     public accountAPi = new AccountsApi();
 
+    public $refs!: {
+        baseForm: any;
+    };
+
     public signup() {
         this.LoaderSrv.showFullScreenLoader();
         this.accountAPi
@@ -18,8 +22,10 @@ export default class SignupComponent extends VueWrapper {
             .subscribe(
                 ({status, data, message}) => {
                     if (status) {
-                        this.AlertSrv.show('success', 'Sign up Successful');
+                        this.AlertSrv.show('success', 'Sign up Successful. A verification email has sent to your email address');
                         this.signupData = new SignupModel();
+                        this.$refs.baseForm.reset();
+                        this.$router.push({name:'Login',params:{msg:'Please verify your email address'}})
                     }
                 },
                 err => {
