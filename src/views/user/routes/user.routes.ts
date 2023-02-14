@@ -23,10 +23,10 @@ import PostViewComponent from '../post-view/post-view.component';
 
 export const UserRoutes: Array<RouteConfig> = [
            {
-               path: '/user',
+               path: '/user/:name',
                name: 'User',
                component: UserComponent,
-               redirect: '/user/dashboard',
+               redirect: '/user/:name/dashboard',
                children: [
                    {
                        path: 'dashboard',
@@ -126,18 +126,18 @@ export const UserRoutes: Array<RouteConfig> = [
                            title: 'Notification View'
                        }
                    },
-                //    {
-                //        path: 'user-profile/:id?',
-                //        name: 'User Profile View',
-                //        component: UserDashboardComponent,
-                //        meta: {
-                //            showable: false,
-                //            icon: 'table-large',
-                //            color: 'green',
-                //            sequence: 1,
-                //            title: 'User Profile View'
-                //        }
-                //    },
+                   //    {
+                   //        path: 'user-profile/:id?',
+                   //        name: 'User Profile View',
+                   //        component: UserDashboardComponent,
+                   //        meta: {
+                   //            showable: false,
+                   //            icon: 'table-large',
+                   //            color: 'green',
+                   //            sequence: 1,
+                   //            title: 'User Profile View'
+                   //        }
+                   //    },
                    {
                        path: 'profile',
                        name: 'Profile',
