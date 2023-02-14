@@ -67,17 +67,12 @@ export default class FeedComponent extends VueWrapper {
 
     uploadImage(event: any) {
         const file = event.target.files[0];
-        if (file.size > 1024 * 1024) {
-            this.AlertSrv.show('error', 'The file is too big. Kindly upload a file that is smaller than 1MB.');
-        }
-        else{
             this.media_file = file;
             const reader = new FileReader();
             reader.addEventListener('load', () => {
                 this.image = reader.result;
             });
             reader.readAsDataURL(file);
-        }
         
     }
 

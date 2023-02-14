@@ -15,6 +15,7 @@ export default class BasicInfoComponent extends VueWrapper {
     public socialMediaSrv = new SocialMediaService();
     public UserSrv = new UsersService();
     public isProfileChanged=false;
+    public profile_pic:any =null;
 
     mounted() {
         this.UserSrv.getUserProfile();
@@ -22,14 +23,20 @@ export default class BasicInfoComponent extends VueWrapper {
     public uploadImage(event: any) {
         const input = event.target;
         if (input.files && input.files[0]) {
-            const reader = new FileReader();
-            reader.onload = e => {
-                this.UserSrv.image = (e.target as any).result;
-            };
-            reader.readAsDataURL(input.files[0]);
+            if (input.files[0].size > 1024 * 1024) {
+                this.AlertSrv.show('error', `The file is too big. Kindly upload a file that is smaller than 1 MB `);
+            } else {
+                const reader = new FileReader();
+                reader.onload = e => {
+                    this.UserSrv.image = (e.target as any).result;
+                };
+                reader.readAsDataURL(input.files[0]);
+                this.profile_pic = input.files[0];
+                this.isProfileChanged = true;
+            }
+            
         }
-        this.UserSrv.userProfile.profile_pic = input.files[0];
-        this.isProfileChanged = true;
+        
     }
    
 
@@ -37,7 +44,7 @@ export default class BasicInfoComponent extends VueWrapper {
         this.LoaderSrv.showFullScreenLoader();
         const fd = new FormData();
         if(this.isProfileChanged){
-             fd.append('profile_pic', this.UserSrv.userProfile.profile_pic!);
+             fd.append('profile_pic', this.profile_pic!);
         }
        
         fd.append('location', this.UserSrv.userProfile.location!);
