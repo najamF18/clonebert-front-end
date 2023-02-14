@@ -4,7 +4,7 @@
             <v-row class="d-flex justify-space-between align-center">
                 <v-col cols="7">
                     <h1 class="white--text" style="font-size:1.6rem; font-weight:650">| CLONEBERT</h1>
-                    <h4 class="white--text font-weight-medium">follow the experts</h4>
+                    <h4 class="white--text font-weight-medium">follow and learn</h4>
                 </v-col>
                 <v-col cols="5" class="pa-3">
                     <v-img style="left:0px" src="images/rocket.png" width="90%" />
