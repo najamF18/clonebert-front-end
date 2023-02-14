@@ -34,10 +34,10 @@
             <FollowersComponent></FollowersComponent>
         </v-col> -->
 
-        <base-dialog :name="model" width="50%">
+        <base-dialog :name="model" width="50%" >
             <div class="d-flex justify-space-between mb-3">
                 <h3 class="white--text">Create Post</h3>
-                <v-btn color="error" icon @click="CoreSrv.CloseModal(model)">
+                <v-btn color="error" icon @click="CoreSrv.CloseModal(model);Close()">
                     <v-icon>mdi-close</v-icon>
                 </v-btn>
             </div>
