@@ -34,31 +34,34 @@ export default class FeedComponent extends VueWrapper {
     }
 
     CreatePost() {
-        this.LoaderSrv.showFullScreenLoader('Creating Post');
+        
         const fd = new FormData();
         fd.append('description', this.description!);
 
         fd.append('media_file', this.media_file!);
-
-        new SocialMediaApi()
-            .CreatePost(fd)
-            .subscribe(
-                res => {
-                    this.AlertSrv.show('success', 'post created successfully');
-                    this.SocialMediaSrv.timelinePosts = new Array<TimelinePostModel>();
-                    this.SocialMediaSrv.feeds = new Array<TimelinePostModel>();
-                    this.SocialMediaSrv.getTimelinePosts();
-                    this.SocialMediaSrv.getFeeds();
-                    this.CoreSrv.CloseModal(this.model);
-                    this.Close();
-                },
-                err => {
-                    this.AlertSrv.show('error', err);
-                }
-            )
-            .add(() => {
-                this.LoaderSrv.hideFullScreenLoader();
-            });
+        if(this.media_file || this.description){
+            this.LoaderSrv.showFullScreenLoader('Creating Post');
+            new SocialMediaApi()
+                .CreatePost(fd)
+                .subscribe(
+                    res => {
+                        this.AlertSrv.show('success', 'post created successfully');
+                        this.SocialMediaSrv.timelinePosts = new Array<TimelinePostModel>();
+                        this.SocialMediaSrv.feeds = new Array<TimelinePostModel>();
+                        this.SocialMediaSrv.getTimelinePosts();
+                        this.SocialMediaSrv.getFeeds();
+                        this.CoreSrv.CloseModal(this.model);
+                        this.Close();
+                    },
+                    err => {
+                        this.AlertSrv.show('error', err);
+                    }
+                )
+                .add(() => {
+                    this.LoaderSrv.hideFullScreenLoader();
+                });
+        }
+        
     }
 
     ChangeRoute(name: string) {
