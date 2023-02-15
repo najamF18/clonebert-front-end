@@ -8,7 +8,7 @@ export class AlertService {
         message: string,
         background: string = '#191c24',
         position?: 'top' | 'center' | 'bottom',
-        timer: number = 3000,
+        timer: number = 5000,
         timerProgressBar: boolean = true,
         showConfirmButton:boolean=false,
     ) {

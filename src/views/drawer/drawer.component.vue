@@ -16,7 +16,7 @@
         </div>
         <div v-if="!CoreSrv.Drawer.Mini && CoreSrv.IsApiLinked" class="ml-3 ">
             <v-avatar  tile min-width="20" width="30" height="30">
-                <v-img height="40" contain class="transparent cursor-pointer" width="50" src="/images/badge.svg" />
+                <v-img height="40" contain class="transparent" width="50" src="/images/badge.svg" />
             </v-avatar>
         </div>
         

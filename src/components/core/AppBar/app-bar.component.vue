@@ -102,11 +102,11 @@
           
             <v-spacer></v-spacer>
 
-            <v-btn v-if="!CoreSrv.IsApiLinked" to="/user/profile/manage-portfolio" color="warning" elevation="2" small>
+            <v-btn v-if="!CoreSrv.IsApiLinked" @click="$router.push({name:'Manage Portfolio'})" color="warning" elevation="2" small>
                 <v-icon left> mdi-plus </v-icon>
                 Import Portfolio
             </v-btn>
-            <v-btn v-else to="/user/profile/manage-portfolio" color="primarypurple" elevation="2" small>
+            <v-btn v-else @click="$router.push({name:'Manage Portfolio'})" color="primarypurple" elevation="2" small>
                
                 Update Portfolio
             </v-btn>
