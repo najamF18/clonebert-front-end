@@ -67,18 +67,6 @@ export const UserRoutes: Array<RouteConfig> = [
                    },
 
                    {
-                       path: 'transaction',
-                       name: 'Transaction',
-                       component: TransactionComponent,
-                       meta: {
-                           showable: true,
-                           icon: 'table-large',
-                           color: 'red',
-                           sequence: 1,
-                           title: 'Transactions'
-                       }
-                   },
-                   {
                        path: 'holdings',
                        name: 'Holdings',
                        component: HoldingComponent,
@@ -88,6 +76,18 @@ export const UserRoutes: Array<RouteConfig> = [
                            color: 'green',
                            sequence: 1,
                            title: 'Holdings'
+                       }
+                   },
+                   {
+                       path: 'transaction',
+                       name: 'Transaction',
+                       component: TransactionComponent,
+                       meta: {
+                           showable: true,
+                           icon: 'table-large',
+                           color: 'red',
+                           sequence: 1,
+                           title: 'Transactions'
                        }
                    },
                    {
