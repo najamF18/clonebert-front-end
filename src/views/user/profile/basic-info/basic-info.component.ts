@@ -23,9 +23,6 @@ export default class BasicInfoComponent extends VueWrapper {
     public uploadImage(event: any) {
         const input = event.target;
         if (input.files && input.files[0]) {
-            if (input.files[0].size > 1024 * 1024) {
-                this.AlertSrv.show('error', `The file is too big. Kindly upload a file that is smaller than 1 MB `);
-            } else {
                 const reader = new FileReader();
                 reader.onload = e => {
                     this.UserSrv.image = (e.target as any).result;
@@ -34,8 +31,6 @@ export default class BasicInfoComponent extends VueWrapper {
                 this.profile_pic = input.files[0];
                 this.isProfileChanged = true;
             }
-            
-        }
         
     }
    
@@ -59,7 +54,7 @@ export default class BasicInfoComponent extends VueWrapper {
                     console.log(res);
                 },
                 err => {
-                    this.AlertSrv.show('error', err.message);
+                    this.AlertSrv.show('error', err.profile_pic[0]);
                 }
             )
             .add(() => {
